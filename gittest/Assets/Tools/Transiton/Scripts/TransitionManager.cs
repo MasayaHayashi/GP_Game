@@ -6,11 +6,23 @@ using UnityEngine.UI;
 
 /// <summary>
 /// シーン管理　シングルトン
+/// 加藤　遼
 /// </summary>
 public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 {
+    public enum FadeType
+    {
+        //NONE,
+        FADE,
+        MASK_01,
+    }
+
+
     // マスクトランジション機能
     private MaskTransition m_MaskTransition;
+
+    // フェード機能
+    private FadeTransition m_FadeTransition;
 
     //　読み込み率を表示するスライダー
     [SerializeField] private Slider slider;
@@ -26,6 +38,7 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 
         // ---------- コンポーネント取得 ----------
         m_MaskTransition = GetComponent<MaskTransition>();
+        m_FadeTransition = GetComponent<FadeTransition>();
 
         // ---------- スライダーを隠す ------------
         slider.gameObject.SetActive(false);
@@ -36,22 +49,35 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="time"></param>
-    public void ChangeSceneTransiton(string sceneName,float time)
+    public void ChangeSceneTransiton(string sceneName,float time,FadeType type)
     {
         if (!m_MaskTransition.Running)
-            StartCoroutine(LoadScene(sceneName, time));
+            StartCoroutine(LoadScene(sceneName, time, type));
     }
 
-    IEnumerator LoadScene(string sceneName, float time)
+    IEnumerator LoadScene(string sceneName, float time,FadeType type)
     {
+
+        TransitonBase transition = null;
+        switch (type)
+        {
+            case FadeType.FADE:
+                transition = m_FadeTransition;
+                break;
+            case FadeType.MASK_01:
+                transition = m_MaskTransition;
+                break;
+        }
+
+
         // ----- フェードイン -----
-        m_MaskTransition.BeginTransition_In(time);
+        transition.BeginTransition_In(time);
 
         // ----- プログレスバー -----
         slider.gameObject.SetActive(true);
 
         // ----- フェードイン終了まで待つ ----
-        while (m_MaskTransition.Running)
+        while (transition.Running)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -89,10 +115,10 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
         slider.gameObject.SetActive(false);
 
         // ----- フェーアウト -----
-        m_MaskTransition.BeginTransition_Out(time);
+        transition.BeginTransition_Out(time);
 
         // ----- フェードイン終了まで待つ ----
-        while (m_MaskTransition.Running)
+        while (transition.Running)
         {
             yield return new WaitForEndOfFrame();
         }
