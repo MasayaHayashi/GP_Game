@@ -17,7 +17,6 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
         MASK_01,
     }
 
-
     // マスクトランジション機能
     private MaskTransition m_MaskTransition;
 
@@ -27,8 +26,7 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
     //　読み込み率を表示するスライダー
     [SerializeField] private Slider slider;
 
-
-    //初期化メソッド(初アクセスまたはAwake時のどちらか一度だけ実行される)
+    // 初期化メソッド(初アクセスまたはAwake時のどちらか一度だけ実行される)
     protected override void Init()
     {
         base.Init();

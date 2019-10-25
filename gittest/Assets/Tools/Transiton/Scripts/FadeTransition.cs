@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class FadeTransition : TransitonBase
 {
-
     override protected IEnumerator TransIn(float time)
     {
         // -------- 実行中 ----------
