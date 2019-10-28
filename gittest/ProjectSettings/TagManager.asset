@@ -14,10 +14,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Item
+  - Hand
+  - Lane
+  - GoalPoint
   - 
   - 
   - 
