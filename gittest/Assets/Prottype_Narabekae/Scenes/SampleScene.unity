@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -298,6 +299,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 6.5, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 130ba2f3f6aaee04d8ae749de15faae3, type: 2}
 --- !u!1 &1115842516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,10 +1099,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054964372291817707, guid: 867e175f653ec7f408e2a9ebf9e82c3d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a72ac4ebdf952e4294022003f578386, type: 2}
+    - target: {fileID: 5054964372217055014, guid: 867e175f653ec7f408e2a9ebf9e82c3d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a72ac4ebdf952e4294022003f578386, type: 2}
+    - target: {fileID: 5054964370684734237, guid: 867e175f653ec7f408e2a9ebf9e82c3d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a72ac4ebdf952e4294022003f578386, type: 2}
     - target: {fileID: 5054964371483556952, guid: 867e175f653ec7f408e2a9ebf9e82c3d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c01cf4614703d84fb310e5a6af74dad, type: 2}
+    - target: {fileID: 442601496, guid: 867e175f653ec7f408e2a9ebf9e82c3d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a72ac4ebdf952e4294022003f578386, type: 2}
+    - target: {fileID: 926624066, guid: 867e175f653ec7f408e2a9ebf9e82c3d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a72ac4ebdf952e4294022003f578386, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 867e175f653ec7f408e2a9ebf9e82c3d, type: 3}
