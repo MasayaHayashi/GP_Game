@@ -15,4 +15,5 @@ MonoBehaviour:
   name: evolution1
   sprites:
   - {fileID: 21300018, guid: 520b1721926d24545bba5bd02872b50c, type: 3}
-  nextEvolutions: []
+  nextEvolutions:
+  - {fileID: 0}

@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class ViruseBase : MonoBehaviour
 {
     [SerializeField, Header("ウィルス用オブジェクト")]
-    private ViruseData viruseObj;
+    private ViruseData  viruseObj;
 
-    private ViruseData nextViruseObj;               // 次の進化先
+    private ViruseData  nextViruseObj;               // 次の進化先
 
     private const float EffectTime  = 2.0f;         // 演出時間
     private bool        isEndEffect = false;        // 進化演出が終了したか
@@ -54,7 +54,7 @@ public class ViruseBase : MonoBehaviour
 
     private void changeSprite()
     {
-        gameObject.GetComponent<Image>().sprite = viruseObj.sprites[0];
+       // gameObject.GetComponent<Image>().sprite = viruseObj.sprites[0];
     }
 
 }

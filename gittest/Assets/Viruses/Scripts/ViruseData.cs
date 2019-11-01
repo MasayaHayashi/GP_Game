@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ウィルス用データ
-// Author:MasayaHayashi
+// Author : MasayaHayashi
 
 [CreateAssetMenu(menuName = "MyScriptable/Create ViruseData")]
 public class ViruseData : ScriptableObject
