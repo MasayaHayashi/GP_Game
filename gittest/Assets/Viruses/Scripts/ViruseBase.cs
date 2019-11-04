@@ -11,22 +11,27 @@ public class ViruseBase : MonoBehaviour
     [SerializeField, Header("ウィルス用登録データ（スクリプタブルオブジェクト")]
     private ViruseData  viruseObj;
 
-    private GameObject  nextViruseObj;              // 次の進化先
+    private GameObject  nextViruseGameObj;          // 次の進化先
 
     private const float EffectTime  = 2.0f;         // 演出時間
     private bool        isEndEffect = false;        // 進化演出が終了したか
-    
-    
+
+    private Animator[] childAnims;
+    private List<RuntimeAnimatorController> nextChildAnimControllers = new List<RuntimeAnimatorController>();
+
     private void Awake()
     {
-
+        for (int index = 0; index < transform.childCount; index++)
+        {
+            childAnims = GetComponentsInChildren<Animator>();
+        }
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        changeSprite();
+        
     }
 
     // Update is called once per frame
@@ -43,11 +48,16 @@ public class ViruseBase : MonoBehaviour
         yield return new WaitForSeconds(EffectTime);
 
         // 次の進化先登録
-        nextViruseObj = viruseObj.nextEvolutions[(int)index];
+        nextViruseGameObj = viruseObj.nextEvolutions[(int)index];
 
-        viruseObj = nextViruseObj.GetComponent<ViruseBase>().viruseObj;
 
-        
+
+        viruseObj = nextViruseGameObj.GetComponent<ViruseBase>().viruseObj;
+
+        // 次のアニメーター登録
+        registerNextAnimator();
+
+
         // 画像変更
         changeSprite();
 
@@ -57,7 +67,25 @@ public class ViruseBase : MonoBehaviour
 
     private void changeSprite()
     {
-       
+
+        foreach (Animator childAnim in childAnims)
+        {
+            foreach (RuntimeAnimatorController nextChildAnim in nextChildAnimControllers)
+            {
+                childAnim.runtimeAnimatorController = null;
+                childAnim.runtimeAnimatorController = nextChildAnim;
+            }
+        }
+    }
+
+    private void registerNextAnimator()
+    {
+        Animator[] nextAnimators = nextViruseGameObj.GetComponentsInChildren<Animator>();
+
+        foreach (Animator childAnim in nextAnimators)
+        {
+            nextChildAnimControllers.Add(childAnim.runtimeAnimatorController);
+        }
     }
 
     // Sprite状態変更
