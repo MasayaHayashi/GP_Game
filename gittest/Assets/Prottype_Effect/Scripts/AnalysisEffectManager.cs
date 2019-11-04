@@ -10,16 +10,21 @@ public class AnalysisEffectManager : MonoBehaviour
 {
     [SerializeField] private List<Dialog> m_Dialogs = new List<Dialog>();
 
-    [SerializeField] private List<GameObject> m_DialogsTestObj;
+    [SerializeField] private List<GameObject> m_DialogsObj;
+
+
+    private bool m_isEffect;
+    public bool IsEffect{ get { return m_isEffect; } }
+
+
     // Start is called before the first frame update
     void Start()
     {
-  
-
-        for (int i = 0; i < m_DialogsTestObj.Count; i++)
+        // ----- ダイアログ取得 -----
+        for (int i = 0; i < m_DialogsObj.Count; i++)
         {
             m_Dialogs.Add(new Dialog());
-            m_Dialogs[i].m_Instance = m_DialogsTestObj[i];
+            m_Dialogs[i].m_Instance = m_DialogsObj[i];
             m_Dialogs[i].Set();
             m_Dialogs[i].m_Instance.SetActive(false);
         }
@@ -28,27 +33,52 @@ public class AnalysisEffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        if (Input.GetKeyDown(KeyCode.Q) && !m_isEffect)
         {
             StartCoroutine(AnalysisStart());
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) && !m_isEffect)
+        {
+            StartCoroutine(AnalysisEnd());
         }
     }
 
 
     public IEnumerator AnalysisStart()
     {
-        Debug.Log("演出テスト");
-
+        // ----- 演出中 -----
+        m_isEffect = true;
+       
         //　数秒毎にダイアログを出現させる
         for (int i = 0; i < m_Dialogs.Count; i++)
         {
             m_Dialogs[i].m_Instance.SetActive(true);
-            StartCoroutine(m_Dialogs[i].startEffect());
+            m_Dialogs[i].StartEffect();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
 
-      //  yield return new WaitForSeconds(0);
+        // ----- 演出終了 -----
+        m_isEffect = false;
+    }
+
+    public IEnumerator AnalysisEnd()
+    {
+        // ----- 演出中 -----
+        m_isEffect = true;
+
+        //　数秒毎に後ろから順番にダイアログを消す
+        for (int i = m_Dialogs.Count-1; i >=0; i--)
+        {
+            m_Dialogs[i].EndEffect();
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        // ----- 演出終了 -----
+        m_isEffect = false;
     }
 
 

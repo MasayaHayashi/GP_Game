@@ -21,24 +21,18 @@ public class Dialog
     }
 
 
-    public IEnumerator startEffect()
+    public void StartEffect()
     {
         // ダイヤログポップアップ処理
-        Debug.Log("Dialogの中StartEffect");
         m_DialogEffect.Popup();
-        
+      
+    }
 
-        // 処理が終わるまで待機
-       // while (m_DialogEffect.IsEffect)
-       //     yield return new WaitForSeconds(0);
+    public void EndEffect()
+    {        
+        // ダイヤログポップダウン処理
+        m_DialogEffect.Popdown();
 
-        // テキストタイピング処理
-       // m_TextEffect.Typing();
-
-        // 処理が終わるまで待機
-        //while (m_TextEffect.IsEffect)
-            yield return new WaitForSeconds(0);
-       
     }
  
 }

@@ -17,12 +17,13 @@ public class DialogEffect : MonoBehaviour
 
     private TextEffect m_TextEffect;
 
+    private RealtimeGIController m_GIController;
+
 
     private void Awake()
     {
-
-
         m_TextEffect = GetComponent<TextEffect>();
+        m_GIController = GetComponent<RealtimeGIController>();
 
         m_DialogSize = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(0, 0, 0);
@@ -65,23 +66,27 @@ public class DialogEffect : MonoBehaviour
     {
         m_isEffect = true;
 
-        Vector3 scale = new Vector3(0, 0, 1);
+        Vector3 scale = new Vector3(0, 0, 0);
 
         iTween.ScaleTo(this.gameObject, scale, time);
 
+        m_GIController.OnDisable();
 
-        while(gameObject.transform.localScale != scale)
+        while (gameObject.transform.localScale != scale)
         {
             yield return new WaitForSeconds(0);
         }
 
         m_isEffect = false;
+
+        gameObject.SetActive(false);
     }
 
 
     public IEnumerator popup(float time)
     {
         m_isEffect = true;
+        m_GIController.OnEnable();
 
         Vector3 scale = m_DialogSize;
 
