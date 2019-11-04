@@ -18,24 +18,14 @@ public class ViruseData : ScriptableObject
         "てすと",
     };
 
-    [SerializeField, Header("ウィルス画像")]
-    public Sprite[] sprites = new Sprite[spriteNames.Count];
-    
-    [SerializeField, Header("次の進化先")]
-    public List<ViruseData> nextEvolutions;
+    [SerializeField, Header("次の進化先(プレハブ)")]
+    public List<GameObject> nextEvolutions;
 
     private Dictionary<string, Sprite> spriteDatas = new Dictionary<string,Sprite>();
 
     private void Awake()
     {
-        foreach(Sprite sprite in sprites)
-        {
-            foreach(string keyName in spriteNames)
-            {
-                spriteDatas[keyName] = sprite;
-            }
 
-        }
     }
 
     public enum EvolutionType

@@ -8,16 +8,18 @@ using UnityEngine.UI;
 
 public class ViruseBase : MonoBehaviour
 {
-    [SerializeField, Header("ウィルス用オブジェクト")]
+    [SerializeField, Header("ウィルス用登録データ（スクリプタブルオブジェクト")]
     private ViruseData  viruseObj;
 
-    private ViruseData  nextViruseObj;              // 次の進化先
+    private GameObject  nextViruseObj;              // 次の進化先
 
     private const float EffectTime  = 2.0f;         // 演出時間
     private bool        isEndEffect = false;        // 進化演出が終了したか
     
+    
     private void Awake()
     {
+
     }
 
 
@@ -30,20 +32,11 @@ public class ViruseBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            // 演出開始
-            StartCoroutine(StartEvolution((int)ViruseData.EvolutionType.GOOD));
-        }
 
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            changeState("Damage");
-        }
     }
 
     // 進化開始
-    private IEnumerator StartEvolution(ViruseData.EvolutionType index)
+    public IEnumerator StartEvolution(ViruseData.EvolutionType index)
     {
         Debug.Log("演出中");
 
@@ -51,11 +44,15 @@ public class ViruseBase : MonoBehaviour
 
         // 次の進化先登録
         nextViruseObj = viruseObj.nextEvolutions[(int)index];
-        viruseObj = nextViruseObj;
+
+        viruseObj = nextViruseObj.GetComponent<ViruseBase>().viruseObj;
 
         
         // 画像変更
         changeSprite();
+
+        // スクリプト更新
+        //gameObject.AddComponent<>
     }
 
     private void changeSprite()
@@ -64,7 +61,7 @@ public class ViruseBase : MonoBehaviour
     }
 
     // Sprite状態変更
-    private void changeState(string changeName)
+    public void changeState(string changeName)
     {
         Animator[] childAnims = GetComponentsInChildren<Animator>();
 
