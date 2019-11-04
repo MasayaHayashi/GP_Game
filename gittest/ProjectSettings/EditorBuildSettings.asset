@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ManagerScene.unity
     guid: 5899c1a6486072d479f9088ca2d545de
+  - enabled: 0
+    path: Assets/Prottype_Effect/Scenes/LightingTest.unity
+    guid: 41add3221f6c24543b1eb2bad1ce0b97
   m_configObjects: {}
