@@ -11,11 +11,11 @@ public class ViruseBase : MonoBehaviour
     [SerializeField, Header("ウィルス用オブジェクト")]
     private ViruseData  viruseObj;
 
-    private ViruseData  nextViruseObj;               // 次の進化先
+    private ViruseData  nextViruseObj;              // 次の進化先
 
     private const float EffectTime  = 2.0f;         // 演出時間
     private bool        isEndEffect = false;        // 進化演出が終了したか
-
+    
     private void Awake()
     {
     }
@@ -33,7 +33,12 @@ public class ViruseBase : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.A))
         {
             // 演出開始
-            StartCoroutine(StartEvolution(0));
+            StartCoroutine(StartEvolution((int)ViruseData.EvolutionType.GOOD));
+        }
+
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            changeState("Damage");
         }
     }
 
@@ -48,13 +53,24 @@ public class ViruseBase : MonoBehaviour
         nextViruseObj = viruseObj.nextEvolutions[(int)index];
         viruseObj = nextViruseObj;
 
+        
         // 画像変更
         changeSprite();
     }
 
     private void changeSprite()
     {
-       // gameObject.GetComponent<Image>().sprite = viruseObj.sprites[0];
+       
     }
 
+    // Sprite状態変更
+    private void changeState(string changeName)
+    {
+        Animator[] childAnims = GetComponentsInChildren<Animator>();
+
+        foreach(Animator anim in childAnims)
+        {
+            anim.SetTrigger(changeName);
+        }
+    }
 }
