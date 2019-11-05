@@ -6,7 +6,6 @@ public class LaneControl : MonoBehaviour
 {
     [SerializeField] GameObject[] items;
     [SerializeField] Material[] itemMaterials;
-    public GameObject[] Lanes;
 
     Vector3 CREATE_POS = new Vector3(6.21f, 1.54f, -3.03f);
 
@@ -29,6 +28,7 @@ public class LaneControl : MonoBehaviour
         if (DebugCanvas.debugCanvas)
             TIME_INTERVAL_CREATE = DebugCanvas.createIntervalSlider.value;
 
+        //--- アイテムの生成 ---
         timeCnt += Time.deltaTime;
         if(timeCnt >= TIME_INTERVAL_CREATE)
         {

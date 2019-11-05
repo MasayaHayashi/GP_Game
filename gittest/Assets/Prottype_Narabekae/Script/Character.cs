@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
             return false;
 
         liftItem = item.gameObject.GetComponent<FlowItem>();
-            return true;
+        return true;
     }
 
     public bool ItemPut(Collider table)
@@ -81,25 +81,17 @@ public class Character : MonoBehaviour
             return false;
 
         //どのテーブルに置くのか
-        int laneNum = 0;
         Vector3 workPos = handObj.transform.position;
-        if(table.gameObject.name == "01")
-        {
-            laneNum = 0;
-            workPos.z = table.gameObject.transform.position.z;
-        }
-        else if (table.gameObject.name == "02")
-        {
-            laneNum = 1;
-            workPos.x = table.gameObject.transform.position.x;
-        }
-        else if (table.gameObject.name == "03")
-        {
-            laneNum = 2;
-            workPos.z = table.gameObject.transform.position.z;
-        }
+        Lane lanec = table.gameObject.GetComponent<Lane>();
 
-        liftItem.Put(workPos, laneNum);
+        if (lanec.laneVelocity.x != 0.0f)
+            workPos.z = table.gameObject.transform.position.z;
+        else if (lanec.laneVelocity.z != 0.0f)
+            workPos.x = table.gameObject.transform.position.x;
+        else
+            Debug.Log("Error");
+
+        liftItem.Put(workPos);
         liftItem = null;
         return true;
     }

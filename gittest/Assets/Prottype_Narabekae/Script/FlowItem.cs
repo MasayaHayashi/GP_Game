@@ -8,7 +8,11 @@ public class FlowItem : MonoBehaviour
     eItemType itemType;
     Rigidbody selfRigidBody;
     Transform selfTrans;
-    int laneNumber;
+
+    string laneName;
+    bool changeVelocity;
+    Vector3 moveLaneVelocity;
+    Lane laneClass;
 
     public static float LANE_SPEED = 1.0f;
     bool liftFlag;
@@ -30,7 +34,9 @@ public class FlowItem : MonoBehaviour
     {
         selfRigidBody = GetComponent<Rigidbody>();
         selfTrans = transform;
-        laneNumber = 0;
+        laneName = "";
+        changeVelocity = true;
+        moveLaneVelocity = Vector3.zero;
         liftFlag = false;
     }
 
@@ -55,30 +61,54 @@ public class FlowItem : MonoBehaviour
 
         Vector3 work = Vector3.zero;
         work.y = selfRigidBody.velocity.y;
-        switch (laneNumber)
-        {
-            case 0:
-                if(laneControlClass.Lanes[1].transform.position.x >= transform.position.x)
-                {
-                    laneNumber++;
-                    break;
-                }
-                work.x = -LANE_SPEED;
-                break;
-            case 1:
-                if (laneControlClass.Lanes[2].transform.position.z <= transform.position.z)
-                {
-                    laneNumber++;
-                    break;
-                }
-                work.z = LANE_SPEED;
-                break;
-            case 2:
-                work.x = LANE_SPEED;
-                break;
-        }
+
+        work.x = moveLaneVelocity.x * LANE_SPEED;
+        work.z = moveLaneVelocity.z * LANE_SPEED;
 
         selfRigidBody.velocity = work;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (liftFlag)   //持ち上げ中はレーン処理をしない
+            return;
+
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+        if (layerName != "Lane")
+            return;
+
+        if (collision.gameObject.name != laneName) {
+            laneName = collision.gameObject.name;
+            laneClass = collision.gameObject.GetComponent<Lane>();
+            if (changeVelocity)
+            {
+                moveLaneVelocity = laneClass.laneVelocity;
+                changeVelocity = false;
+                return;
+            }
+            changeVelocity = true;
+        }
+
+        if (!changeVelocity)
+            return;
+
+        Vector3 work = selfTrans.position;
+        if ((moveLaneVelocity.x > 0.0f && laneClass.pos.x <= selfTrans.position.x) ||
+            (moveLaneVelocity.x < 0.0f && laneClass.pos.x >= selfTrans.position.x))
+        {
+            work.x = laneClass.pos.x;
+            moveLaneVelocity = laneClass.laneVelocity;
+            changeVelocity = false;
+            return;
+        }
+        if ((moveLaneVelocity.z > 0.0f && laneClass.pos.z <= selfTrans.position.z) ||
+            (moveLaneVelocity.z < 0.0f && laneClass.pos.z >= selfTrans.position.z))
+        {
+            work.z = laneClass.pos.z;
+            moveLaneVelocity = laneClass.laneVelocity;
+            changeVelocity = false;
+            return;
+        }
     }
 
     public void Lift()
@@ -86,10 +116,10 @@ public class FlowItem : MonoBehaviour
         liftFlag = true;
     }
 
-    public void Put(Vector3 pos, int lane)
+    public void Put(Vector3 pos)
     {
         liftFlag = false;
-        laneNumber = lane;
+        changeVelocity = true;
         transform.position = pos;
     }
 
