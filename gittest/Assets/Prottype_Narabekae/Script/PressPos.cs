@@ -5,6 +5,7 @@ using UnityEngine;
 public class PressPos : MonoBehaviour
 {
     [SerializeField] PressMachine pressMachineClass;
+    [SerializeField] ItemUI itemUiClass;
     public int pressPosNumber;
     public static int setItemNum = 0;
     Transform selfTrans;
@@ -46,6 +47,7 @@ public class PressPos : MonoBehaviour
             classItem.moveLaneVelocity = Vector3.zero;
             classItem.goalFlag = true;
             setItemNum++;
+            itemUiClass.ItemGoal(classItem.GetItemType());
 
             if (setItemNum >= 4)
             {

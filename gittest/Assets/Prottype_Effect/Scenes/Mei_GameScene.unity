@@ -697,6 +697,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 269351278}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &373585759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7006453363845279410, guid: a11ab672596c60548b9dabf17b82bf44,
+    type: 3}
+  m_PrefabInstance: {fileID: 7006453363895473265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07db34e31fc965a42b5140a001800fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &441762957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7070686034286545999, guid: 9d12220569c318449b3be85e760936f8,
@@ -2011,6 +2023,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8614330390139027452, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695379664938914849, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900383957419517484, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592271042979311030, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001951811596050966, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: itemUiClass
+      value: 
+      objectReference: {fileID: 373585759}
+    - target: {fileID: 5912042332268829626, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: itemUiClass
+      value: 
+      objectReference: {fileID: 373585759}
+    - target: {fileID: 6474895637948151193, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: itemUiClass
+      value: 
+      objectReference: {fileID: 373585759}
+    - target: {fileID: 4591451964801252905, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: itemUiClass
+      value: 
+      objectReference: {fileID: 373585759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c551187120264444b2d5b69453ba70d, type: 3}
 --- !u!1001 &8780567523968901986
