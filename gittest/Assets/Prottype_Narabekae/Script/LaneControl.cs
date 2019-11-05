@@ -19,6 +19,7 @@ public class LaneControl : MonoBehaviour
     void Start()
     {
         timeCnt = 0.0f;
+        FlowItem.laneSpeedUpFlag = false;
     }
 
     // Update is called once per frame
@@ -39,6 +40,22 @@ public class LaneControl : MonoBehaviour
                     this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 createWaitItems.RemoveAt(0);
             }
+        }
+
+        //--- FPSの加速 ---
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Time.timeScale = 5.0f;
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        //--- レーンスピードの加速 ---
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            FlowItem.laneSpeedUpFlag ^= true;
         }
     }
 

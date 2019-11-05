@@ -15,6 +15,7 @@ public class FlowItem : MonoBehaviour
     Lane laneClass;
 
     public static float LANE_SPEED = 1.0f;
+    public static bool laneSpeedUpFlag = false;
     bool liftFlag;
 
     public enum eItemType
@@ -45,7 +46,11 @@ public class FlowItem : MonoBehaviour
     {
         //**debug
         if (DebugCanvas.debugCanvas)
+        {
             LANE_SPEED = DebugCanvas.laneSpeedSlider.value;
+            if (laneSpeedUpFlag)
+                LANE_SPEED *= 5.0f;
+        }
 
         LaneFlow();
 
