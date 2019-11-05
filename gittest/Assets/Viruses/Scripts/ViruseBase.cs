@@ -14,7 +14,7 @@ public class ViruseBase : MonoBehaviour
     private GameObject nextViruseGameObj;          // 次の進化先
 
     private const float EffectTime = 2.0f;         // 演出時間
-    private bool isEndEffect = false;        // 進化演出が終了したか
+    private bool isEndEffect = false;              // 進化演出が終了したか
 
     private Animator[] childAnims;
     private List<RuntimeAnimatorController> nextChildAnimControllers = new List<RuntimeAnimatorController>();
@@ -31,7 +31,7 @@ public class ViruseBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -73,9 +73,9 @@ public class ViruseBase : MonoBehaviour
     private void changeSprite()
     {
 
-        foreach (Animator childAnim in childAnims)
+        foreach (var childAnim in childAnims)
         {
-            foreach (RuntimeAnimatorController nextChildAnim in nextChildAnimControllers)
+            foreach (var nextChildAnim in nextChildAnimControllers)
             {
                 childAnim.runtimeAnimatorController = nextChildAnim;
             }
@@ -85,11 +85,11 @@ public class ViruseBase : MonoBehaviour
     private void changeScript()
     {
         // スクリプト変更
-        ViruseBase baseScript = nextViruseGameObj.GetComponent<ViruseBase>();
-        ViruseBase attachedScript = gameObject.AddComponent(baseScript.GetType()) as ViruseBase;
+        var baseScript = nextViruseGameObj.GetComponent<ViruseBase>();
+        var attachedScript = gameObject.AddComponent(baseScript.GetType()) as ViruseBase;
         attachedScript.viruseObj = baseScript.viruseObj;
 
-        // 前のスクリプト削除
+        // 不要なスクリプト削除
         Destroy(this);
     }
 
@@ -102,7 +102,7 @@ public class ViruseBase : MonoBehaviour
     {
         Animator[] nextAnimators = nextViruseGameObj.GetComponentsInChildren<Animator>();
 
-        foreach (Animator childAnim in nextAnimators)
+        foreach (var childAnim in nextAnimators)
         {
             nextChildAnimControllers.Add(childAnim.runtimeAnimatorController);
         }
@@ -113,7 +113,7 @@ public class ViruseBase : MonoBehaviour
     {
         Animator[] childAnims = GetComponentsInChildren<Animator>();
 
-        foreach(Animator anim in childAnims)
+        foreach (var anim in childAnims)
         {
             anim.SetTrigger(changeName);
         }

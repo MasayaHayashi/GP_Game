@@ -15,11 +15,13 @@ public class ViruseData : ScriptableObject
     public static List<string> spriteNames = new List<string>
     {
         "通常状態",
-        "てすと",
+        "ダメージ状態",
     };
 
     [SerializeField, Header("次の進化先(プレハブ)")]
     public List<GameObject> nextEvolutions;
+
+    public int id;
 
     private Dictionary<string, Sprite> spriteDatas = new Dictionary<string,Sprite>();
 
