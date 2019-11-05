@@ -8,36 +8,34 @@ using UnityEngine.UI;
 /// </summary>
 public class DialogEffect : MonoBehaviour
 {
-  
-    private Vector3 m_DialogSize; 
+    // ---- Private ----
+    private Vector3 m_DialogSize;                   // ダイアログのサイズ保持用
+    private bool m_isEffect;                        // 演出中かどうか
+    private TextMeshEffect m_TextMeshEffect;        // テキストメッシュ演出処理
+    private RealtimeGIController m_GIController;    // GIの更新
+
+    // ---- Property ----
     public Vector2 DialogSize { set { m_DialogSize = value; } get { return m_DialogSize; } }
-
-    private bool m_isEffect;   // 演出中かどうか
     public bool IsEffect { get { return m_isEffect; } }
-
-    private TextEffect m_TextEffect;
-
-    private RealtimeGIController m_GIController;
-
 
     private void Awake()
     {
-        m_TextEffect = GetComponent<TextEffect>();
+        // ---- 各種コンポーネントを取得 ---- 
+        m_TextMeshEffect = GetComponent<TextMeshEffect>();
         m_GIController = GetComponent<RealtimeGIController>();
 
+        // ---- ダイアログのサイズを保持 ----
         m_DialogSize = gameObject.transform.localScale;
-        gameObject.transform.localScale = new Vector3(0, 0, 0);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        // ---- ダイアログのスケールを0で初期化 ----
+        gameObject.transform.localScale = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
+        #region デバッグ用処理
+#if UNITY_EDITOR
         //    if (Input.GetKeyDown(KeyCode.Q) && !m_isEffect)
         //    {
         //        StartCoroutine(Popup(0.1f));
@@ -48,20 +46,21 @@ public class DialogEffect : MonoBehaviour
         //        StartCoroutine(Popdown(0.1f));
         //    }
         //}
+#endif
+        #endregion
     }
 
     //　呼び出し用
     public void Popup()
     {
         StartCoroutine(popup(1.0f));
-    }
-
+    }　
     public void Popdown()
     {
         StartCoroutine(popdown(1.0f));
     }
 
-
+    // 演出処理
     public IEnumerator popdown(float time)
     {
         m_isEffect = true;
@@ -81,8 +80,6 @@ public class DialogEffect : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-
-
     public IEnumerator popup(float time)
     {
         m_isEffect = true;
@@ -97,9 +94,9 @@ public class DialogEffect : MonoBehaviour
             yield return new WaitForSeconds(0);
         }
 
-        m_TextEffect.Typing();
+        m_TextMeshEffect.Typing();
 
-        while (m_TextEffect.IsEffect)
+        while (m_TextMeshEffect.IsEffect)
         {
             yield return new WaitForSeconds(0);
         }
