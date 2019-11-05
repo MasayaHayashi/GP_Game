@@ -33,10 +33,14 @@ public class ViruseManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            viruseBaseScript = baseViruse.GetComponent<ViruseBase>();
+
             viruseBaseScript.changeState("Damage");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            viruseBaseScript = baseViruse.GetComponent<ViruseBase>();
+
             viruseBaseScript.changeState("Idol");
         }
     }

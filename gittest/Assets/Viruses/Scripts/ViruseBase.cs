@@ -9,12 +9,12 @@ using UnityEngine.UI;
 public class ViruseBase : MonoBehaviour
 {
     [SerializeField, Header("ウィルス用登録データ（スクリプタブルオブジェクト")]
-    private ViruseData  viruseObj;
+    private ViruseData viruseObj;
 
-    private GameObject  nextViruseGameObj;          // 次の進化先
+    private GameObject nextViruseGameObj;          // 次の進化先
 
-    private const float EffectTime  = 2.0f;         // 演出時間
-    private bool        isEndEffect = false;        // 進化演出が終了したか
+    private const float EffectTime = 2.0f;         // 演出時間
+    private bool isEndEffect = false;        // 進化演出が終了したか
 
     private Animator[] childAnims;
     private List<RuntimeAnimatorController> nextChildAnimControllers = new List<RuntimeAnimatorController>();
@@ -31,7 +31,7 @@ public class ViruseBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -50,19 +50,24 @@ public class ViruseBase : MonoBehaviour
         // 次の進化先登録
         nextViruseGameObj = viruseObj.nextEvolutions[(int)index];
 
-
+        if (!nextViruseGameObj)
+        {
+            yield break;
+        }
 
         viruseObj = nextViruseGameObj.GetComponent<ViruseBase>().viruseObj;
 
         // 次のアニメーター登録
         registerNextAnimator();
 
-
         // 画像変更
         changeSprite();
 
-        // スクリプト更新
-        //gameObject.AddComponent<>
+        // スクリプト変更
+        changeScript();
+
+        // 名前変更
+        changeName();
     }
 
     private void changeSprite()
@@ -72,10 +77,25 @@ public class ViruseBase : MonoBehaviour
         {
             foreach (RuntimeAnimatorController nextChildAnim in nextChildAnimControllers)
             {
-                childAnim.runtimeAnimatorController = null;
                 childAnim.runtimeAnimatorController = nextChildAnim;
             }
         }
+    }
+
+    private void changeScript()
+    {
+        // スクリプト変更
+        ViruseBase baseScript = nextViruseGameObj.GetComponent<ViruseBase>();
+        ViruseBase attachedScript = gameObject.AddComponent(baseScript.GetType()) as ViruseBase;
+        attachedScript.viruseObj = baseScript.viruseObj;
+
+        // 前のスクリプト削除
+        Destroy(this);
+    }
+
+    private void changeName()
+    {
+        gameObject.name = nextViruseGameObj.name;
     }
 
     private void registerNextAnimator()
