@@ -11,12 +11,13 @@ public class FlowItem : MonoBehaviour
 
     string laneName;
     bool changeVelocity;
-    Vector3 moveLaneVelocity;
+    public Vector3 moveLaneVelocity;
     Lane laneClass;
 
     public static float LANE_SPEED = 1.0f;
     public static bool laneSpeedUpFlag = false;
     bool liftFlag;
+    public bool goalFlag;
 
     public enum eItemType
     {
@@ -39,11 +40,15 @@ public class FlowItem : MonoBehaviour
         changeVelocity = true;
         moveLaneVelocity = Vector3.zero;
         liftFlag = false;
+        goalFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (goalFlag)
+            return;
+
         //**debug
         if (DebugCanvas.debugCanvas)
         {
@@ -75,7 +80,7 @@ public class FlowItem : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (liftFlag)   //持ち上げ中はレーン処理をしない
+        if (liftFlag || goalFlag)   //持ち上げ中はレーン処理をしない
             return;
 
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);

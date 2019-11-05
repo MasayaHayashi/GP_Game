@@ -6,8 +6,7 @@ public class LaneControl : MonoBehaviour
 {
     [SerializeField] GameObject[] items;
     [SerializeField] Material[] itemMaterials;
-
-    Vector3 CREATE_POS = new Vector3(6.21f, 1.54f, -3.03f);
+    [SerializeField] Transform SpawnPosition;
 
     float timeCnt;
     float TIME_INTERVAL_CREATE = 3.0f;
@@ -36,7 +35,7 @@ public class LaneControl : MonoBehaviour
             timeCnt -= TIME_INTERVAL_CREATE;
             if (createWaitItems.Count > 0)
             {
-                Instantiate(items[Random.Range(0, items.Length)], CREATE_POS, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
+                Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
                     this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 createWaitItems.RemoveAt(0);
             }
