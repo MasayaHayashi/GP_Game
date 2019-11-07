@@ -14,6 +14,10 @@ public class AnalysisEffectManager : MonoBehaviour
 
     [SerializeField] private GameObject m_Completed;
 
+    [SerializeField] private ViruseBase m_ViruseBase;
+    private Vector3 m_ViruseDefPos;
+    public GameObject m_AnalisisVirusPos;
+
 
     private bool m_isEffect;
     public bool IsEffect{ get { return m_isEffect; } }
@@ -22,6 +26,9 @@ public class AnalysisEffectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_ViruseDefPos = m_ViruseBase.transform.position;
+
+
         // ----- ダイアログ取得 -----
         for (int i = 0; i < m_DialogsObj.Count; i++)
         {
@@ -52,7 +59,10 @@ public class AnalysisEffectManager : MonoBehaviour
     {
         // ----- 演出中 -----
         m_isEffect = true;
-       
+
+        iTween.MoveTo(m_ViruseBase.gameObject, m_AnalisisVirusPos.transform.position, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         //　数秒毎にダイアログを出現させる
         for (int i = 0; i < m_Dialogs.Count; i++)
         {
@@ -78,6 +88,8 @@ public class AnalysisEffectManager : MonoBehaviour
         // ----- 演出中 -----
         m_isEffect = true;
 
+        m_Completed.SetActive(false);
+
         //　数秒毎に後ろから順番にダイアログを消す
         for (int i = m_Dialogs.Count-1; i >=0; i--)
         {
@@ -85,6 +97,9 @@ public class AnalysisEffectManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
         }
+
+        iTween.MoveTo(m_ViruseBase.gameObject, m_ViruseDefPos, 1.0f);
+        yield return new WaitForSeconds(1.0f);
 
         // ----- 演出終了 -----
         m_isEffect = false;

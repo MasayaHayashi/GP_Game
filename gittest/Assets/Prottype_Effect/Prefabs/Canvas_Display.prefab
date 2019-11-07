@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8780567523454517249}
   - component: {fileID: 8780567523454517248}
   - component: {fileID: 8780567523454517251}
-  - component: {fileID: 8780567523454517250}
   m_Layer: 0
   m_Name: DisplayBack
   m_TagString: Untagged
@@ -78,20 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8780567523454517250
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8780567523454517309}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8780567524427367332
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 26.03, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.23, y: 4.63}
+  m_AnchoredPosition: {x: -1.230011, y: 4.630005}
   m_SizeDelta: {x: 15, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8780567524427367339
