@@ -12,6 +12,8 @@ public class AnalysisEffectManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> m_DialogsObj;
 
+    [SerializeField] private GameObject m_Completed;
+
 
     private bool m_isEffect;
     public bool IsEffect{ get { return m_isEffect; } }
@@ -59,6 +61,13 @@ public class AnalysisEffectManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
         }
+
+        while (m_Dialogs[m_Dialogs.Count - 1].m_DialogEffect.IsEffect)
+        {
+            yield return new WaitForSeconds(0);
+        }
+
+        m_Completed.SetActive(true);
 
         // ----- 演出終了 -----
         m_isEffect = false;

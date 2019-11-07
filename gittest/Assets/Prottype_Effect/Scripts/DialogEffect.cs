@@ -11,7 +11,7 @@ public class DialogEffect : MonoBehaviour
     // ---- Private ----
     private Vector3 m_DialogSize;                   // ダイアログのサイズ保持用
     private bool m_isEffect;                        // 演出中かどうか
-    private TextMeshEffect m_TextMeshEffect;        // テキストメッシュ演出処理
+    private TextEffect m_TextMeshEffect;        // テキストメッシュ演出処理
     private RealtimeGIController m_GIController;    // GIの更新
 
     // ---- Property ----
@@ -21,7 +21,7 @@ public class DialogEffect : MonoBehaviour
     private void Awake()
     {
         // ---- 各種コンポーネントを取得 ---- 
-        m_TextMeshEffect = GetComponent<TextMeshEffect>();
+        m_TextMeshEffect = GetComponent<TextEffect>();
         m_GIController = GetComponent<RealtimeGIController>();
 
         // ---- ダイアログのサイズを保持 ----

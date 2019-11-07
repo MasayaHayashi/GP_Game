@@ -8,7 +8,7 @@ public class Dialog
 {
 
     public GameObject m_Instance;
-    private DialogEffect m_DialogEffect;
+    public DialogEffect m_DialogEffect;
     private TextEffect m_TextEffect;
     private RealtimeGIController m_GIController;
 
