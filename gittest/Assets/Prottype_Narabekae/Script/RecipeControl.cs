@@ -178,6 +178,18 @@ public class RecipeControl : MonoBehaviour
                 else
                 {
                     //上にスクロールして次へ
+                    if (recipeIndex <= recipes.Count - 4)
+                    {
+                        GameObject go;
+                        go = Instantiate(recipeUiPrefav, Vector3.zero, Quaternion.identity);
+                        go.transform.parent = transform;
+                        go.transform.localScale = new Vector3(7.0f, 1.0f, 1.0f);
+                        go.transform.localPosition = new Vector3(0.0f, -4.6f, 0.0f);
+                        go.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+                        recipeUis.Add(go.GetComponent<Recipe>());
+                        recipeUis[recipeUis.Count - 1].SetColors(uiItemColors[(int)recipes[recipeIndex + 3][0]], 
+                            uiItemColors[(int)recipes[recipeIndex + 3][1]], uiItemColors[(int)recipes[recipeIndex + 3][2]], uiItemColors[(int)recipes[recipeIndex + 3][3]]);
+                    }
                     ItemLaneAdd();
                     for (int i = 0; i < recipeUis.Count; i++)
                     {
