@@ -11,11 +11,13 @@ public class FlowItem : MonoBehaviour
 
     string laneName;
     bool changeVelocity;
-    Vector3 moveLaneVelocity;
+    public Vector3 moveLaneVelocity;
     Lane laneClass;
 
     public static float LANE_SPEED = 1.0f;
+    public static bool laneSpeedUpFlag = false;
     bool liftFlag;
+    public bool goalFlag;
 
     public enum eItemType
     {
@@ -25,6 +27,8 @@ public class FlowItem : MonoBehaviour
         red,
         green,
         black,
+
+        disturb,
 
         MAX,
     }
@@ -38,20 +42,28 @@ public class FlowItem : MonoBehaviour
         changeVelocity = true;
         moveLaneVelocity = Vector3.zero;
         liftFlag = false;
+        goalFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (goalFlag)
+            return;
+
         //**debug
         if (DebugCanvas.debugCanvas)
+        {
             LANE_SPEED = DebugCanvas.laneSpeedSlider.value;
+            if (laneSpeedUpFlag)
+                LANE_SPEED *= 5.0f;
+        }
 
         LaneFlow();
 
         //下に落ちたら削除
-        if (selfTrans.position.y <= -3.0f)
-            Destroy(gameObject);
+        //if (selfTrans.position.y <= -3.0f)
+        //    Destroy(gameObject);
     }
 
     void LaneFlow()
@@ -60,6 +72,13 @@ public class FlowItem : MonoBehaviour
             return;
 
         Vector3 work = Vector3.zero;
+
+        if (LaneControl.BugFreezeFlag())
+        {
+            selfRigidBody.velocity = work;
+            return;
+        }
+
         work.y = selfRigidBody.velocity.y;
 
         work.x = moveLaneVelocity.x * LANE_SPEED;
@@ -70,7 +89,7 @@ public class FlowItem : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (liftFlag)   //持ち上げ中はレーン処理をしない
+        if (liftFlag || goalFlag)   //持ち上げ中はレーン処理をしない
             return;
 
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);

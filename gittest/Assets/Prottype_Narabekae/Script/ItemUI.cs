@@ -12,7 +12,6 @@ public class ItemUI : MonoBehaviour
     [SerializeField] Image[] itemImages;
     [SerializeField] LaneControl laneControlClass;
     [SerializeField] SankakuUi sankakuUiClass;
-    Color[] uiItemColors = new Color[(int)FlowItem.eItemType.MAX];
 
     FlowItem.eItemType[] itemTypes = new FlowItem.eItemType[ITEM_NUM];
     int itemIndex;
@@ -22,14 +21,6 @@ public class ItemUI : MonoBehaviour
     {
         //初期化
         itemIndex = 0;
-
-        //color
-        uiItemColors[(int)FlowItem.eItemType.pink] = Color.magenta;
-        uiItemColors[(int)FlowItem.eItemType.white] = Color.white;
-        uiItemColors[(int)FlowItem.eItemType.black] = Color.black;
-        uiItemColors[(int)FlowItem.eItemType.red] = Color.red;
-        uiItemColors[(int)FlowItem.eItemType.green] = Color.green;
-        uiItemColors[(int)FlowItem.eItemType.blue] = Color.blue;
 
         //初回レシピ作成
         CreateRecipe();
@@ -46,7 +37,7 @@ public class ItemUI : MonoBehaviour
         for(int i = 0; i < ITEM_NUM; i++)
         {
             itemTypes[i] = (FlowItem.eItemType)Random.Range(0, (int)FlowItem.eItemType.MAX);
-            itemImages[i].color = uiItemColors[(int)itemTypes[i]];
+            //itemImages[i].color = uiItemColors[(int)itemTypes[i]];
         }
 
         //出現順序のシャッフル
