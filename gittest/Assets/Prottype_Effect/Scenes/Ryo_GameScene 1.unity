@@ -435,6 +435,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3000002
       objectReference: {fileID: 0}
+    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7070686034286545998, guid: 9d12220569c318449b3be85e760936f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -539,14 +547,6 @@ PrefabInstance:
     - target: {fileID: 1092252742, guid: 9d12220569c318449b3be85e760936f8, type: 3}
       propertyPath: m_FontData.m_LineSpacing
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
-      propertyPath: m_OverrideSorting
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092252743, guid: 9d12220569c318449b3be85e760936f8, type: 3}
       propertyPath: m_CullTransparentMesh
@@ -1350,7 +1350,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8780567523968901986}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &475946934
+--- !u!84 &479547887
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1973,7 +1973,7 @@ MonoBehaviour:
   overrideColor: 0
   overridingColor: {r: 1, g: 1, b: 1, a: 1}
   useShadow: 1
-  shadowMapRenderTexture: {fileID: 475946934}
+  shadowMapRenderTexture: {fileID: 479547887}
   useCookie: 1
   cookieMapRenderTexture: {fileID: 0}
   enableOutOfPhaseColor: 0
@@ -2457,6 +2457,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3000002
       objectReference: {fileID: 0}
+    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7070686034286545998, guid: 9d12220569c318449b3be85e760936f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2515,14 +2523,6 @@ PrefabInstance:
     - target: {fileID: 772393374, guid: 9d12220569c318449b3be85e760936f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029068194, guid: 9d12220569c318449b3be85e760936f8, type: 3}
-      propertyPath: m_OverrideSorting
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 295098945691765848, guid: 9d12220569c318449b3be85e760936f8,
         type: 3}
@@ -4050,7 +4050,7 @@ PrefabInstance:
     - target: {fileID: 6623886886168452872, guid: 9c26a387e1c065f42a5951f2973be717,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.88
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 6623886886168452872, guid: 9c26a387e1c065f42a5951f2973be717,
         type: 3}
