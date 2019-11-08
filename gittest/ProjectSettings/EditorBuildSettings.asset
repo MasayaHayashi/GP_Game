@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prottype_Narabekae/Scenes/SampleScene.unity
     guid: 4594bb60a6370fb46b3e856430ddfcdc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Title.unity
     guid: 00878065a435d354d9337a5e8ee957fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: f61b26bd90dd5eb4cb383e93bdf1c00c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Result.unity
     guid: b405be4486281324db3b4f9aa76cbc2f
   - enabled: 1
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prottype_Effect/Scenes/LightingTest.unity
     guid: 41add3221f6c24543b1eb2bad1ce0b97
+  - enabled: 1
+    path: Assets/Prottype_Effect/Scenes/Ryo_GameScene 1.unity
+    guid: a2b9072161ea4eb42ae94cc3e7a71f90
   m_configObjects: {}
