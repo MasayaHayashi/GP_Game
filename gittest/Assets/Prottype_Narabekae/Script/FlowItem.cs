@@ -28,6 +28,8 @@ public class FlowItem : MonoBehaviour
         green,
         black,
 
+        disturb,
+
         MAX,
     }
 
@@ -60,8 +62,8 @@ public class FlowItem : MonoBehaviour
         LaneFlow();
 
         //下に落ちたら削除
-        if (selfTrans.position.y <= -3.0f)
-            Destroy(gameObject);
+        //if (selfTrans.position.y <= -3.0f)
+        //    Destroy(gameObject);
     }
 
     void LaneFlow()
@@ -70,6 +72,13 @@ public class FlowItem : MonoBehaviour
             return;
 
         Vector3 work = Vector3.zero;
+
+        if (LaneControl.BugFreezeFlag())
+        {
+            selfRigidBody.velocity = work;
+            return;
+        }
+
         work.y = selfRigidBody.velocity.y;
 
         work.x = moveLaneVelocity.x * LANE_SPEED;

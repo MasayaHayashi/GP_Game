@@ -5,7 +5,7 @@ using UnityEngine;
 public class PressPos : MonoBehaviour
 {
     [SerializeField] PressMachine pressMachineClass;
-    [SerializeField] ItemUI itemUiClass;
+    [SerializeField] RecipeControl itemUiClass;
     public int pressPosNumber;
     public static int setItemNum = 0;
     Transform selfTrans;
