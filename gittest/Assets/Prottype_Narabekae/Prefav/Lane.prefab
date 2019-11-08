@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 341228225643721625}
   - component: {fileID: 2165104798095044126}
   - component: {fileID: 8001951811596050966}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Press3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressMachineClass: {fileID: 6102961768063122780}
+  itemUiClass: {fileID: 0}
   pressPosNumber: 2
 --- !u!1 &1666586762916132055
 GameObject:
@@ -319,7 +320,7 @@ GameObject:
   - component: {fileID: 2296640726547021624}
   - component: {fileID: 1213235849498609755}
   - component: {fileID: 5912042332268829626}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Press2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressMachineClass: {fileID: 6102961768063122780}
+  itemUiClass: {fileID: 0}
   pressPosNumber: 1
 --- !u!1 &3876806010298298036
 GameObject:
@@ -731,7 +733,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4988675138325401292}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.57, z: -0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -770,7 +772,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b6ddaf88428b851428e24b2d7387e09f, type: 2}
   - {fileID: 2100000, guid: 92e9176a57a88ca4fb996f9a7a7b22ae, type: 2}
   - {fileID: 2100000, guid: e0a27d13b9cda2348b5e56fad9a1ee49, type: 2}
+  - {fileID: 2100000, guid: 5ffe724ab70e41942ac97e23e28c0ca4, type: 2}
   SpawnPosition: {fileID: 7385956672431153911}
+  _mainCameraGo: {fileID: 0}
 --- !u!1 &5900383957419517484
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +788,7 @@ GameObject:
   - component: {fileID: 8823471678545791726}
   - component: {fileID: 5761275556135102318}
   - component: {fileID: 6474895637948151193}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Press4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressMachineClass: {fileID: 6102961768063122780}
+  itemUiClass: {fileID: 0}
   pressPosNumber: 3
 --- !u!1 &8521719481332383286
 GameObject:
@@ -994,7 +999,7 @@ GameObject:
   - component: {fileID: 7675284026168217227}
   - component: {fileID: 6402903388377569573}
   - component: {fileID: 4591451964801252905}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Press1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,6 +1091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressMachineClass: {fileID: 6102961768063122780}
+  itemUiClass: {fileID: 0}
   pressPosNumber: 0
 --- !u!1001 &5624857103142539458
 PrefabInstance:
@@ -1153,11 +1159,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4055068540582636496, guid: 7ae7e61bce442d149a2bd912ebcda0ea,
-        type: 3}
-      propertyPath: itemUiClass
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae7e61bce442d149a2bd912ebcda0ea, type: 3}
