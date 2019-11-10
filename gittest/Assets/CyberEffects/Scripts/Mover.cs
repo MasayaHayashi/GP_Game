@@ -126,8 +126,6 @@ public class Mover : MonoBehaviour
         {
             float length = Mathf.Sqrt(movedVector.x * movedVector.x + movedVector.z * movedVector.z);
 
-            Debug.Log(length);
-
             if (length > OverborderLength)
             {
                 return true;
@@ -142,8 +140,6 @@ public class Mover : MonoBehaviour
         CheckLength checkLengthYZ = () =>
         {
             float length = Mathf.Sqrt(movedVector.y * movedVector.y + movedVector.z * movedVector.z);
-
-            Debug.Log(length);
 
             if (length > OverborderLength)
             {
