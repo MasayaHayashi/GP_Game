@@ -51,12 +51,12 @@ LightmapSettings:
     m_IndirectOutputScale: 1.5
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 1
-    m_EnableBakedLightmaps: 0
+    m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 10
-    m_Resolution: 5
-    m_BakeResolution: 1
+    m_Resolution: 1
+    m_BakeResolution: 20
     m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
@@ -1196,22 +1196,32 @@ PrefabInstance:
     - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.76
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.3304112
+      value: 0.48972055
       objectReference: {fileID: 0}
     - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.9339623
+      value: 0.6698113
       objectReference: {fileID: 0}
     - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.80793285
+      value: 0.6488705
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413710219988322438, guid: 0aaf5683c8421a543864d0f8505fda34,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6413710219988322437, guid: 0aaf5683c8421a543864d0f8505fda34, type: 3}
@@ -1350,38 +1360,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8780567523968901986}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &479547887
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Directional Light : Shadow Map Render Texture'
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 512
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_DepthFormat: 0
-  m_ColorFormat: 11
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!114 &486685379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7006453363845279410, guid: a11ab672596c60548b9dabf17b82bf44,
@@ -1964,16 +1942,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01d29d88278f45458d99e6b5199e920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1.08
-  useScattering: 0
+  strength: 1.77
+  useScattering: 1
   overrideScattering: 1
-  overridingScattering: 0.5
+  overridingScattering: 0.07
   scatteringBias: 0
   useColorTemperatureTint: 0
   overrideColor: 0
   overridingColor: {r: 1, g: 1, b: 1, a: 1}
   useShadow: 1
-  shadowMapRenderTexture: {fileID: 479547887}
+  shadowMapRenderTexture: {fileID: 1340935210}
   useCookie: 1
   cookieMapRenderTexture: {fileID: 0}
   enableOutOfPhaseColor: 0
@@ -2699,6 +2677,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c26a387e1c065f42a5951f2973be717, type: 3}
+--- !u!84 &1340935210
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Directional Light : Shadow Map Render Texture'
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 512
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_DepthFormat: 0
+  m_ColorFormat: 11
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &1368506444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5054964370684734235, guid: 867e175f653ec7f408e2a9ebf9e82c3d,
@@ -5024,7 +5034,7 @@ PrefabInstance:
     - target: {fileID: 9006030270978242127, guid: 82a5be2b4e09a9f418b4bfc9b2087b9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9006030270978242120, guid: 82a5be2b4e09a9f418b4bfc9b2087b9c,
         type: 3}

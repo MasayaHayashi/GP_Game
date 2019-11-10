@@ -100,6 +100,6 @@ Material:
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 0.88533336, b: 0.13999999, a: 1}
-    - _EmissionColor: {r: 1.5157166, g: 1.1293575, b: 0, a: 1}
+    - _EmissionColor: {r: 0.8004983, g: 0.75489014, b: 0.18502085, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
