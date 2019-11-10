@@ -29,10 +29,11 @@ public class RecipeControl : MonoBehaviour
 
     //表示UI
     List<Recipe> recipeUis = new List<Recipe>();
-
+    
     //正誤判定をとっておく
     //レシピリストを更新するタイミングで情報は失われます。
     List<int> correctDatas = new List<int>();
+    int GetCorrectData() { return correctDatas[recipeIndex - 1]; }  //4個中何個正解したか
 
     // Start is called before the first frame update
     void Start()
@@ -177,7 +178,6 @@ public class RecipeControl : MonoBehaviour
                 }
                 else
                 {
-                    //上にスクロールして次へ
                     if (recipeIndex <= recipes.Count - 4)
                     {
                         GameObject go;
@@ -190,7 +190,11 @@ public class RecipeControl : MonoBehaviour
                         recipeUis[recipeUis.Count - 1].SetColors(uiItemColors[(int)recipes[recipeIndex + 3][0]], 
                             uiItemColors[(int)recipes[recipeIndex + 3][1]], uiItemColors[(int)recipes[recipeIndex + 3][2]], uiItemColors[(int)recipes[recipeIndex + 3][3]]);
                     }
+
+                    //次のアイテムを生成
                     ItemLaneAdd();
+
+                    //レシピリストのクリーン
                     for (int i = 0; i < recipeUis.Count; i++)
                     {
                         if (!recipeUis[i])
@@ -198,10 +202,14 @@ public class RecipeControl : MonoBehaviour
                             recipeUis.RemoveAt(i);
                         }
                     }
+
+                    //--- レシピを上にあげる ---
+                    // ここでレシピの演出よんで、演出終わったら上にあげるこの処理呼ぶのがよさそう
                     for (int i = 0; i < recipeUis.Count; i++)
                     {
                         recipeUis[i].UpPos();
                     }
+                    //----------------------
                 }
                 return;
             }
