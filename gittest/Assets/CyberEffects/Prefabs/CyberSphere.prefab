@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6623886887266589289}
   - component: {fileID: 6623886887266589291}
   - component: {fileID: 6623886887266589204}
+  - component: {fileID: 8368414758389655764}
   m_Layer: 0
   m_Name: CyberSphere
   m_TagString: Untagged
@@ -187,3 +188,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!65 &8368414758389655764
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623886887266589205}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}

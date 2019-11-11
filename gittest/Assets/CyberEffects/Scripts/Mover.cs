@@ -10,6 +10,9 @@ public class Mover : MonoBehaviour
     [SerializeField]
     private bool isXZmove;
 
+    [SerializeField, Header("境界判定用")]
+    private Vector3 borderLine;
+
     private bool isMoviong = false;
     private Vector3 moveDirection;
 
@@ -23,6 +26,16 @@ public class Mover : MonoBehaviour
     private const float MinMoveTime = 1.0f;
     private const float MaxMoveTime = 2.5f;
 
+    private const float OverborderLength = 5.0f; // 境界判定
+
+    private Vector3 startPosition;
+
+    delegate bool CheckLength();
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +60,10 @@ public class Mover : MonoBehaviour
 
         }
 
+        if(isOverborder())
+        {
+            transform.position = startPosition; // 仮処理 初期値に戻す
+        }
     }
 
     void initilizeHash(string keyName, float moveVector)
@@ -93,16 +110,70 @@ public class Mover : MonoBehaviour
                     return "y";
                 }
             case 1:
-                if(isXZmove)
-                {
-                    return "z";
-                }
-                else
-                {
-                    return "z";
-                }
+                return "z";
             default:
                 return null;
+        }
+    }
+
+    // 境界判定
+    private bool isOverborder()
+    {
+        Vector3 movedVector = transform.position - startPosition;
+
+        // XZ用判定
+        CheckLength checkLengthXZ = () => 
+        {
+            float length = Mathf.Sqrt(movedVector.x * movedVector.x + movedVector.z * movedVector.z);
+
+            if (length > OverborderLength)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        };
+
+        // YZ用判定
+        CheckLength checkLengthYZ = () =>
+        {
+            float length = Mathf.Sqrt(movedVector.y * movedVector.y + movedVector.z * movedVector.z);
+
+            if (length > OverborderLength)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        };
+
+        // 判定
+        if (isXZmove)
+        {
+            if(checkLengthXZ())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        else
+        {
+            if(checkLengthYZ())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

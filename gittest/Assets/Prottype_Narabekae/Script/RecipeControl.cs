@@ -213,6 +213,8 @@ public class RecipeControl : MonoBehaviour
                 }
                 return;
             }
+
+
         //}
         //不正解の場合はもう一度アイテムを再生成
         //else
