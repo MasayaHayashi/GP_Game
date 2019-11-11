@@ -52,10 +52,10 @@ public class PressPos : MonoBehaviour
             bool correct = itemUiClass.ItemGoal(classItem.GetItemType());
             Color workColor;
             if (correct)
-                workColor = new Color(1.0f, 0.0f, 0.0f);
-            else
                 workColor = new Color(0.0f, 1.0f, 0.0f);
-            flashAnimClass.StartFlash(workColor, 10, 0.1f);
+            else
+                workColor = new Color(1.0f, 0.0f, 0.0f);
+            flashAnimClass.StartFlash(workColor, 10, 0.05f);
 
             if (setItemNum >= 4)
             {

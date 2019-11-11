@@ -36,7 +36,7 @@ public class MatFlashColor : MonoBehaviour
 
     void AnimUpdate()
     {
-        timeCnt = Time.deltaTime;
+        timeCnt += Time.deltaTime;
         if(timeCnt >= m_intervalTime)
         {
             timeCnt = 0.0f;
