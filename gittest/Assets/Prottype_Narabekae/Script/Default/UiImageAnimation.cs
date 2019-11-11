@@ -28,6 +28,7 @@ public class UiImageAnimation : MonoBehaviour
 
     //アニメーション実行中か
     bool[] animPlayFlags = new bool[(int)eAnimType.MAX];
+    public bool GetAnimPlayFlag(eAnimType type) { return animPlayFlags[(int)type]; }
     //アニメーション情報
     tFlashDat flashAnimDat;
 

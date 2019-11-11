@@ -36,7 +36,8 @@ public class Hand : MonoBehaviour
                 Collider[] collisions = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().size / 2.0f, transform.rotation);
                 for(int i = 0; i < collisions.Length; i++)
                 {
-                    if (LayerMask.LayerToName(collisions[i].gameObject.layer) == "Item")
+                    if (LayerMask.LayerToName(collisions[i].gameObject.layer) == "Item" ||
+                        LayerMask.LayerToName(collisions[i].gameObject.layer) == "PressPos")
                         return;
                 }
                 colTrigger = characterClass.ItemPut(other);

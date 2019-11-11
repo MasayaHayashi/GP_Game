@@ -35,23 +35,36 @@ public class RecipeControl : MonoBehaviour
     List<int> correctDatas = new List<int>();
     int GetCorrectData() { return correctDatas[recipeIndex - 1]; }  //4個中何個正解したか
 
+    //正誤演出
+    int upperIndex = 0;
+    bool isScrollWait;
+
     // Start is called before the first frame update
     void Start()
     {
         recipeIndex = 0;
         itemIndex = 0;
+        isScrollWait = false;
 
         CreateRecipeTable();    //とりあえずここで。
 
         CreateRecipe();     //レシピの作成
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isScrollWait)
+        {
+            if (recipeUis[upperIndex].FinCallFlashAnim())
+            {
+                isScrollWait = false;
+                for (int i = 0; i < recipeUis.Count; i++)
+                {
+                    recipeUis[i].UpPos();
+                }
+            }
+        }
     }
 
     void CreateRecipeTable()
@@ -151,11 +164,14 @@ public class RecipeControl : MonoBehaviour
             laneControlClass.AddCreateList(workTypes[i]);
     }
 
-    public void ItemGoal(FlowItem.eItemType type)
+    public bool ItemGoal(FlowItem.eItemType type)
     {
+        bool retVal = false;
         //正解かどうかの情報をとっておく
-        if (type == recipes[recipeIndex][itemIndex])
+        if (type == recipes[recipeIndex][itemIndex]) { 
             correctDatas[recipeIndex]++;
+            retVal = true;
+        }
         else if(type == FlowItem.eItemType.disturb)
         {
             //お邪魔アイテムの場合はフリーズ
@@ -205,14 +221,27 @@ public class RecipeControl : MonoBehaviour
 
                     //--- レシピを上にあげる ---
                     // ここでレシピの演出よんで、演出終わったら上にあげるこの処理呼ぶのがよさそう
-                    for (int i = 0; i < recipeUis.Count; i++)
+                    //一番上にあるレシピに点滅演出を呼ぶ
+                    float workY = 0.0f;
+                    upperIndex = 0;
+                    for(int i = 0; i < recipeUis.Count; i++)
                     {
-                        recipeUis[i].UpPos();
+                        if(workY < recipeUis[i].gameObject.transform.position.y)
+                        {
+                            workY = recipeUis[i].gameObject.transform.position.y;
+                            upperIndex = i;
+                        }
                     }
+                    recipeUis[upperIndex].StartFlash(GetCorrectData() >= 4);
+
+                    //上にあげる
+                    isScrollWait = true;
                     //----------------------
                 }
-                return;
+                return retVal;
             }
+
+        return retVal;
         //}
         //不正解の場合はもう一度アイテムを再生成
         //else

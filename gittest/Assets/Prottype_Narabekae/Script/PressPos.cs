@@ -9,12 +9,14 @@ public class PressPos : MonoBehaviour
     public int pressPosNumber;
     public static int setItemNum = 0;
     Transform selfTrans;
+    MatFlashColor flashAnimClass;
 
     // Start is called before the first frame update
     void Start()
     {
         setItemNum = 0;
         selfTrans = transform;
+        flashAnimClass = GetComponent<MatFlashColor>();
     }
 
     // Update is called once per frame
@@ -47,7 +49,13 @@ public class PressPos : MonoBehaviour
             classItem.moveLaneVelocity = Vector3.zero;
             classItem.goalFlag = true;
             setItemNum++;
-            itemUiClass.ItemGoal(classItem.GetItemType());
+            bool correct = itemUiClass.ItemGoal(classItem.GetItemType());
+            Color workColor;
+            if (correct)
+                workColor = new Color(1.0f, 0.0f, 0.0f);
+            else
+                workColor = new Color(0.0f, 1.0f, 0.0f);
+            flashAnimClass.StartFlash(workColor, 10, 0.1f);
 
             if (setItemNum >= 4)
             {

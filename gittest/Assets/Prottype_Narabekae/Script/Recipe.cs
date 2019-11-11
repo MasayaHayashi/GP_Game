@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Recipe : MonoBehaviour
 {
     [SerializeField] Image[] items;
+    [SerializeField] UiImageAnimation[] childAnimClasses;
+    UiImageAnimation animClass;
 
     const float POS_UP_VAL = 2.3f;
 
@@ -16,10 +18,13 @@ public class Recipe : MonoBehaviour
 
     const float UP_SPEED = 2.0f;
 
+    public bool FinCallFlashAnim() { return !animClass.GetAnimPlayFlag(UiImageAnimation.eAnimType.Flash); }
+
     // Start is called before the first frame update
     void Start()
     {
         move = false;
+        animClass = GetComponent<UiImageAnimation>();
     }
 
     // Update is called once per frame
@@ -56,5 +61,17 @@ public class Recipe : MonoBehaviour
         items[1].color = c2;
         items[2].color = c3;
         items[3].color = c4;
+    }
+
+    public void StartFlash(bool correct)
+    {
+        Color workColor;
+        if (correct)
+            workColor = Color.green;
+        else
+            workColor = Color.red;
+
+        //とりあえずフレームだけ
+        animClass.StartAnimFlash(false, 10, Color.white, workColor, true, 12.0f);
     }
 }

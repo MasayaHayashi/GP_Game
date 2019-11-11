@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 341228225643721625}
   - component: {fileID: 2165104798095044126}
   - component: {fileID: 8001951811596050966}
+  - component: {fileID: 6581238356099601918}
   m_Layer: 13
   m_Name: Press3
   m_TagString: Untagged
@@ -107,6 +108,18 @@ MonoBehaviour:
   pressMachineClass: {fileID: 6102961768063122780}
   itemUiClass: {fileID: 0}
   pressPosNumber: 2
+--- !u!114 &6581238356099601918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592271042979311030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87abf1ebf3fbb24b8c99da8976a7c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1666586762916132055
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +333,7 @@ GameObject:
   - component: {fileID: 2296640726547021624}
   - component: {fileID: 1213235849498609755}
   - component: {fileID: 5912042332268829626}
+  - component: {fileID: 7712187657475869927}
   m_Layer: 13
   m_Name: Press2
   m_TagString: Untagged
@@ -414,6 +428,18 @@ MonoBehaviour:
   pressMachineClass: {fileID: 6102961768063122780}
   itemUiClass: {fileID: 0}
   pressPosNumber: 1
+--- !u!114 &7712187657475869927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695379664938914849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87abf1ebf3fbb24b8c99da8976a7c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3876806010298298036
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +798,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b6ddaf88428b851428e24b2d7387e09f, type: 2}
   - {fileID: 2100000, guid: 92e9176a57a88ca4fb996f9a7a7b22ae, type: 2}
   - {fileID: 2100000, guid: e0a27d13b9cda2348b5e56fad9a1ee49, type: 2}
-  - {fileID: 2100000, guid: 5ffe724ab70e41942ac97e23e28c0ca4, type: 2}
+  - {fileID: 2100000, guid: 57f74ae0af201d546b93eeb13e19d123, type: 2}
   SpawnPosition: {fileID: 7385956672431153911}
   _mainCameraGo: {fileID: 0}
 --- !u!1 &5900383957419517484
@@ -788,6 +814,7 @@ GameObject:
   - component: {fileID: 8823471678545791726}
   - component: {fileID: 5761275556135102318}
   - component: {fileID: 6474895637948151193}
+  - component: {fileID: 1565213793948760430}
   m_Layer: 13
   m_Name: Press4
   m_TagString: Untagged
@@ -882,6 +909,18 @@ MonoBehaviour:
   pressMachineClass: {fileID: 6102961768063122780}
   itemUiClass: {fileID: 0}
   pressPosNumber: 3
+--- !u!114 &1565213793948760430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900383957419517484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87abf1ebf3fbb24b8c99da8976a7c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8521719481332383286
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1038,7 @@ GameObject:
   - component: {fileID: 7675284026168217227}
   - component: {fileID: 6402903388377569573}
   - component: {fileID: 4591451964801252905}
+  - component: {fileID: 2800610152402860283}
   m_Layer: 13
   m_Name: Press1
   m_TagString: Untagged
@@ -1093,6 +1133,18 @@ MonoBehaviour:
   pressMachineClass: {fileID: 6102961768063122780}
   itemUiClass: {fileID: 0}
   pressPosNumber: 0
+--- !u!114 &2800610152402860283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614330390139027452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87abf1ebf3fbb24b8c99da8976a7c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5624857103142539458
 PrefabInstance:
   m_ObjectHideFlags: 0

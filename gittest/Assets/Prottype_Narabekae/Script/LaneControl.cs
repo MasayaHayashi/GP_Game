@@ -22,7 +22,10 @@ public class LaneControl : MonoBehaviour
     public static bool BugFreezeFlag() { return bugFreezeTime > 0.0f; }
     public static void StartBug() {
         bugFreezeTime = FREEZE_TIME;
-        iTween.ShakePosition(mainCameraGo, iTween.Hash("x", 0.5f,"time", 3.0f));
+        //iTween.ShakePosition(mainCameraGo, iTween.Hash("x", 0.5f,"time", 3.0f));
+        //iTween.ShakePosition(mainCameraGo, iTween.Hash("y", 0.5f,"time", 3.0f));
+        //iTween.ShakePosition(mainCameraGo, iTween.Hash("z", 0.5f,"time", 3.0f));
+        iTween.ShakePosition(mainCameraGo, iTween.Hash("x", 0.5f, "y", 0.5f, "time", 3.0f));
     }
 
     // Start is called before the first frame update
