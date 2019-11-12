@@ -8,29 +8,29 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField]
-    private bool isXZmove;
+    protected bool isXZmove;
 
     [SerializeField, Header("境界判定用")]
-    private Vector3 borderLine;
+    protected Vector3 borderLine;
 
-    private bool isMoviong = false;
-    private Vector3 moveDirection;
+    protected bool isMoviong = false;
+    protected Vector3 moveDirection;
 
-    private Hashtable hash = new Hashtable();
+    protected Hashtable hash = new Hashtable();
 
-    private float delayTime; // 移動開始までの待機時間
-    private float moveTime;  // 移動してから終わるまでの時間
+    protected float delayTime; // 移動開始までの待機時間
+    protected float moveTime;  // 移動してから終わるまでの時間
 
-    private const float MinDelayTime = 0.0f;
-    private const float MaxDerayTime = 0.2f;
-    private const float MinMoveTime = 1.0f;
-    private const float MaxMoveTime = 2.5f;
+    protected const float MinDelayTime = 0.0f;
+    protected const float MaxDerayTime = 0.2f;
+    protected const float MinMoveTime = 1.0f;
+    protected const float MaxMoveTime = 2.5f;
 
-    private const float OverborderLength = 5.0f; // 境界判定
+    protected const float OverborderLength = 5.0f; // 境界判定
 
-    private Vector3 startPosition;
+    protected Vector3 startPosition;
 
-    delegate bool CheckLength();
+    protected delegate bool CheckLength();
 
     private void Awake()
     {
@@ -45,25 +45,6 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isMoviong)
-        {
-            // 移動ベクトル、速度設定
-            float moveVector = Random.Range(1.0f, 2.0f);
-            if (Random.Range(0, 2) == 0)
-            {
-                moveVector *= -1;
-            }
-
-            initilizeHash(randamVectorString(), moveVector);
-            move();
-
-
-        }
-
-        if(isOverborder())
-        {
-            transform.position = startPosition; // 仮処理 初期値に戻す
-        }
     }
 
     void initilizeHash(string keyName, float moveVector)
@@ -96,8 +77,7 @@ public class Mover : MonoBehaviour
     private string randamVectorString()
     {
         int randam = Random.Range(0, 2);
-
-        // 改善する必要あり
+        
         switch(randam)
         {
             case 0:
@@ -113,67 +93,6 @@ public class Mover : MonoBehaviour
                 return "z";
             default:
                 return null;
-        }
-    }
-
-    // 境界判定
-    private bool isOverborder()
-    {
-        Vector3 movedVector = transform.position - startPosition;
-
-        // XZ用判定
-        CheckLength checkLengthXZ = () => 
-        {
-            float length = Mathf.Sqrt(movedVector.x * movedVector.x + movedVector.z * movedVector.z);
-
-            if (length > OverborderLength)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        };
-
-        // YZ用判定
-        CheckLength checkLengthYZ = () =>
-        {
-            float length = Mathf.Sqrt(movedVector.y * movedVector.y + movedVector.z * movedVector.z);
-
-            if (length > OverborderLength)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        };
-
-        // 判定
-        if (isXZmove)
-        {
-            if(checkLengthXZ())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
-        else
-        {
-            if(checkLengthYZ())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 
