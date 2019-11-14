@@ -5,10 +5,9 @@ using UnityEngine;
 // Author MasayaHayashi
 // ディゾルバー(オブジェクトにアタッチするとディゾルブができます)
 
-public class Dissolver : MonoBehaviour
+public class Dissolver : SingletonMonoBehaviour<Dissolver>
 {
-    [SerializeField, Header("マスクオブジェクト")]
-    private List<GameObject> maskObjects;
+    private List<GameObject> maskObjects = new List<GameObject>();
 
     [SerializeField, Header("移動量")]
     private float moveY;
@@ -19,10 +18,52 @@ public class Dissolver : MonoBehaviour
 
     private Hashtable hash = new Hashtable();
 
+    private const float DeffaltMoveY = 3.0f;
+    private const float DeffaltDelay = 1.3f;
+    private const float DeffaltTime  = 3.0f;
 
-    private void Awake()
+    private bool complite = false;
+    public bool  isComplite { get { return complite; } }
+
+    private bool isMoving = false;
+
+    private Vector3 EvacuationPosition = new Vector3(0.0f, 500.0f, 0.0f);
+
+    // Start is called before the first frame update
+    void Start()
     {
-        maskObjects[0].transform.parent   = transform;
+        maskObjects.Add(transform.GetChild(0).gameObject);
+
+        begin();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void CompleteHandler()
+    {
+        complite = true;
+        initilize();
+    }
+
+    private void initilize()
+    {
+        maskObjects[0].transform.localPosition =  EvacuationPosition; 
+        
+    }
+
+    private void begin()
+    {
+        complite = false;
+
+        moveY = DeffaltMoveY;
+        delay = DeffaltDelay;
+        time  = DeffaltTime;
+
+        // マスクオブジェクト初期化
         maskObjects[0].transform.localPosition = Vector3.zero;
 
         hash.Add("y", moveY);
@@ -30,19 +71,11 @@ public class Dissolver : MonoBehaviour
         hash.Add("time", time);
         hash.Add("easeType", iTween.EaseType.easeInSine);
 
+        hash.Add("oncomplete", "CompleteHandler");
+        hash.Add("oncompletetarget", gameObject);
+
         iTween.MoveAdd(maskObjects[0], hash);
-
-
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
 }
