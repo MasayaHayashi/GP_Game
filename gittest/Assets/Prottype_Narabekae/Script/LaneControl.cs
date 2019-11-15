@@ -12,6 +12,12 @@ public class LaneControl : MonoBehaviour
 
     [SerializeField] GameObject lanePrefav;
 
+    [SerializeField] GameObject[] pressPosObj;
+    [SerializeField] GameObject spawnPosObj;
+    [SerializeField] GameObject goalPosObj;
+    [SerializeField] GameObject wallObj;
+    [SerializeField] GameObject pressMachineObj;
+
     //読み込みステート
     enum eStageDataLoadState
     {
@@ -94,7 +100,10 @@ public class LaneControl : MonoBehaviour
         timeCnt = 0.0f;
         FlowItem.laneSpeedUpFlag = false;
         isLaneActive = true;   //アイテムの生成
-        LoadTextAsset(0);
+
+        //--- ステージデータの読み込み ---
+        for(int i = 0; i < stageDatas.Length; i++)
+            LoadTextAsset(i);
     }
 
     // Update is called once per frame
@@ -132,6 +141,11 @@ public class LaneControl : MonoBehaviour
         //--- アイテムの生成 ---
         if(isLaneActive)
             CreateDragItem();
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ReCreateStage();
+        }
     }
 
     //---- ステージの再編成 ----
@@ -150,6 +164,29 @@ public class LaneControl : MonoBehaviour
         }
 
         //--- 他の位置を調整 ---
+        //プレスポジション
+        for (int i = 0; i < loadStageDatas[RecipeControl.recipeLv].pressPosTransform.Count; i++)
+        {
+            pressPosObj[i].transform.position = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].pos;
+            pressPosObj[i].transform.rotation = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].rot;
+            pressPosObj[i].transform.localScale = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].scale;
+        }
+        //スポーン地点
+        spawnPosObj.transform.position = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.pos;
+        spawnPosObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.rot;
+        spawnPosObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.scale;
+        //ゴール地点
+        goalPosObj.transform.position = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.pos;
+        goalPosObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.rot;
+        goalPosObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.scale;
+        //仕切り
+        wallObj.transform.position = loadStageDatas[RecipeControl.recipeLv].wallTransform.pos;
+        wallObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].wallTransform.rot;
+        wallObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].wallTransform.scale;
+        //プレスマシーン
+        pressMachineObj.transform.position = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.pos;
+        pressMachineObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.rot;
+        pressMachineObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.scale;
     }
 
     //---- 薬のアイテムを生成 ---

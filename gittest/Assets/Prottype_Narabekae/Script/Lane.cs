@@ -31,7 +31,6 @@ public class Lane : MonoBehaviour
 
     void Close()
     {
-        lanes.Remove(this);
         Destroy(gameObject);    //ディゾルブ演出入れてから消す
     }
 
@@ -39,5 +38,6 @@ public class Lane : MonoBehaviour
     {
         for (int i = 0; i < lanes.Count; i++)
             lanes[i].Close();
+        lanes.Clear();
     }
 }
