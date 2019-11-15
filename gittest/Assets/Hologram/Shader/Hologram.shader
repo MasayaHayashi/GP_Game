@@ -115,7 +115,7 @@
 				// Glow
 				float glow = 0.0;
 				#ifdef _GLOW_ON
-				glow = 1.0f; frac(dirVertex * _GlowTiling - _Time.x * _GlowSpeed);
+					glow = frac(dirVertex * _GlowTiling - _Time.x * _GlowSpeed);
 				#endif
 
 				// Flicker
@@ -128,7 +128,7 @@
 				fixed4 col = texColor * _MainColor + (glow * 0.35 * _MainColor) + rimColor;
 				col.a = texColor.a * _Alpha * (scan + rim + glow) * flicker;
 
-				//col.rgb *= _Brightness;
+				col.rgb *= _Brightness;
 
 				return col;
 			}
