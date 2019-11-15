@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8155046169405823366}
   - component: {fileID: 6286046650198864497}
   - component: {fileID: 799475079776243098}
+  - component: {fileID: 3134245058712744822}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -105,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8916f4f303653624eb77c3abae3205b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveLaneVelocity: {x: 0, y: 0, z: 0}
+  goalFlag: 0
 --- !u!54 &799475079776243098
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,3 +124,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3134245058712744822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545596277710547877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b55d7710d2cbe048b41613db4d477ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGI: 1

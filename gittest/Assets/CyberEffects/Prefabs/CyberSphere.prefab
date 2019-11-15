@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6623886886168452872}
   - component: {fileID: 6623886887266589288}
   - component: {fileID: 6623886887266589289}
-  - component: {fileID: 6623886887266589291}
   - component: {fileID: 6623886887266589204}
-  - component: {fileID: 8368414758389655764}
+  - component: {fileID: 5398337588570241767}
   m_Layer: 0
   m_Name: CyberSphere
   m_TagString: Untagged
@@ -60,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 814b861cfc19bef448963282f8eb0117, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6623886887266589291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6623886887266589205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc4e7cb10836f741bc0f371e108db05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isXZmove: 0
 --- !u!96 &6623886887266589204
 TrailRenderer:
   serializedVersion: 2
@@ -188,16 +174,17 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &8368414758389655764
-BoxCollider:
+--- !u!114 &5398337588570241767
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6623886887266589205}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64a9afc88b4ab34b99049136631bf3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isXZmove: 0
+  borderLine: {x: 0, y: 0, z: 0}
