@@ -19,10 +19,10 @@ TagManager:
   - Lane
   - GoalPoint
   - PressPos
-  - 
-  - 
-  - 
-  - 
+  - FogVolumeShadowCaster
+  - FogVolume
+  - FogVolumeSurrogate
+  - FogVolumeUniform
   - 
   - 
   - 

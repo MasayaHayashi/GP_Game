@@ -20,12 +20,12 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     private const float DeffaltMoveY = 3.0f;
     private const float DeffaltDelay = 1.3f;
-    private const float DeffaltTime  = 3.0f;
+    private const float DeffaltTime = 3.0f;
 
-    private bool complite = false;
-    public bool  isComplite { get { return complite; } }
+    private bool complite = true;
+    public bool isComplite { get { return complite; } }
 
-    private bool isMoving = false;
+    private bool isStarting = false;
 
     private Vector3 EvacuationPosition = new Vector3(0.0f, 500.0f, 0.0f);
 
@@ -34,13 +34,16 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
     {
         maskObjects.Add(transform.GetChild(0).gameObject);
 
-        begin();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            begin();
+        }
+
     }
 
     void CompleteHandler()
@@ -51,17 +54,24 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     private void initilize()
     {
-        maskObjects[0].transform.localPosition =  EvacuationPosition; 
-        
+        maskObjects[0].transform.localPosition = EvacuationPosition;
+        hash.Clear();
+        isStarting = true;
     }
 
     private void begin()
     {
+        if(!complite && isStarting)
+        {
+            return;
+        }
+
+        isStarting = true;
         complite = false;
 
         moveY = DeffaltMoveY;
         delay = DeffaltDelay;
-        time  = DeffaltTime;
+        time = DeffaltTime;
 
         // マスクオブジェクト初期化
         maskObjects[0].transform.localPosition = Vector3.zero;
@@ -75,7 +85,13 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         hash.Add("oncompletetarget", gameObject);
 
         iTween.MoveAdd(maskObjects[0], hash);
+
     }
 
-    
+    public void initilizeAttach()
+    {
+        maskObjects.Clear();
+        maskObjects.Add(transform.GetChild(0).gameObject);
+        isStarting = false;
+    }
 }
