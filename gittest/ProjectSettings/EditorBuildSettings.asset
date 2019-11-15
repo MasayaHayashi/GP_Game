@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prottype_Narabekae/Scenes/SampleScene.unity
     guid: 4594bb60a6370fb46b3e856430ddfcdc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 00878065a435d354d9337a5e8ee957fa
   - enabled: 0
