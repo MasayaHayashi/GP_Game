@@ -16,7 +16,7 @@ public class RecipeControl : MonoBehaviour
 
     //仮定数　ウイルスのレベル部分とマージしたらそっちに
     const int maxLv = 3;
-    int recipeLv = 2;
+    public static int recipeLv = 2;
 
     //レシピテーブル
     tRecipeLevel[] recipeTable = new tRecipeLevel[maxLv];

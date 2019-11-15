@@ -19,9 +19,9 @@ TagManager:
   - Lane
   - GoalPoint
   - PressPos
-  - 
-  - 
-  - 
+  - SpawnPos
+  - PressMachine
+  - Wall
   - 
   - 
   - 

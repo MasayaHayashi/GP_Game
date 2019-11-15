@@ -487,6 +487,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 269351278}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &353697883
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Directional Light : Shadow Map Render Texture'
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 512
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_DepthFormat: 0
+  m_ColorFormat: 11
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &392403095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,13 +1105,13 @@ MonoBehaviour:
   overrideColor: 0
   overridingColor: {r: 1, g: 1, b: 1, a: 1}
   useShadow: 1
-  shadowMapRenderTexture: {fileID: 991853196}
+  shadowMapRenderTexture: {fileID: 353697883}
   useCookie: 1
   cookieMapRenderTexture: {fileID: 0}
   enableOutOfPhaseColor: 0
   outOfPhaseColorStrength: 0.1
   outOfPhaseColor: {r: 0, g: 1, b: 1, a: 1}
-  shadowDataRenderTexture: {fileID: 1830831556}
+  shadowDataRenderTexture: {fileID: 1831898726}
   customDistanceFalloffThreshold: 0.5
   customDistanceFalloffPower: 2
   customCookieDistanceFalloffStartThreshold: 0.1
@@ -1087,38 +1119,6 @@ MonoBehaviour:
   customCookieDistanceFalloffPower: 2
   customAngularFalloffThreshold: 0.8
   customAngularFalloffPower: 2
---- !u!84 &991853196
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Directional Light : Shadow Map Render Texture'
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 512
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_DepthFormat: 0
-  m_ColorFormat: 11
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &1044829208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6413710219988322439, guid: 0aaf5683c8421a543864d0f8505fda34,
@@ -1819,7 +1819,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 155004139}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1830831556
+--- !u!1 &1737588363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737588364}
+  m_Layer: 0
+  m_Name: GameControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1737588364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737588363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.2924557, y: 7.0509953, z: -5.0048313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1831898726
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2862,11 +2892,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lane
       objectReference: {fileID: 0}
-    - target: {fileID: 4988675138325401294, guid: 8c551187120264444b2d5b69453ba70d,
-        type: 3}
-      propertyPath: _mainCameraGo
-      value: 
-      objectReference: {fileID: 1884151215}
     - target: {fileID: 4988675138325401295, guid: 8c551187120264444b2d5b69453ba70d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2922,6 +2947,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4988675138325401294, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: _mainCameraGo
+      value: 
+      objectReference: {fileID: 1884151215}
+    - target: {fileID: 4988675138325401294, guid: 8c551187120264444b2d5b69453ba70d,
+        type: 3}
+      propertyPath: lanePrefav
+      value: 
+      objectReference: {fileID: 7376012930749061485, guid: 195a760eeb6f5004692b3d0449f7f338,
+        type: 3}
     - target: {fileID: 8001951811596050966, guid: 8c551187120264444b2d5b69453ba70d,
         type: 3}
       propertyPath: itemUiClass

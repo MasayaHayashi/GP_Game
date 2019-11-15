@@ -11,15 +11,33 @@ public class Lane : MonoBehaviour
 
     [HideInInspector] public Vector3 pos;
 
+    static List<Lane> lanes = new List<Lane>();
+
+
     // Start is called before the first frame update
     void Start()
     {
         pos = transform.position;
+        lanes.Add(this);
+
+        //ディゾルブ演出を入れる
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void Close()
+    {
+        lanes.Remove(this);
+        Destroy(gameObject);    //ディゾルブ演出入れてから消す
+    }
+
+    public static void LanesClose()
+    {
+        for (int i = 0; i < lanes.Count; i++)
+            lanes[i].Close();
     }
 }
