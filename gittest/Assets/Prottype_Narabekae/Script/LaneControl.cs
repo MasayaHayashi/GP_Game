@@ -70,10 +70,12 @@ public class LaneControl : MonoBehaviour
     }
     List<tStageData> loadStageDatas = new List<tStageData>();
 
-
     float timeCnt;
     float TIME_INTERVAL_CREATE = 3.0f;
     static GameObject mainCameraGo;
+
+    //ゲームコントロールができたらそっちから受け取るかも
+    int lapNum = 0;     //ゲームの周回数
 
     bool isLaneActive;      //レーンが動いているかどうかのフラグ
     public bool GetLaneActive() { return isLaneActive; }
@@ -155,38 +157,40 @@ public class LaneControl : MonoBehaviour
         Lane.LanesClose();
 
         //--- レーンを新規作成 ---
-        for(int i = 0; i < loadStageDatas[RecipeControl.recipeLv].laneTransform.Count; i++)
+        for(int i = 0; i < loadStageDatas[lapNum].laneTransform.Count; i++)
         {
-            GameObject go = Instantiate(lanePrefav, loadStageDatas[RecipeControl.recipeLv].laneTransform[i].pos, 
-                loadStageDatas[RecipeControl.recipeLv].laneTransform[i].rot);
-            go.transform.localScale = loadStageDatas[RecipeControl.recipeLv].laneTransform[i].scale;
-            go.GetComponent<Lane>().laneVelocity = loadStageDatas[RecipeControl.recipeLv].laneVelocity[i];
+            GameObject go = Instantiate(lanePrefav, loadStageDatas[lapNum].laneTransform[i].pos, 
+                loadStageDatas[lapNum].laneTransform[i].rot);
+            go.name = i.ToString("D2");
+            go.transform.parent = this.transform;
+            go.transform.localScale = loadStageDatas[lapNum].laneTransform[i].scale;
+            go.GetComponent<Lane>().laneVelocity = loadStageDatas[lapNum].laneVelocity[i];
         }
 
         //--- 他の位置を調整 ---
         //プレスポジション
-        for (int i = 0; i < loadStageDatas[RecipeControl.recipeLv].pressPosTransform.Count; i++)
+        for (int i = 0; i < loadStageDatas[lapNum].pressPosTransform.Count; i++)
         {
-            pressPosObj[i].transform.position = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].pos;
-            pressPosObj[i].transform.rotation = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].rot;
-            pressPosObj[i].transform.localScale = loadStageDatas[RecipeControl.recipeLv].pressPosTransform[i].scale;
+            pressPosObj[i].transform.position = loadStageDatas[lapNum].pressPosTransform[i].pos;
+            pressPosObj[i].transform.rotation = loadStageDatas[lapNum].pressPosTransform[i].rot;
+            pressPosObj[i].transform.localScale = loadStageDatas[lapNum].pressPosTransform[i].scale;
         }
         //スポーン地点
-        spawnPosObj.transform.position = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.pos;
-        spawnPosObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.rot;
-        spawnPosObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].spawnPosTransform.scale;
+        spawnPosObj.transform.position = loadStageDatas[lapNum].spawnPosTransform.pos;
+        spawnPosObj.transform.rotation = loadStageDatas[lapNum].spawnPosTransform.rot;
+        spawnPosObj.transform.localScale = loadStageDatas[lapNum].spawnPosTransform.scale;
         //ゴール地点
-        goalPosObj.transform.position = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.pos;
-        goalPosObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.rot;
-        goalPosObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].goalPosTransform.scale;
+        goalPosObj.transform.position = loadStageDatas[lapNum].goalPosTransform.pos;
+        goalPosObj.transform.rotation = loadStageDatas[lapNum].goalPosTransform.rot;
+        goalPosObj.transform.localScale = loadStageDatas[lapNum].goalPosTransform.scale;
         //仕切り
-        wallObj.transform.position = loadStageDatas[RecipeControl.recipeLv].wallTransform.pos;
-        wallObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].wallTransform.rot;
-        wallObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].wallTransform.scale;
+        wallObj.transform.position = loadStageDatas[lapNum].wallTransform.pos;
+        wallObj.transform.rotation = loadStageDatas[lapNum].wallTransform.rot;
+        wallObj.transform.localScale = loadStageDatas[lapNum].wallTransform.scale;
         //プレスマシーン
-        pressMachineObj.transform.position = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.pos;
-        pressMachineObj.transform.rotation = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.rot;
-        pressMachineObj.transform.localScale = loadStageDatas[RecipeControl.recipeLv].pressMachineTransform.scale;
+        pressMachineObj.transform.position = loadStageDatas[lapNum].pressMachineTransform.pos;
+        pressMachineObj.transform.rotation = loadStageDatas[lapNum].pressMachineTransform.rot;
+        pressMachineObj.transform.localScale = loadStageDatas[lapNum].pressMachineTransform.scale;
     }
 
     //---- 薬のアイテムを生成 ---
@@ -240,6 +244,7 @@ public class LaneControl : MonoBehaviour
 
         //--- テキストデータをステージデータとして読み込む ---
         eStageDataLoadState state = eStageDataLoadState.lane;
+            tTransData trans = new tTransData();
         for (int index = 0; index < splitText.Length; index++)
         {
             //改行はスルー
@@ -250,7 +255,6 @@ public class LaneControl : MonoBehaviour
             state = CheckState(splitText[index], state);
 
             //各ステートごとに入力
-            tTransData trans = new tTransData();
             switch (state)
             {
                 case eStageDataLoadState.lanePos:
