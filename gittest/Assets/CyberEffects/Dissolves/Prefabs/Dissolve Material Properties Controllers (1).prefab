@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9206647983416362634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9206647983416362639}
+  - component: {fileID: 9206647983416362638}
+  - component: {fileID: 9206647983416362633}
+  - component: {fileID: 9206647983416362632}
+  - component: {fileID: 9206647983416362635}
+  m_Layer: 0
+  m_Name: Dissolve Material Properties Controllers (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9206647983416362639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206647983416362634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1334138, y: 11.274123, z: -28.311216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9206647983416362638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206647983416362634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6e3e32c3aba484c96889b2afe615ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGlobal: 1
+  materials:
+  - {fileID: 2100000, guid: 6bf0faf28cdd2a443a6285913d915e7e, type: 2}
+  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
+  sphere1: {fileID: 0}
+  sphere2: {fileID: 0}
+  sphere3: {fileID: 0}
+  sphere4: {fileID: 0}
+  invert: 0
+--- !u!114 &9206647983416362633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206647983416362634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2441fa57f5b7a49bd402830b724185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGlobal: 1
+  materials:
+  - {fileID: 2100000, guid: 6bf0faf28cdd2a443a6285913d915e7e, type: 2}
+  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
+  width: 0.441
+  shape: 2
+  color: {r: 1, g: 0, b: 0, a: 1}
+  intensity: 7.8
+  texture: {fileID: 0}
+  reverse: 0
+  alphaOffset: 0
+  phaseOffset: 0
+  blur: 1.8
+  isDynamic: 0
+  GIMultyplier: 0
+--- !u!114 &9206647983416362632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206647983416362634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd75234735d39a46ba22799f293f665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGlobal: 1
+  materials:
+  - {fileID: 2100000, guid: 6bf0faf28cdd2a443a6285913d915e7e, type: 2}
+  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
+  noise: 4
+  texture1: {fileID: 2800000, guid: daeb6fc5a652c76438a9b98ea7b3039e, type: 3}
+  texture1Tiling: {x: 1, y: 2.5}
+  texture1Offset: {x: 0, y: 0}
+  texture1Scroll: {x: 0.25, y: 0.25, z: 0}
+  texture1Channel: 3
+  texture1Intensity: 1
+  texture2: {fileID: 2800000, guid: a963b3dc061d887448e945092fd5b9cd, type: 3}
+  texture2Tiling: {x: 1, y: 2.5}
+  texture2Offset: {x: 0, y: 0}
+  texture2Scroll: {x: -0.25, y: -0.25, z: 0}
+  texture2Channel: 3
+  texture2Intensity: 1
+  texture3: {fileID: 0}
+  texture3Tiling: {x: 1, y: 1}
+  texture3Offset: {x: 0, y: 0}
+  texture3Scroll: {x: 0, y: 0, z: 0}
+  texture3Channel: 3
+  texture3Intensity: 1
+  uvSet: 0
+  textureBlend: 1
+--- !u!114 &9206647983416362635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206647983416362634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79b74bdd72154b4fa740c5f2ad92e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller_Cutout: {fileID: 9206647983416362632}
+  controller_Edge: {fileID: 9206647983416362633}
+  controller_Mask_Box: {fileID: 0}
+  controller_Mask_cone: {fileID: 0}
+  controller_Mask_Cylinder: {fileID: 0}
+  Controller_Mask_Cylinder_Alt: {fileID: 0}
+  controller_Mask_Plane: {fileID: 0}
+  controller_Mask_Sphere: {fileID: 9206647983416362638}
