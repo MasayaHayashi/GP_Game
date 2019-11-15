@@ -117,5 +117,6 @@ public class ViruseBase : MonoBehaviour
         {
             anim.SetTrigger(changeName);
         }
+
     }
 }

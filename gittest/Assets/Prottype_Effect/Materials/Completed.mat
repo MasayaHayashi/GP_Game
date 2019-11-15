@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Completed
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST_ON _Color _EMISSION _TWOSIDEDILLUMINATION_ON
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _ALPHATEST_ON _Color _TWOSIDEDILLUMINATION_ON
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2450
@@ -100,6 +100,6 @@ Material:
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 0.88533336, b: 0.13999999, a: 1}
-    - _EmissionColor: {r: 1.5157166, g: 1.1293575, b: 0, a: 1}
+    - _EmissionColor: {r: 0.8004983, g: 0.75489014, b: 0.18502085, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

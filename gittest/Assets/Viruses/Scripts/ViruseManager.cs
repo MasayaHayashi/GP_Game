@@ -43,6 +43,8 @@ public class ViruseManager : MonoBehaviour
             viruseBaseScript = baseViruse.GetComponent<ViruseBase>();
 
             viruseBaseScript.changeState("Idol");
+
+   
         }
     }
 }
