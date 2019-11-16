@@ -639,6 +639,9 @@ MonoBehaviour:
   stageDatas:
   - {fileID: 4900000, guid: 70c0b6f6a017a8442a239c49a899ab2d, type: 3}
   - {fileID: 4900000, guid: 2a1085d2b18ee67439d4b57b896b7dfe, type: 3}
+  - {fileID: 4900000, guid: 2a1085d2b18ee67439d4b57b896b7dfe, type: 3}
+  - {fileID: 4900000, guid: 2a1085d2b18ee67439d4b57b896b7dfe, type: 3}
+  - {fileID: 4900000, guid: 2a1085d2b18ee67439d4b57b896b7dfe, type: 3}
   lanePrefav: {fileID: 7376012930749061485, guid: 195a760eeb6f5004692b3d0449f7f338,
     type: 3}
   pressPosObj:

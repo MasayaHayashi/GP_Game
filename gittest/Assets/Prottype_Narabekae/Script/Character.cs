@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 
     FlowItem liftItem = null;
 
-    float moveSpeed = 2.0f;
+    float moveSpeed = 5.0f;
 
     // Start is called before the first frame update
     void Start()
