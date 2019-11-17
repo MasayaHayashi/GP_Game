@@ -34,6 +34,7 @@ public class RecipeControl : MonoBehaviour
     //レシピリストを更新するタイミングで情報は失われます。
     List<int> correctDatas = new List<int>();
     int GetCorrectData() { return correctDatas[recipeIndex - 1]; }  //4個中何個正解したか
+    List<int> GetAllCorrectDatas() { return correctDatas; }
 
     //正誤演出
     int upperIndex = 0;

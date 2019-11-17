@@ -18,6 +18,8 @@ public class LaneControl : MonoBehaviour
     [SerializeField] GameObject wallObj;
     [SerializeField] GameObject pressMachineObj;
 
+    [SerializeField] GameObject dissolveObj;
+
     //読み込みステート
     enum eStageDataLoadState
     {
@@ -74,11 +76,10 @@ public class LaneControl : MonoBehaviour
     float TIME_INTERVAL_CREATE = 3.0f;
     static GameObject mainCameraGo;
 
-    //ゲームコントロールができたらそっちから受け取るかも
-    int lapNum = 0;     //ゲームの周回数
 
     bool isLaneActive;      //レーンが動いているかどうかのフラグ
     public bool GetLaneActive() { return isLaneActive; }
+    void SetLaneActive(bool flag) { isLaneActive = flag; }
 
     List<FlowItem.eItemType> createWaitItems = new List<FlowItem.eItemType>();
     public void AddCreateList(FlowItem.eItemType type) { createWaitItems.Add(type); }
@@ -146,12 +147,12 @@ public class LaneControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            ReCreateStage();
+            ReCreateStage(0);
         }
     }
 
     //---- ステージの再編成 ----
-    void ReCreateStage()
+    public void ReCreateStage(int lapNum)
     {
         //--- 既存のレーンの削除 ---
         Lane.LanesClose();
@@ -202,8 +203,10 @@ public class LaneControl : MonoBehaviour
             timeCnt -= TIME_INTERVAL_CREATE;
             if (createWaitItems.Count > 0)
             {
-                Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
-                    this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
+                GameObject go = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
+                go.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
+                go.GetComponent<FlowItem>().dissolvClass = dissolveObj.GetComponent<Dissolver>();
+                dissolveObj.transform.parent = go.transform;
                 createWaitItems.RemoveAt(0);
             }
         }

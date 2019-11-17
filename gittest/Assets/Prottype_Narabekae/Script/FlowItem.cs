@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlowItem : MonoBehaviour
 {
+    public Dissolver dissolvClass;
     LaneControl laneControlClass;
     eItemType itemType;
     Rigidbody selfRigidBody;
@@ -36,6 +37,8 @@ public class FlowItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dissolvClass.initilizeAttach();
+        dissolvClass.begin();
         selfRigidBody = GetComponent<Rigidbody>();
         selfTrans = transform;
         laneName = "";
@@ -48,7 +51,7 @@ public class FlowItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (goalFlag)
+        if (goalFlag || !laneControlClass.GetLaneActive())
             return;
 
         //**debug

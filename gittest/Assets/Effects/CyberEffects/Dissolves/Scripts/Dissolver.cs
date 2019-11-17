@@ -61,7 +61,7 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         isStarting = true;
     }
 
-    private void begin()
+    public void begin()
     {
         if(!complite && isStarting)
         {

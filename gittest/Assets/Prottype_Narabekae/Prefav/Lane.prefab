@@ -653,6 +653,7 @@ MonoBehaviour:
   goalPosObj: {fileID: 8523624014586772243}
   wallObj: {fileID: 1666586762916132055}
   pressMachineObj: {fileID: 8521719481332383286}
+  dissolveObj: {fileID: 0}
 --- !u!114 &1833754351
 MonoBehaviour:
   m_ObjectHideFlags: 0
