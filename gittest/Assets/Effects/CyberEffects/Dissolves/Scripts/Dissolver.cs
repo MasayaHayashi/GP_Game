@@ -9,22 +9,26 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 {
     private List<GameObject> maskObjects = new List<GameObject>();
 
-    [SerializeField, Header("移動量")]
     private float moveY;
-    [SerializeField, Header("待機時間")]
     private float delay;
-    [SerializeField, Header("移動時間")]
     private float time;
 
     private GameObject spawnEffect;
 
     private Hashtable hash = new Hashtable();
 
-    private const float DeffaltMoveY = 3.0f;
-    private const float DeffaltDelay = 1.3f;
-    private const float DeffaltTime = 3.0f;
+    [SerializeField, Header("移動時間")]
+    private float DeffaltTime;
 
-    private bool complite = true;
+    [SerializeField, Header("待機時間")]
+    private float DeffaltDelay;
+
+    [SerializeField, Header("移動量")]
+    private float DeffaltMoveY;
+
+
+
+    private bool complite = false;
     public bool isComplite { get { return complite; } }
 
     private bool isStarting = false;
@@ -61,27 +65,28 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         isStarting = true;
     }
 
-    private void begin()
+    public void begin()
     {
-        if(!complite && isStarting)
+        if(isStarting)
         {
-            return;
+            initilizeAttach();
         }
 
         isStarting = true;
-        complite = false;
+        complite   = false;
 
         moveY = DeffaltMoveY;
         delay = DeffaltDelay;
-        time = DeffaltTime;
+        time  = DeffaltTime;
 
-        // マスクオブジェクト初期化
+        // 位置初期化
+        transform.localPosition = Vector3.zero;
         maskObjects[0].transform.localPosition = Vector3.zero;
 
         hash.Add("y", moveY);
         hash.Add("delay", delay);
         hash.Add("time", time);
-        hash.Add("easeType", iTween.EaseType.easeInSine);
+      //  hash.Add("easeType", iTween.EaseType.easeInBack);
 
         hash.Add("oncomplete", "CompleteHandler");
         hash.Add("oncompletetarget", gameObject);
@@ -92,7 +97,10 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     public void initilizeAttach()
     {
+        iTween.Stop(maskObjects[0], "move");
         maskObjects.Clear();
+        hash.Clear();
+
         maskObjects.Add(transform.GetChild(0).gameObject);
         isStarting = false;
     }

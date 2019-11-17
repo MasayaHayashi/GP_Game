@@ -18,6 +18,8 @@ public class LaneControl : MonoBehaviour
     [SerializeField] GameObject wallObj;
     [SerializeField] GameObject pressMachineObj;
 
+    [SerializeField] GameObject dissolverObj;
+
     //読み込みステート
     enum eStageDataLoadState
     {
@@ -202,8 +204,18 @@ public class LaneControl : MonoBehaviour
             timeCnt -= TIME_INTERVAL_CREATE;
             if (createWaitItems.Count > 0)
             {
-                Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
-                    this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
+
+                GameObject spawnItem = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
+                dissolverObj.transform.parent = spawnItem.transform;
+
+                spawnItem.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
+
+                dissolverObj.GetComponent<Dissolver>().initilizeAttach();
+                dissolverObj.GetComponent<Dissolver>().begin();
+                
+
+                //Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
+                //    this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 createWaitItems.RemoveAt(0);
             }
         }
