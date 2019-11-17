@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// 年代表示
 /// 加藤　遼
 /// </summary>
-public class UI_AGE : MonoBehaviour
+public class AgeController : MonoBehaviour
 {
 
     [SerializeField] private Text m_AgeText;

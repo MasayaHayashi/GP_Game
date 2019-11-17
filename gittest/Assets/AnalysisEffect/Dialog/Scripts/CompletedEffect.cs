@@ -8,6 +8,7 @@ public class CompletedEffect : MonoBehaviour
 {
     public Text m_Text;
     private Material m_Material;
+    public Renderer m_Rnderer;
     public bool m_isFlashing=true;
     public bool m_Plus;
     public double m_Elapsed;
@@ -20,7 +21,7 @@ public class CompletedEffect : MonoBehaviour
     void Start()
     {
         
-        m_Material = GetComponent<Renderer>().material;
+        m_Material = m_Rnderer.material;
         m_TextColor = m_Text.color;
         m_MatColor = m_Material.color;
         gameObject.SetActive(false);
