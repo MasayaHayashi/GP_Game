@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8916f4f303653624eb77c3abae3205b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dissolvClass: {fileID: 0}
   moveLaneVelocity: {x: 0, y: 0, z: 0}
   goalFlag: 0
 --- !u!54 &799475079776243098

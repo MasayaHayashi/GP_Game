@@ -12,6 +12,9 @@ public class Character : MonoBehaviour
 
     float moveSpeed = 5.0f;
 
+    bool playerInputActiveFlag = true;
+    public void SetInputActive(bool flag) { playerInputActiveFlag = flag; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,8 @@ public class Character : MonoBehaviour
         if (DebugCanvas.debugCanvas)
             moveSpeed = DebugCanvas.characterSpeedSlider.value;
 
-        PlayerMove();
+        if(playerInputActiveFlag)
+            PlayerMove();
 
         //持ち上げ中
         if (liftItem)
@@ -68,7 +72,7 @@ public class Character : MonoBehaviour
 
     public bool ItemLiftUp(Collider item)
     {
-        if (liftItem)
+        if (liftItem || !playerInputActiveFlag)
             return false;
 
         liftItem = item.gameObject.GetComponent<FlowItem>();
@@ -77,7 +81,7 @@ public class Character : MonoBehaviour
 
     public bool ItemPut(Collider table)
     {
-        if (!liftItem)
+        if (!liftItem || !playerInputActiveFlag)
             return false;
 
         //どのテーブルに置くのか
