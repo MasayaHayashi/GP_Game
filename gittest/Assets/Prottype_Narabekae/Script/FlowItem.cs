@@ -37,8 +37,8 @@ public class FlowItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dissolvClass.initilizeAttach();
-        dissolvClass.begin();
+        //dissolvClass.initilizeAttach();
+        //dissolvClass.begin();
         selfRigidBody = GetComponent<Rigidbody>();
         selfTrans = transform;
         laneName = "";
