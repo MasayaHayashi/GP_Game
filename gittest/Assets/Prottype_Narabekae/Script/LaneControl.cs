@@ -77,11 +77,11 @@ public class LaneControl : MonoBehaviour
     float TIME_INTERVAL_CREATE = 3.0f;
     static GameObject mainCameraGo;
 
-    //ゲームコントロールができたらそっちから受け取るかも
-    int lapNum = 0;     //ゲームの周回数
+
 
     bool isLaneActive;      //レーンが動いているかどうかのフラグ
     public bool GetLaneActive() { return isLaneActive; }
+    public void SetLaneActive(bool flag) { isLaneActive = flag; }
 
     List<FlowItem.eItemType> createWaitItems = new List<FlowItem.eItemType>();
     public void AddCreateList(FlowItem.eItemType type) { createWaitItems.Add(type); }
@@ -149,12 +149,12 @@ public class LaneControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            ReCreateStage();
+            ReCreateStage(0);
         }
     }
 
     //---- ステージの再編成 ----
-    void ReCreateStage()
+    void ReCreateStage(int lapNum)
     {
         //--- 既存のレーンの削除 ---
         Lane.LanesClose();

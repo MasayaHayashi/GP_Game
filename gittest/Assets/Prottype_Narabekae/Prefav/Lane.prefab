@@ -627,14 +627,14 @@ MonoBehaviour:
   items:
   - {fileID: 2545596277710547877, guid: 6318af2c17cf2134a99b50007a60bdda, type: 3}
   itemMaterials:
-  - {fileID: 2100000, guid: 4c51d77bcdc541e48917616d12f6db6a, type: 2}
-  - {fileID: 2100000, guid: 92e9176a57a88ca4fb996f9a7a7b22ae, type: 2}
-  - {fileID: 2100000, guid: a4ac5caf4580ce9429b6be80c051a48c, type: 2}
-  - {fileID: 2100000, guid: b6ddaf88428b851428e24b2d7387e09f, type: 2}
-  - {fileID: 2100000, guid: dec66757d7bb5484983d4501d0dcfbf1, type: 2}
-  - {fileID: 2100000, guid: bddf4bd326583ee4596f3169e2cbf21a, type: 2}
-  - {fileID: 2100000, guid: e0a27d13b9cda2348b5e56fad9a1ee49, type: 2}
-  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
+  - {fileID: 2100000, guid: e13b819380372e34aa4edda07679288b, type: 2}
+  - {fileID: 2100000, guid: 6440a8c13c691184bbc91ccc53f86bd1, type: 2}
+  - {fileID: 2100000, guid: ba3cde9a17bbd5e49a6af82fafd89eb7, type: 2}
+  - {fileID: 2100000, guid: 2809f62aa5d58d14eba997a3a50247f9, type: 2}
+  - {fileID: 2100000, guid: 111dedfcc5377bc458770f11f2675c03, type: 2}
+  - {fileID: 2100000, guid: 62c5b4a3191b1fc458357f2d2c698a3e, type: 2}
+  - {fileID: 2100000, guid: f9bd560803318944798a5325a514b9cb, type: 2}
+  - {fileID: 2100000, guid: 14dbb76fce6e0084587505fe9afd8c9b, type: 2}
   SpawnPosition: {fileID: 7385956672431153911}
   _mainCameraGo: {fileID: 0}
   stageDatas:
@@ -654,7 +654,8 @@ MonoBehaviour:
   goalPosObj: {fileID: 8523624014586772243}
   wallObj: {fileID: 1666586762916132055}
   pressMachineObj: {fileID: 8521719481332383286}
-  dissolveObj: {fileID: 0}
+  dissolverObj: {fileID: 0}
+  particleObj: {fileID: 0}
 --- !u!114 &1833754351
 MonoBehaviour:
   m_ObjectHideFlags: 0

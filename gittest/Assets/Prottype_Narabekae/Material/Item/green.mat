@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: green
-  m_Shader: {fileID: 4800000, guid: 0dc6dd36cb413904b84e61fc5f8af635, type: 3}
-  m_ShaderKeywords: _DISSOLVEALPHASOURCE_MAIN_MAP_ALPHA _DISSOLVEEDGETEXTURESOURCE_NONE
-    _DISSOLVEGLOBALCONTROL_MASK_AND_EDGE _DISSOLVEMAPPINGTYPE_NORMAL _DISSOLVEMASKCOUNT_ONE
-    _DISSOLVEMASK_PLANE
-  m_LightmapFlags: 4
+  m_Name: black
+  m_Shader: {fileID: 4800000, guid: d9f081e7b97927d4b848a322747a5819, type: 3}
+  m_ShaderKeywords: _DISSOLVEALPHASOURCE_TWO_CUSTOM_MAPS _DISSOLVEEDGEDISTORTIONSOURCE_CUTOUT_SOURCE
+    _DISSOLVEEDGETEXTURESOURCE_NONE _DISSOLVEGLOBALCONTROL_ALL _DISSOLVEMAPPINGTYPE_TRIPLANAR
+    _DISSOLVEMASK_NONE _DISSOLVEMASK_SPHERE _EMISSION _METALLICGLOSSMAP
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -78,12 +78,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cull: 0
     - _Cutoff: 0
     - _DetailNormalMapScale: 1
-    - _DissolveAlphaSource: 0
+    - _DissolveAlphaSource: 2
     - _DissolveAlphaSourceTexturesUVSet: 0
     - _DissolveCutoff: 0.25
     - _DissolveEdgeColorIntensity: 0
@@ -98,7 +102,7 @@ Material:
     - _DissolveEdgeTextureSource: 0
     - _DissolveEdgeWidth: 0.25
     - _DissolveGIMultiplier: 1
-    - _DissolveGlobalControl: 2
+    - _DissolveGlobalControl: 3
     - _DissolveMainMapTiling: 1
     - _DissolveMap1Channel: 3
     - _DissolveMap1Intensity: 1
@@ -106,8 +110,8 @@ Material:
     - _DissolveMap2Intensity: 1
     - _DissolveMap3Channel: 3
     - _DissolveMap3Intensity: 1
-    - _DissolveMappingType: 0
-    - _DissolveMask: 2
+    - _DissolveMappingType: 1
+    - _DissolveMask: 3
     - _DissolveMaskAxis: 0
     - _DissolveMaskCount: 0
     - _DissolveMaskInvert: 1
@@ -119,25 +123,28 @@ Material:
     - _DissolveTriplanarMappingSpace: 0
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.65
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _Specular: 0
+    - _SpecularAlpha: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0.00427413, a: 1}
+    - _Color: {r: 0.8, g: 0.8666667, b: 0.8666667, a: 1}
     - _DissolveEdgeColor: {r: 0, g: 1, b: 0, a: 1}
     - _DissolveMap1_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveMap2_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveMap3_Scroll: {r: 0, g: 0, b: 0, a: 0}
-    - _DissolveMaskNormal: {r: 0, g: 1, b: 0, a: 0}
-    - _DissolveMaskPosition: {r: 2.95, g: 2.87, b: -2.26, a: 0}
+    - _DissolveMaskNormal: {r: 1, g: 0, b: 0, a: 0}
+    - _DissolveMaskPosition: {r: 0, g: 0, b: 0, a: 0}
     - _Dissolve_ObjectWorldPos: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 4, b: 0.6117647, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 1}
