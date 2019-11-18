@@ -10,14 +10,12 @@ using UnityEngine.PostProcessing;
 /// </summary>
 public class CameraEffect : MonoBehaviour
 {
+    [Header("色収差強度")]
     [SerializeField]private float m_ChromaticAberrationIntensity;
-
+    [Header("タイムトラベル用エフェクト")]
     [SerializeField] private GameObject m_TravelEffect;
 
-     // 
-     private PostProcessingBehaviour m_PostProcess;
-
-
+    private PostProcessingBehaviour m_PostProcess;
 
     private ChromaticAberrationModel.Settings m_ChromaticAberrationSettings;
     private DepthOfFieldModel.Settings m_DepthOfFildSettings;
@@ -49,14 +47,13 @@ public class CameraEffect : MonoBehaviour
         m_PostProcess.profile.chromaticAberration.settings = m_ChromaticAberrationSettings;
         m_PostProcess.profile.depthOfField.settings = m_DepthOfFildSettings;
 
-
+        // --- パーティクルoff ---
         m_TravelEffect.SetActive(false);
     }
 
     // Use this for initialization
     void Start()
     {
-
         // --- 被写界深度 ---
         // 演出前
         m_DepthOfFildBeforeEffectSettings.focusDistance = 2.0f;
@@ -67,7 +64,7 @@ public class CameraEffect : MonoBehaviour
         m_DepthOfFildAfterEffectSettings.aperture = 0.3f;
         m_DepthOfFildAfterEffectSettings.focalLength = 5.8f;
 
-
+        // --- リセット ---
         Reset();
 
 
@@ -99,7 +96,7 @@ public class CameraEffect : MonoBehaviour
     }
 
 
-    // 演出処理
+    // --- 演出処理 ---
     public IEnumerator chromaticAberration_Liner(float time)
     {
         float t = 0;
@@ -169,13 +166,14 @@ public class CameraEffect : MonoBehaviour
         yield return null;
     }
 
+    // --- 演出処理呼び出し用 ---
+
 
 
 
 #if UNITY_EDITOR
     private void LogPlayModeState(PlayModeStateChange state)
     {
-
         if (state == PlayModeStateChange.ExitingEditMode)
         {
             Debug.Log("停止状態の終了開始！(実行ボタンを押した)");
@@ -188,15 +186,11 @@ public class CameraEffect : MonoBehaviour
         {
             Debug.Log("実行状態の終了開始！(停止ボタンを押した)");
             Reset();
-          
-
-
         }
         else if (state == PlayModeStateChange.EnteredEditMode)
         {
             Debug.Log("停止状態になった！");
         }
-
     }
 #endif
 }
