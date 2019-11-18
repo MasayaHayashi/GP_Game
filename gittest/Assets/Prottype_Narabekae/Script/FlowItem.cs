@@ -161,4 +161,18 @@ public class FlowItem : MonoBehaviour
     }
 
     public eItemType GetItemType() { return itemType; }
+
+    // ==== プレスされた ====
+    public void Press()
+    {
+        if(goalFlag)
+            Destroy(gameObject);
+    }
+
+    //==== ゴミ箱に入れられた =====
+    public bool InDustBox()
+    {
+        Destroy(gameObject);
+        return true;
+    }
 }

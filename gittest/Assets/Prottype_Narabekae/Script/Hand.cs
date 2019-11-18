@@ -27,18 +27,21 @@ public class Hand : MonoBehaviour
                 return;
 
             string layerName = LayerMask.LayerToName(other.gameObject.layer);
-
             Collider[] collisions = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().size / 2.0f, transform.rotation);
+
+            //--- ゴールに入っちゃったアイテムにはもう手出しさせない ---
             for (int i = 0; i < collisions.Length; i++)
             {
                 if (LayerMask.LayerToName(collisions[i].gameObject.layer) == "PressPos")
                     return;
             }
 
+            //--- アイテムを持ち上げ ---
             if (layerName == "Item")
             {
                 colTrigger = characterClass.ItemLiftUp(other);
             }
+            //--- アイテムを置く ---
             else if (layerName == "Lane")
             {
                 for (int i = 0; i < collisions.Length; i++)
@@ -47,6 +50,11 @@ public class Hand : MonoBehaviour
                         return;
                 }
                 colTrigger = characterClass.ItemPut(other);
+            }
+            //--- アイテムを捨てる ---
+            else if(layerName == "DustBox")
+            {
+                colTrigger = characterClass.ItemDust();
             }
         }
     }
