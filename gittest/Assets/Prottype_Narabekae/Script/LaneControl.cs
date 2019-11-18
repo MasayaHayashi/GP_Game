@@ -205,8 +205,8 @@ public class LaneControl : MonoBehaviour
             {
                 GameObject go = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
                 go.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
-                go.GetComponent<FlowItem>().dissolvClass = dissolveObj.GetComponent<Dissolver>();
-                dissolveObj.transform.parent = go.transform;
+                //go.GetComponent<FlowItem>().dissolvClass = dissolveObj.GetComponent<Dissolver>();
+                //dissolveObj.transform.parent = go.transform;
                 createWaitItems.RemoveAt(0);
             }
         }
