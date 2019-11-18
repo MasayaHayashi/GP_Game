@@ -627,13 +627,14 @@ MonoBehaviour:
   items:
   - {fileID: 2545596277710547877, guid: 6318af2c17cf2134a99b50007a60bdda, type: 3}
   itemMaterials:
-  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
-  - {fileID: 2100000, guid: dec66757d7bb5484983d4501d0dcfbf1, type: 2}
   - {fileID: 2100000, guid: 4c51d77bcdc541e48917616d12f6db6a, type: 2}
-  - {fileID: 2100000, guid: b6ddaf88428b851428e24b2d7387e09f, type: 2}
   - {fileID: 2100000, guid: 92e9176a57a88ca4fb996f9a7a7b22ae, type: 2}
+  - {fileID: 2100000, guid: a4ac5caf4580ce9429b6be80c051a48c, type: 2}
+  - {fileID: 2100000, guid: b6ddaf88428b851428e24b2d7387e09f, type: 2}
+  - {fileID: 2100000, guid: dec66757d7bb5484983d4501d0dcfbf1, type: 2}
+  - {fileID: 2100000, guid: bddf4bd326583ee4596f3169e2cbf21a, type: 2}
   - {fileID: 2100000, guid: e0a27d13b9cda2348b5e56fad9a1ee49, type: 2}
-  - {fileID: 2100000, guid: 57f74ae0af201d546b93eeb13e19d123, type: 2}
+  - {fileID: 2100000, guid: 81867f4d2c431d2458df983cef2d310e, type: 2}
   SpawnPosition: {fileID: 7385956672431153911}
   _mainCameraGo: {fileID: 0}
   stageDatas:

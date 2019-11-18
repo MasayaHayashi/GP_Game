@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3422101354694932567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0000003967}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3422101355741118926}
@@ -64,6 +64,15 @@ MonoBehaviour:
   recipeUiPrefav: {fileID: 8666947077281195000, guid: bff35c13a1ee5ae41922317711c71069,
     type: 3}
   laneControlClass: {fileID: 0}
+  itemUiSprites:
+  - {fileID: 21300000, guid: c16d0e9499a92554bada10860d8c9f2e, type: 3}
+  - {fileID: 21300000, guid: 6fec7901439c749478e8b47ba3306490, type: 3}
+  - {fileID: 21300000, guid: 86275b095eff80e4182f5cea87aa53de, type: 3}
+  - {fileID: 21300000, guid: f8031d44a27a4ba42ada47c37210477a, type: 3}
+  - {fileID: 21300000, guid: 00f8dfd4c53a43f479cce3c2c35e84a1, type: 3}
+  - {fileID: 21300000, guid: df2334e34a0633c4da9e8e8f82641d13, type: 3}
+  - {fileID: 21300000, guid: a8203fdecacfa2147b8acb576a1f0e79, type: 3}
+  - {fileID: 21300000, guid: 9494f89ec88c3aa4eba632e29f20ed99, type: 3}
 --- !u!1 &3422101355741118914
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +83,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3422101355741118926}
   - component: {fileID: 3422101355741118927}
-  - component: {fileID: 3422101355741118912}
   - component: {fileID: 3422101355741118913}
   m_Layer: 5
   m_Name: Canvas_Recipe
@@ -92,7 +100,7 @@ RectTransform:
   m_GameObject: {fileID: 3422101355741118914}
   m_LocalRotation: {x: 0.22520614, y: 0, z: 0, w: 0.97431123}
   m_LocalPosition: {x: 0, y: 0, z: 5.24}
-  m_LocalScale: {x: 0.24394014, y: 0.5258691, z: 0.5258691}
+  m_LocalScale: {x: 0.24394014, y: 0.52586913, z: 0.52586913}
   m_Children:
   - {fileID: 3422101354694932566}
   m_Father: {fileID: 0}
@@ -124,28 +132,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &3422101355741118912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3422101355741118914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
 --- !u!114 &3422101355741118913
 MonoBehaviour:
   m_ObjectHideFlags: 0

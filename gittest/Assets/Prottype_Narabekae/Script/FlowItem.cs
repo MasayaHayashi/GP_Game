@@ -22,14 +22,16 @@ public class FlowItem : MonoBehaviour
 
     public enum eItemType
     {
-        pink,
-        white,
         blue,
-        red,
         green,
+        orrange,
+        red,
+        white,
+        yellow,
         black,
+        //perple,
 
-        disturb,
+        disturb,    //perple
 
         MAX,
     }
