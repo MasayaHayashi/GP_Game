@@ -150,12 +150,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         yield return new WaitForSeconds(3.0f);
         // --- カメラの移動 ---
         m_CameraManager.m_Move.ZoomInOut();
-        
+
         // --- 演出終了 ---
-        ChangeState(GameState.Game);
         GameProgressEnable();
         m_isEffect = false;
         yield return null;
+        ChangeState(GameState.Analysis);
+      
+      
 
     }
 
