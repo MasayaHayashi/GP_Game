@@ -54,7 +54,6 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
     void CompleteHandler()
     {
         complite = true;
-
         initilize();
     }
 
@@ -80,13 +79,13 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         time  = DeffaltTime;
 
         // 位置初期化
-        transform.localPosition = Vector3.zero;
+        transform.localPosition                = Vector3.zero;
         maskObjects[0].transform.localPosition = Vector3.zero;
 
         hash.Add("y", moveY);
         hash.Add("delay", delay);
         hash.Add("time", time);
-      //  hash.Add("easeType", iTween.EaseType.easeInBack);
+        hash.Add("easeType", iTween.EaseType.easeInBack);
 
         hash.Add("oncomplete", "CompleteHandler");
         hash.Add("oncompletetarget", gameObject);
@@ -97,11 +96,12 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     public void initilizeAttach()
     {
-        iTween.Stop(maskObjects[0], "move");
+      //  iTween.Stop(maskObjects[0], "move");
         maskObjects.Clear();
         hash.Clear();
 
         maskObjects.Add(transform.GetChild(0).gameObject);
         isStarting = false;
+        complite   = false;
     }
 }

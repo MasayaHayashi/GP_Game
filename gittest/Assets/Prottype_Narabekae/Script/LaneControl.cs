@@ -19,6 +19,7 @@ public class LaneControl : MonoBehaviour
     [SerializeField] GameObject pressMachineObj;
 
     [SerializeField] GameObject dissolverObj;
+    [SerializeField] GameObject particleObj;
 
     //読み込みステート
     enum eStageDataLoadState
@@ -204,12 +205,18 @@ public class LaneControl : MonoBehaviour
             timeCnt -= TIME_INTERVAL_CREATE;
             if (createWaitItems.Count > 0)
             {
-
+                // アイテム生成
                 GameObject spawnItem = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
                 dissolverObj.transform.parent = spawnItem.transform;
 
-                spawnItem.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
+                // パーティクル生成
+                GameObject particle = Instantiate(particleObj);
+                particle.transform.parent = spawnItem.transform;
+                particle.transform.localPosition = Vector3.zero;
 
+                
+                // 初期化
+                spawnItem.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 dissolverObj.GetComponent<Dissolver>().initilizeAttach();
                 dissolverObj.GetComponent<Dissolver>().begin();
                 
@@ -416,6 +423,6 @@ public class LaneControl : MonoBehaviour
 
             return now;
     }
-
-
 }
+
+
