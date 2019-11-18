@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Author :MasayaHayashi   
-// プレス機
+// プレス演出
 
 public class Press : MonoBehaviour
 {
@@ -45,5 +45,14 @@ public class Press : MonoBehaviour
     void CompleteHandler()
     {
 
+    }
+
+    public void press()
+    {
+        hash.Add("y", 1.5f);
+        hash.Add("time", 2.0f);
+        StartCoroutine("stop");
+
+        iTween.MoveAdd(gameObject, hash);
     }
 }
