@@ -55,6 +55,8 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
     {
         complite = true;
         initilize();
+        transform.parent =  null;
+        transform.position = EvacuationPosition;
     }
 
     private void initilize()
