@@ -8,7 +8,7 @@ using UnityEngine.PostProcessing;
 /// カメラエフェクト
 /// 加藤　遼
 /// </summary>
-public class CameraEffect : MonoBehaviour
+public class CameraEffect_TimeTravel : MonoBehaviour
 {
     [Header("色収差強度")]
     [SerializeField]private float m_ChromaticAberrationIntensity;
@@ -78,20 +78,13 @@ public class CameraEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
 
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            StartCoroutine(depthOfFild_Liner(1.5f));
-            StartCoroutine(chromaticAberration_Liner(1.5f));
-            m_TravelEffect.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(depthOfFild_Liner_Back(1.5f));
-            StartCoroutine(chromaticAberration_Liner_Back(1.5f));
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    TimeTravel();
+        //}
 #endif
     }
 
@@ -167,8 +160,28 @@ public class CameraEffect : MonoBehaviour
     }
 
     // --- 演出処理呼び出し用 ---
+    public void TimeTravel()
+    {
+        StartCoroutine(timeTravel());
+    }
 
 
+
+    public IEnumerator  timeTravel()
+    {
+        StartCoroutine(depthOfFild_Liner(1.5f));
+        StartCoroutine(chromaticAberration_Liner(1.5f));
+        m_TravelEffect.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+       StartCoroutine(depthOfFild_Liner_Back(1.5f));
+       StartCoroutine(chromaticAberration_Liner_Back(1.5f));
+
+        yield return new WaitForSeconds(1.5f);
+        m_TravelEffect.SetActive(false);
+
+    }
 
 
 #if UNITY_EDITOR

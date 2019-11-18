@@ -79,7 +79,7 @@ public class LaneControl : MonoBehaviour
 
     bool isLaneActive;      //レーンが動いているかどうかのフラグ
     public bool GetLaneActive() { return isLaneActive; }
-    void SetLaneActive(bool flag) { isLaneActive = flag; }
+    public void SetLaneActive(bool flag) { isLaneActive = flag; }
 
     List<FlowItem.eItemType> createWaitItems = new List<FlowItem.eItemType>();
     public void AddCreateList(FlowItem.eItemType type) { createWaitItems.Add(type); }

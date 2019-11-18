@@ -26,13 +26,13 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            Move();
-        }
+        //if (Input.GetKeyDown(KeyCode.C)) {
+        //    Move();
+        //}
 
     }
 
-    public void Move()
+    public void ZoomInOut()
     {
         if (!m_Zoom)
         {

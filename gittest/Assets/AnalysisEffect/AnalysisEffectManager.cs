@@ -45,17 +45,17 @@ public class AnalysisEffectManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && !m_isEffect)
         {
-            StartCoroutine(AnalysisStart());
+            //AnalysisStart();
         }
 
         if (Input.GetKeyDown(KeyCode.W) && !m_isEffect)
         {
-            StartCoroutine(AnalysisEnd());
+            StartCoroutine(analysisEnd());
         }
     }
 
 
-    public IEnumerator AnalysisStart()
+    public IEnumerator analysisStart()
     {
         // ----- 演出中 -----
         m_isEffect = true;
@@ -83,7 +83,7 @@ public class AnalysisEffectManager : MonoBehaviour
         m_isEffect = false;
     }
 
-    public IEnumerator AnalysisEnd()
+    public IEnumerator analysisEnd()
     {
         // ----- 演出中 -----
         m_isEffect = true;
@@ -106,7 +106,14 @@ public class AnalysisEffectManager : MonoBehaviour
     }
 
 
-
-
+    // --- 演出呼び出し ---
+    public void AnalysisStart()
+    {
+        StartCoroutine(analysisStart());
+    }
+    public void AnalysisEnd()
+    {
+        StartCoroutine(analysisEnd());
+    }
 
 }
