@@ -72,10 +72,24 @@ public class Character : MonoBehaviour
 
     public bool ItemLiftUp(Collider item)
     {
-        if (liftItem || !playerInputActiveFlag)
+        if (!playerInputActiveFlag)
             return false;
 
-        liftItem = item.gameObject.GetComponent<FlowItem>();
+        if (!liftItem)
+        {
+            liftItem = item.gameObject.GetComponent<FlowItem>();
+            liftItem.Lift();
+        }
+        else
+        {
+            //--- 元々持ってたアイテムを置く ---
+            liftItem.Put(item.transform.position);
+
+
+            //--- 持ち替えでアイテムを持つ ---
+            liftItem = item.gameObject.GetComponent<FlowItem>();
+            liftItem.Lift();
+        }
         return true;
     }
 
@@ -96,6 +110,16 @@ public class Character : MonoBehaviour
             Debug.Log("Error");
 
         liftItem.Put(workPos);
+        liftItem = null;
+        return true;
+    }
+
+    public bool ItemDust()
+    {
+        if (!liftItem || !playerInputActiveFlag)
+            return false;
+
+        liftItem.InDustBox() ;
         liftItem = null;
         return true;
     }

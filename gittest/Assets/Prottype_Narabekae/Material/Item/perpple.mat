@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pink
+  m_Name: perpple
   m_Shader: {fileID: 4800000, guid: d9f081e7b97927d4b848a322747a5819, type: 3}
   m_ShaderKeywords: _DISSOLVEALPHASOURCE_TWO_CUSTOM_MAPS _DISSOLVEEDGEDISTORTIONSOURCE_CUTOUT_SOURCE
     _DISSOLVEEDGETEXTURESOURCE_NONE _DISSOLVEGLOBALCONTROL_ALL _DISSOLVEMAPPINGTYPE_TRIPLANAR
@@ -131,7 +131,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0.41020918, a: 1}
+    - _Color: {r: 0.81218004, g: 0, b: 1, a: 1}
     - _DissolveEdgeColor: {r: 0, g: 1, b: 0, a: 1}
     - _DissolveMap1_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveMap2_Scroll: {r: 0, g: 0, b: 0, a: 0}

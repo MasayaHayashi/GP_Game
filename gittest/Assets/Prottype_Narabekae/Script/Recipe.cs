@@ -55,12 +55,12 @@ public class Recipe : MonoBehaviour
         lerpVal = 0.0f;
     }
 
-    public void SetColors(Color c1, Color c2, Color c3, Color c4)
+    public void SetColors(Sprite c1, Sprite c2, Sprite c3, Sprite c4)
     {
-        items[0].color = c1;
-        items[1].color = c2;
-        items[2].color = c3;
-        items[3].color = c4;
+        items[0].sprite = c1;
+        items[1].sprite = c2;
+        items[2].sprite = c3;
+        items[3].sprite = c4;
     }
 
     public void StartFlash(bool correct)

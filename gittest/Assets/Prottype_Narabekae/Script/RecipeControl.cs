@@ -6,6 +6,7 @@ public class RecipeControl : MonoBehaviour
 {
     [SerializeField] GameObject recipeUiPrefav;
     [SerializeField] LaneControl laneControlClass;
+    [SerializeField] Sprite[] itemUiSprites;
 
     struct tRecipeLevel
     {
@@ -16,11 +17,10 @@ public class RecipeControl : MonoBehaviour
 
     //仮定数　ウイルスのレベル部分とマージしたらそっちに
     const int maxLv = 3;
-    int recipeLv = 0;       //レシピレベル　ウイルスのレベルと一緒
+    int recipeLv = 2;       //レシピレベル　ウイルスのレベルと一緒
 
     //レシピテーブル
     tRecipeLevel[] recipeTable = new tRecipeLevel[maxLv];
-    Color[] uiItemColors = new Color[(int)FlowItem.eItemType.MAX];  //からーてーぶる
 
     //作成されたレシピ
     List<FlowItem.eItemType[]> recipes = new List<FlowItem.eItemType[]>();
@@ -79,14 +79,6 @@ public class RecipeControl : MonoBehaviour
         recipeTable[2].recipeNum = 15;
         recipeTable[2].itemNum = 6;
         recipeTable[2].disturb = true;
-
-        //color
-        uiItemColors[(int)FlowItem.eItemType.pink] = Color.magenta;
-        uiItemColors[(int)FlowItem.eItemType.white] = Color.white;
-        uiItemColors[(int)FlowItem.eItemType.black] = Color.black;
-        uiItemColors[(int)FlowItem.eItemType.red] = Color.red;
-        uiItemColors[(int)FlowItem.eItemType.green] = Color.green;
-        uiItemColors[(int)FlowItem.eItemType.blue] = Color.blue;
     }
 
     void CreateRecipe()
@@ -118,7 +110,7 @@ public class RecipeControl : MonoBehaviour
             go.transform.localPosition = new Vector3(0.0f, posy, 0.0f);
             go.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
             recipeUis.Add(go.GetComponent<Recipe>());
-            recipeUis[i].SetColors(uiItemColors[(int)recipes[i][0]], uiItemColors[(int)recipes[i][1]], uiItemColors[(int)recipes[i][2]], uiItemColors[(int)recipes[i][3]]);
+            recipeUis[i].SetColors(itemUiSprites[(int)recipes[i][0]], itemUiSprites[(int)recipes[i][1]], itemUiSprites[(int)recipes[i][2]], itemUiSprites[(int)recipes[i][3]]);
             posy -= 2.3f;
         }
 
@@ -204,8 +196,8 @@ public class RecipeControl : MonoBehaviour
                         go.transform.localPosition = new Vector3(0.0f, -4.6f, 0.0f);
                         go.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
                         recipeUis.Add(go.GetComponent<Recipe>());
-                        recipeUis[recipeUis.Count - 1].SetColors(uiItemColors[(int)recipes[recipeIndex + 3][0]], 
-                            uiItemColors[(int)recipes[recipeIndex + 3][1]], uiItemColors[(int)recipes[recipeIndex + 3][2]], uiItemColors[(int)recipes[recipeIndex + 3][3]]);
+                        recipeUis[recipeUis.Count - 1].SetColors(itemUiSprites[(int)recipes[recipeIndex + 3][0]],
+                            itemUiSprites[(int)recipes[recipeIndex + 3][1]], itemUiSprites[(int)recipes[recipeIndex + 3][2]], itemUiSprites[(int)recipes[recipeIndex + 3][3]]);
                     }
 
                     //次のアイテムを生成

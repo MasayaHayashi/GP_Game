@@ -33,12 +33,12 @@ public class PressMachine : MonoBehaviour
                 lerpVal = 1.0f;
                 speed *= -1.0f;
 
-                //当たっているアイテムを削除
+                //当たっているアイテムにプレスされたことを伝える
                 Collider[] collisions = Physics.OverlapBox(selfTrans.position, selfTrans.localScale / 2.0f, transform.rotation);
                 for (int i = 0; i < collisions.Length; i++)
                 {
                     if (LayerMask.LayerToName(collisions[i].gameObject.layer) == "Item") {
-                        Destroy(collisions[i].gameObject);
+                        collisions[i].GetComponent<FlowItem>().Press();
                     }
                 }
             }

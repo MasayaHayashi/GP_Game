@@ -22,14 +22,16 @@ public class FlowItem : MonoBehaviour
 
     public enum eItemType
     {
-        pink,
-        white,
         blue,
-        red,
         green,
+        orrange,
+        red,
+        white,
+        yellow,
         black,
+        //perple,
 
-        disturb,
+        disturb,    //perple
 
         MAX,
     }
@@ -37,8 +39,8 @@ public class FlowItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dissolvClass.initilizeAttach();
-        dissolvClass.begin();
+        //dissolvClass.initilizeAttach();
+        //dissolvClass.begin();
         selfRigidBody = GetComponent<Rigidbody>();
         selfTrans = transform;
         laneName = "";
@@ -159,4 +161,18 @@ public class FlowItem : MonoBehaviour
     }
 
     public eItemType GetItemType() { return itemType; }
+
+    // ==== プレスされた ====
+    public void Press()
+    {
+        if(goalFlag)
+            Destroy(gameObject);
+    }
+
+    //==== ゴミ箱に入れられた =====
+    public bool InDustBox()
+    {
+        Destroy(gameObject);
+        return true;
+    }
 }
