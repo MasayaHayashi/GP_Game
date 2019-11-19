@@ -29,7 +29,7 @@ public class ViruseManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             // 演出開始
-            StartCoroutine(viruseBaseScript.StartEvolution((int)ViruseData.EvolutionType.GOOD));
+            StartCoroutine(viruseBaseScript.StartEvolution((int)ViruseData.EvolutionType.GOOD,10.0f));
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))

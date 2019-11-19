@@ -40,15 +40,42 @@ public class ViruseBase : MonoBehaviour
 
     }
 
+
     // 進化開始
-    public IEnumerator StartEvolution(ViruseData.EvolutionType index)
+    public IEnumerator StartEvolution(ViruseData.EvolutionType type)
+    {
+        // 次の進化先登録
+        nextViruseGameObj = viruseObj.nextEvolutions[(int)type];
+
+        if (!nextViruseGameObj)
+        {
+            yield break;
+        }
+
+        viruseObj = nextViruseGameObj.GetComponent<ViruseBase>().viruseObj;
+
+        // 次のアニメーター登録
+        registerNextAnimator();
+
+        // 画像変更
+        changeSprite();
+
+        // スクリプト変更
+        changeScript();
+
+        // 名前変更
+        changeName();
+    }
+
+    // 進化開始
+    public IEnumerator StartEvolution(ViruseData.EvolutionType type, float changeTime)
     {
         Debug.Log("演出中");
 
-        yield return new WaitForSeconds(EffectTime);
+        yield return new WaitForSeconds(changeTime);
 
         // 次の進化先登録
-        nextViruseGameObj = viruseObj.nextEvolutions[(int)index];
+        nextViruseGameObj = viruseObj.nextEvolutions[(int)type];
 
         if (!nextViruseGameObj)
         {

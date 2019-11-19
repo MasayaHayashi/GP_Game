@@ -7,7 +7,7 @@ public class activeParticle : MonoBehaviour
     [SerializeField, Header("生成までの時間")]
     private float spawnTime;
 
-    private List<GameObject> childs = new List<GameObject>();
+    private List<GameObject> childs             = new List<GameObject>();
 
     private void Awake()
     {
