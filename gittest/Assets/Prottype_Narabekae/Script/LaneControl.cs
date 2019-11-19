@@ -74,7 +74,7 @@ public class LaneControl : MonoBehaviour
     List<tStageData> loadStageDatas = new List<tStageData>();
 
     float timeCnt;
-    float TIME_INTERVAL_CREATE = 3.0f;
+    float TIME_INTERVAL_CREATE = 5.0f;
     static GameObject mainCameraGo;
 
 
@@ -211,6 +211,7 @@ public class LaneControl : MonoBehaviour
             {
                 // アイテム生成
                 GameObject spawnItem = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
+                spawnItem.GetComponent<FlowItem>().dissolvClass = dissolverObj.GetComponent<Dissolver>();
                 dissolverObj.transform.parent = spawnItem.transform;
 
                 // パーティクル生成
@@ -223,7 +224,6 @@ public class LaneControl : MonoBehaviour
                 spawnItem.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 dissolverObj.GetComponent<Dissolver>().initilizeAttach();
                 dissolverObj.GetComponent<Dissolver>().begin();
-                
 
                 //Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
                 //    this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);

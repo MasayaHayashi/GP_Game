@@ -20,6 +20,8 @@ public class FlowItem : MonoBehaviour
     bool liftFlag;
     public bool goalFlag;
 
+    public bool finStartEffect;
+
     public enum eItemType
     {
         blue,
@@ -41,6 +43,7 @@ public class FlowItem : MonoBehaviour
     {
         //dissolvClass.initilizeAttach();
         //dissolvClass.begin();
+        finStartEffect = false;
         selfRigidBody = GetComponent<Rigidbody>();
         selfTrans = transform;
         laneName = "";
@@ -55,6 +58,14 @@ public class FlowItem : MonoBehaviour
     {
         if (goalFlag || !laneControlClass.GetLaneActive())
             return;
+
+        //==== スタート演出 ====
+        if (!finStartEffect)
+        {
+            if (dissolvClass.isComplite)
+                finStartEffect = true;
+            return;
+        }
 
         //**debug
         if (DebugCanvas.debugCanvas)

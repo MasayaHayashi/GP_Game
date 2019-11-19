@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
 
     public bool ItemLiftUp(Collider item)
     {
-        if (!playerInputActiveFlag)
+        if (!playerInputActiveFlag || !item.GetComponent<FlowItem>().finStartEffect)
             return false;
 
         if (!liftItem)
