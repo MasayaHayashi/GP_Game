@@ -40,6 +40,8 @@ public class AgeController : MonoBehaviour
         int targetAge = m_AddAge + m_CurrentAge;
         int value = 0;
         float t = 0;
+
+        // --- カウントアップ ---
         while (t < 1)
         {
             t += Time.deltaTime / time;
@@ -48,7 +50,10 @@ public class AgeController : MonoBehaviour
             m_AgeText.text = value.ToString();
             yield return null;
         }
-        m_CurrentAge = value;
+
+        // --- 年代を更新 ---
+        m_AgeText.text = targetAge.ToString();
+        m_CurrentAge = targetAge;
 
     }
 

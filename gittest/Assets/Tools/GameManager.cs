@@ -23,6 +23,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField] private AgeController m_AgeController;
     [SerializeField] private Character m_ChacterController;
     [SerializeField] private LaneControl m_LaneController;
+    [SerializeField] private GameObject m_Recepi;
 
     private bool m_isEffect; // 演出中
 
@@ -41,7 +42,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameProgressDisable();
     }
 
     // Update is called once per frame
@@ -51,7 +52,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         switch (m_State)
         {
             case GameState.Set:
-                ChangeState(GameState.Analysis);
+                if (!TransitionManager.Instance.m_isTransition)
+                    ChangeState(GameState.Analysis);
                 break;
             case GameState.Analysis:              
                 break;
@@ -150,13 +152,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         yield return new WaitForSeconds(3.0f);
         // --- カメラの移動 ---
         m_CameraManager.m_Move.ZoomInOut();
-        
+
         // --- 演出終了 ---
-        ChangeState(GameState.Game);
-        GameProgressEnable();
         m_isEffect = false;
         yield return null;
-
+        ChangeState(GameState.Analysis);
+        
     }
 
     public void ChangeState(GameState state)
@@ -187,6 +188,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_ChacterController.SetInputActive(true);
         m_LaneController.SetLaneActive(true);
+        m_Recepi.SetActive(true);
 
         charaMove = true;
         laneMove = true;
@@ -196,6 +198,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_ChacterController.SetInputActive(false);
         m_LaneController.SetLaneActive(false);
+        m_Recepi.SetActive(false);
 
         charaMove = false;
         laneMove = false;

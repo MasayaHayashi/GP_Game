@@ -15,7 +15,7 @@ public class TransitionTest : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TransitionManager.Instance.ChangeSceneTransiton("Ryo_GameScene 1", 1.0f, TransitionManager.FadeType.MASK_01);
+            TransitionManager.Instance.ChangeSceneTransiton("Ryo_GameScene", 1.0f, TransitionManager.FadeType.MASK_01);
         }
     }
 }
