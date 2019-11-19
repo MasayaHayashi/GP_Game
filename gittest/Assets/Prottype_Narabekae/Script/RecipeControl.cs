@@ -164,12 +164,17 @@ public class RecipeControl : MonoBehaviour
         if (type == recipes[recipeIndex][itemIndex]) { 
             correctDatas[recipeIndex]++;
             retVal = true;
+            laneControlClass.PlaySe("correctPressPos");  //SEの再生
         }
         else if(type == FlowItem.eItemType.disturb)
         {
             //お邪魔アイテムの場合はフリーズ
             LaneControl.StartBug();
             laneControlClass.PlaySe("disturbBug");  //SEの再生
+        }
+        else
+        {
+            laneControlClass.PlaySe("missPressPos");  //SEの再生
         }
 
         //正解の場合

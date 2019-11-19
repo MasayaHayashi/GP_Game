@@ -123,6 +123,7 @@ public class Character : MonoBehaviour
         if (!liftItem || !playerInputActiveFlag)
             return false;
 
+        soundClass.PlayOneShot("inDust");       //SEの再生
         liftItem.InDustBox() ;
         liftItem = null;
         return true;
