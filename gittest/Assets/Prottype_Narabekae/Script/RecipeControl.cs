@@ -169,6 +169,7 @@ public class RecipeControl : MonoBehaviour
         {
             //お邪魔アイテムの場合はフリーズ
             LaneControl.StartBug();
+            laneControlClass.PlaySe("disturbBug");  //SEの再生
         }
 
         //正解の場合

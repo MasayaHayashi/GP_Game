@@ -21,6 +21,9 @@ public class LaneControl : MonoBehaviour
     [SerializeField] GameObject dissolverObj;
     [SerializeField] GameObject particleObj;
 
+    [SerializeField] SoundManager bgmClass;
+    [SerializeField] SoundManager seClass;
+
     //読み込みステート
     enum eStageDataLoadState
     {
@@ -98,11 +101,15 @@ public class LaneControl : MonoBehaviour
         iTween.ShakePosition(mainCameraGo, iTween.Hash("x", 0.5f, "y", 0.5f, "time", 3.0f));
     }
 
+    //SEの再生
+    public void PlaySe(string name) { seClass.PlayOneShot(name); }
+    public void PlaySe(int index) { seClass.PlayOneShot(index); }
+
     // Start is called before the first frame update
     void Start()
     {
         //**** ゲームマネージャーに書くと衝突するかなと思ったので仮処理 *******
-        SoundManager.soundManagerInstanceList[0].Play("BGM");
+        bgmClass.Play("digitalworld");
 
 
         mainCameraGo = _mainCameraGo;

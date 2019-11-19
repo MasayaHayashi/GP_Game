@@ -51,6 +51,7 @@ public class FlowItem : MonoBehaviour
         moveLaneVelocity = Vector3.zero;
         liftFlag = false;
         goalFlag = false;
+        laneControlClass.PlaySe("itemSpawn");
     }
 
     // Update is called once per frame

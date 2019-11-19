@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] GameObject handObj;
     [SerializeField] LaneControl laneControlClass;
+    [SerializeField] SoundManager soundClass;
     Rigidbody selfRigidBody;
 
     FlowItem liftItem = null;
@@ -90,6 +91,7 @@ public class Character : MonoBehaviour
             liftItem = item.gameObject.GetComponent<FlowItem>();
             liftItem.Lift();
         }
+        soundClass.PlayOneShot("takeItem");     //SEの再生
         return true;
     }
 
@@ -112,6 +114,7 @@ public class Character : MonoBehaviour
 
         liftItem.Put(workPos, lanec.laneVelocity);
         liftItem = null;
+        soundClass.PlayOneShot("putItem");     //SEの再生
         return true;
     }
 
