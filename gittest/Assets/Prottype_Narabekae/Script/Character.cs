@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] GameObject handObj;
     [SerializeField] LaneControl laneControlClass;
+    [SerializeField] SoundManager soundClass;
     Rigidbody selfRigidBody;
 
     FlowItem liftItem = null;
@@ -72,7 +73,7 @@ public class Character : MonoBehaviour
 
     public bool ItemLiftUp(Collider item)
     {
-        if (!playerInputActiveFlag)
+        if (!playerInputActiveFlag || !item.GetComponent<FlowItem>().finStartEffect)
             return false;
 
         if (!liftItem)
@@ -90,6 +91,7 @@ public class Character : MonoBehaviour
             liftItem = item.gameObject.GetComponent<FlowItem>();
             liftItem.Lift();
         }
+        soundClass.PlayOneShot("takeItem");     //SEの再生
         return true;
     }
 
@@ -112,6 +114,7 @@ public class Character : MonoBehaviour
 
         liftItem.Put(workPos, lanec.laneVelocity);
         liftItem = null;
+        soundClass.PlayOneShot("putItem");     //SEの再生
         return true;
     }
 
@@ -120,6 +123,7 @@ public class Character : MonoBehaviour
         if (!liftItem || !playerInputActiveFlag)
             return false;
 
+        soundClass.PlayOneShot("inDust");       //SEの再生
         liftItem.InDustBox() ;
         liftItem = null;
         return true;

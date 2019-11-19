@@ -97,10 +97,10 @@ public class RecipeControl : MonoBehaviour
             }
         }
 
-        //初期表示のレシピの作成(下に待機させる分を含めて4つ)
+        //初期表示のレシピの作成
         GameObject go;
         float posy = 2.3f;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             if (recipes.Count - 1 < i)
                 return;
@@ -164,11 +164,17 @@ public class RecipeControl : MonoBehaviour
         if (type == recipes[recipeIndex][itemIndex]) { 
             correctDatas[recipeIndex]++;
             retVal = true;
+            laneControlClass.PlaySe("correctPressPos");  //SEの再生
         }
         else if(type == FlowItem.eItemType.disturb)
         {
             //お邪魔アイテムの場合はフリーズ
             LaneControl.StartBug();
+            laneControlClass.PlaySe("disturbBug");  //SEの再生
+        }
+        else
+        {
+            laneControlClass.PlaySe("missPressPos");  //SEの再生
         }
 
         //正解の場合

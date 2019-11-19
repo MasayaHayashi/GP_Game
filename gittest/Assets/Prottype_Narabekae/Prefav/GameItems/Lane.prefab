@@ -655,7 +655,8 @@ MonoBehaviour:
   wallObj: {fileID: 1666586762916132055}
   pressMachineObj: {fileID: 8521719481332383286}
   dissolverObj: {fileID: 0}
-  particleObj: {fileID: 0}
+  particleObj: {fileID: 1678212299592888375, guid: 60f3942eddb903445aa8f8867d164d4e,
+    type: 3}
 --- !u!114 &1833754351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,7 +1105,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4055068540582636496, guid: 7ae7e61bce442d149a2bd912ebcda0ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7ae7e61bce442d149a2bd912ebcda0ea, type: 3}
 --- !u!4 &8523624014586772238 stripped
 Transform:

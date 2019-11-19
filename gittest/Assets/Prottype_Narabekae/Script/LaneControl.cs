@@ -21,6 +21,9 @@ public class LaneControl : MonoBehaviour
     [SerializeField] GameObject dissolverObj;
     [SerializeField] GameObject particleObj;
 
+    [SerializeField] SoundManager bgmClass;
+    [SerializeField] SoundManager seClass;
+
     //読み込みステート
     enum eStageDataLoadState
     {
@@ -74,7 +77,7 @@ public class LaneControl : MonoBehaviour
     List<tStageData> loadStageDatas = new List<tStageData>();
 
     float timeCnt;
-    float TIME_INTERVAL_CREATE = 3.0f;
+    float TIME_INTERVAL_CREATE = 5.0f;
     static GameObject mainCameraGo;
 
 
@@ -98,9 +101,17 @@ public class LaneControl : MonoBehaviour
         iTween.ShakePosition(mainCameraGo, iTween.Hash("x", 0.5f, "y", 0.5f, "time", 3.0f));
     }
 
+    //SEの再生
+    public void PlaySe(string name) { seClass.PlayOneShot(name); }
+    public void PlaySe(int index) { seClass.PlayOneShot(index); }
+
     // Start is called before the first frame update
     void Start()
     {
+        //**** ゲームマネージャーに書くと衝突するかなと思ったので仮処理 *******
+        bgmClass.Play("digitalworld");
+
+
         mainCameraGo = _mainCameraGo;
         timeCnt = 0.0f;
         FlowItem.laneSpeedUpFlag = false;
@@ -207,6 +218,7 @@ public class LaneControl : MonoBehaviour
             {
                 // アイテム生成
                 GameObject spawnItem = Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity);
+                spawnItem.GetComponent<FlowItem>().dissolvClass = dissolverObj.GetComponent<Dissolver>();
                 dissolverObj.transform.parent = spawnItem.transform;
 
                 // パーティクル生成
@@ -219,7 +231,6 @@ public class LaneControl : MonoBehaviour
                 spawnItem.GetComponent<FlowItem>().FirstSet(this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
                 dissolverObj.GetComponent<Dissolver>().initilizeAttach();
                 dissolverObj.GetComponent<Dissolver>().begin();
-                
 
                 //Instantiate(items[Random.Range(0, items.Length)], SpawnPosition.position, Quaternion.identity).GetComponent<FlowItem>().FirstSet(
                 //    this, createWaitItems[0], itemMaterials[(int)createWaitItems[0]]);
