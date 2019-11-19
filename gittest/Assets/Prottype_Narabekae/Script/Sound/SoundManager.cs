@@ -31,6 +31,12 @@ public class SoundManager : MonoBehaviour
         soundManagerInstanceList.Remove(this);
     }
 
+    void OnApplicationQuit()
+    {
+        Destroy(gameObject);
+    }
+
+
     //----- SEの再生 ------
     public bool PlayOneShot(int index)
     {
