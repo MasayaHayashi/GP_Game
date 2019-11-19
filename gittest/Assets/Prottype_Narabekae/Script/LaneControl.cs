@@ -101,6 +101,10 @@ public class LaneControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //**** ゲームマネージャーに書くと衝突するかなと思ったので仮処理 *******
+        SoundManager.soundManagerInstanceList[0].Play("BGM");
+
+
         mainCameraGo = _mainCameraGo;
         timeCnt = 0.0f;
         FlowItem.laneSpeedUpFlag = false;
