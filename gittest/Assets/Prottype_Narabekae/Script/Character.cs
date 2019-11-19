@@ -83,7 +83,7 @@ public class Character : MonoBehaviour
         else
         {
             //--- 元々持ってたアイテムを置く ---
-            liftItem.Put(item.transform.position);
+            liftItem.Put(item.transform.position, item.gameObject.GetComponent<FlowItem>().moveLaneVelocity);
 
 
             //--- 持ち替えでアイテムを持つ ---
@@ -100,6 +100,7 @@ public class Character : MonoBehaviour
 
         //どのテーブルに置くのか
         Vector3 workPos = handObj.transform.position;
+        workPos.y = liftItem.transform.position.y;
         Lane lanec = table.gameObject.GetComponent<Lane>();
 
         if (lanec.laneVelocity.x != 0.0f)
@@ -109,7 +110,7 @@ public class Character : MonoBehaviour
         else
             Debug.Log("Error");
 
-        liftItem.Put(workPos);
+        liftItem.Put(workPos, lanec.laneVelocity);
         liftItem = null;
         return true;
     }

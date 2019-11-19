@@ -77,6 +77,7 @@ public class FlowItem : MonoBehaviour
             return;
 
         Vector3 work = Vector3.zero;
+        Vector3 pos = selfTrans.position;
 
         if (LaneControl.BugFreezeFlag())
         {
@@ -86,8 +87,14 @@ public class FlowItem : MonoBehaviour
 
         work.y = selfRigidBody.velocity.y;
 
-        work.x = moveLaneVelocity.x * LANE_SPEED;
-        work.z = moveLaneVelocity.z * LANE_SPEED;
+        if (moveLaneVelocity.x != 0.0f)
+        {
+            work.x = moveLaneVelocity.x * LANE_SPEED;
+        }
+        else if (moveLaneVelocity.z != 0.0f)
+        {
+            work.z = moveLaneVelocity.z * LANE_SPEED;
+        }
 
         selfRigidBody.velocity = work;
     }
@@ -108,6 +115,12 @@ public class FlowItem : MonoBehaviour
             {
                 moveLaneVelocity = laneClass.laneVelocity;
                 changeVelocity = false;
+                Vector3 work2 = selfTrans.position;
+                if (moveLaneVelocity.x != 0.0f)
+                    work2.z = laneClass.transform.position.z;
+                else if(moveLaneVelocity.z != 0.0f)
+                    work2.x = laneClass.transform.position.x;
+                selfTrans.position = work2;
                 return;
             }
             changeVelocity = true;
@@ -140,8 +153,9 @@ public class FlowItem : MonoBehaviour
         liftFlag = true;
     }
 
-    public void Put(Vector3 pos)
+    public void Put(Vector3 pos, Vector3 vel)
     {
+        moveLaneVelocity = vel;
         liftFlag = false;
         changeVelocity = true;
         transform.position = pos;
