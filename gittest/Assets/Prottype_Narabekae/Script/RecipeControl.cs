@@ -97,10 +97,10 @@ public class RecipeControl : MonoBehaviour
             }
         }
 
-        //初期表示のレシピの作成(下に待機させる分を含めて4つ)
+        //初期表示のレシピの作成
         GameObject go;
         float posy = 2.3f;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             if (recipes.Count - 1 < i)
                 return;
