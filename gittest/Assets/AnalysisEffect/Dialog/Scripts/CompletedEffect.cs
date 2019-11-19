@@ -28,6 +28,13 @@ public class CompletedEffect : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        m_isFlashing = false;
+        m_Plus = true;
+        m_Elapsed = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,11 +50,7 @@ public class CompletedEffect : MonoBehaviour
                     m_Text.color = new Color(m_TextColor.r, m_TextColor.g, m_TextColor.b, 0);
                     m_Material.EnableKeyword("_Color"); //キーワードの有効化を忘れずに
                     m_Material.SetColor("_Color", new Color(m_MatColor.r, m_MatColor.g, m_MatColor.b, 0));
-                    //m_Material.color = new Color(m_MatColor.r, m_MatColor.g, m_MatColor.b, 0);
-
-
-
-
+                    //m_Material.color = new Color(m_MatColor.r, m_MatColor.g, m_MatColor.b, 0)
                 }
             }
             else
@@ -63,8 +66,6 @@ public class CompletedEffect : MonoBehaviour
 
                 }
             }
-
-           
 
         }
         else

@@ -76,6 +76,10 @@ public class TextEffect : MonoBehaviour
         m_isEffect = false;
     }
 
-
+    private void OnDisable()
+    {
+        m_TimeElapsed = 0;
+        m_UIText.text = m_OriginalText.Substring(0, (int)((float)m_CharacterTotal * (m_TimeElapsed / m_ViewTime)));
+    }
 
 }

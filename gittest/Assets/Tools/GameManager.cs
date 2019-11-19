@@ -23,6 +23,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField] private AgeController m_AgeController;
     [SerializeField] private Character m_ChacterController;
     [SerializeField] private LaneControl m_LaneController;
+    [SerializeField] private GameObject m_Recepi;
 
     private bool m_isEffect; // 演出中
 
@@ -152,13 +153,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         m_CameraManager.m_Move.ZoomInOut();
 
         // --- 演出終了 ---
-        GameProgressEnable();
         m_isEffect = false;
         yield return null;
         ChangeState(GameState.Analysis);
-      
-      
-
+        
     }
 
     public void ChangeState(GameState state)
@@ -189,6 +187,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_ChacterController.SetInputActive(true);
         m_LaneController.SetLaneActive(true);
+        m_Recepi.SetActive(true);
 
         charaMove = true;
         laneMove = true;
@@ -198,6 +197,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_ChacterController.SetInputActive(false);
         m_LaneController.SetLaneActive(false);
+        m_Recepi.SetActive(false);
 
         charaMove = false;
         laneMove = false;
