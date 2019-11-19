@@ -26,6 +26,8 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
     //　読み込み率を表示するスライダー
     [SerializeField] private Slider slider;
 
+    public bool m_isTransition;
+
     // 初期化メソッド(初アクセスまたはAwake時のどちらか一度だけ実行される)
     protected override void Init()
     {
@@ -55,6 +57,8 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 
     IEnumerator LoadScene(string sceneName, float time,FadeType type)
     {
+
+        m_isTransition = true;
 
         TransitonBase transition = null;
         switch (type)
@@ -121,6 +125,7 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
             yield return new WaitForEndOfFrame();
         }
 
+        m_isTransition = false;
         yield return null;
     }
 

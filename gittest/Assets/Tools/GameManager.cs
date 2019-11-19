@@ -42,7 +42,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameProgressDisable();
     }
 
     // Update is called once per frame
@@ -52,7 +52,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         switch (m_State)
         {
             case GameState.Set:
-                ChangeState(GameState.Analysis);
+                if (!TransitionManager.Instance.m_isTransition)
+                    ChangeState(GameState.Analysis);
                 break;
             case GameState.Analysis:              
                 break;
