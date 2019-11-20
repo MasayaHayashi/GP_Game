@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmokeParticleBase : MonoBehaviour
+public class MyParticleBase : MonoBehaviour
 {
     private Hashtable hash = new Hashtable();
 
@@ -22,8 +22,8 @@ public class SmokeParticleBase : MonoBehaviour
         
     }
 
-    void initilize()
+    private bool OnParticleSystemStopped()
     {
-        
+        return true;
     }
 }
