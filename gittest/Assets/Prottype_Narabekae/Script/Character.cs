@@ -91,7 +91,7 @@ public class Character : MonoBehaviour
             liftItem = item.gameObject.GetComponent<FlowItem>();
             liftItem.Lift();
         }
-        soundClass.PlayOneShot("takeItem");     //SEの再生
+        soundClass.PlayOneShot((int)SoundManager.eGameSE.takeItem);     //SEの再生
         return true;
     }
 
@@ -114,7 +114,7 @@ public class Character : MonoBehaviour
 
         liftItem.Put(workPos, lanec.laneVelocity);
         liftItem = null;
-        soundClass.PlayOneShot("putItem");     //SEの再生
+        soundClass.PlayOneShot((int)SoundManager.eGameSE.putItem);     //SEの再生
         return true;
     }
 
@@ -123,7 +123,7 @@ public class Character : MonoBehaviour
         if (!liftItem || !playerInputActiveFlag)
             return false;
 
-        soundClass.PlayOneShot("inDust");       //SEの再生
+        soundClass.PlayOneShot((int)SoundManager.eGameSE.inDust);       //SEの再生
         liftItem.InDustBox() ;
         liftItem = null;
         return true;

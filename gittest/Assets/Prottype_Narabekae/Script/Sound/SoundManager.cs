@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    //====== enum ========
+    //--- ゲームSE ----
+    public enum eGameSE {
+        takeItem,           //アイテムを持つ・交換する
+        putItem,            //アイテムを置く
+        itemSpawn,       //アイテムスポーン演出
+        disturbBug,             //お邪魔アイテムでレーンにバグが起きた！
+        correctPressPos,      //正解のアイテムがセットされた
+        missPressPos,         //不正解のアイテムがセットされた
+        inDust,                   //アイテムをごみ箱に捨てた
+    }
+
+
     [SerializeField] bool dontDestroyOnLoad = true;
     [SerializeField] AudioClip[] audioClips;
     [SerializeField] string manageTag = "";
