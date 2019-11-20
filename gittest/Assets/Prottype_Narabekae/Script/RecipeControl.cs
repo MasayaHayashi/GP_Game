@@ -193,7 +193,7 @@ public class RecipeControl : MonoBehaviour
                 }
                 else
                 {
-                    if (recipeIndex <= recipes.Count - 4)
+                    if (recipeIndex <= recipes.Count - 3)
                     {
                         GameObject go;
                         go = Instantiate(recipeUiPrefav, Vector3.zero, Quaternion.identity);
@@ -202,8 +202,10 @@ public class RecipeControl : MonoBehaviour
                         go.transform.localPosition = new Vector3(0.0f, -4.6f, 0.0f);
                         go.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
                         recipeUis.Add(go.GetComponent<Recipe>());
-                        recipeUis[recipeUis.Count - 1].SetColors(itemUiSprites[(int)recipes[recipeIndex + 3][0]],
-                            itemUiSprites[(int)recipes[recipeIndex + 3][1]], itemUiSprites[(int)recipes[recipeIndex + 3][2]], itemUiSprites[(int)recipes[recipeIndex + 3][3]]);
+                        recipeUis[recipeUis.Count - 1].SetColors(itemUiSprites[(int)recipes[recipeIndex + 2][0]],
+                            itemUiSprites[(int)recipes[recipeIndex + 2][1]], 
+                            itemUiSprites[(int)recipes[recipeIndex + 2][2]], 
+                            itemUiSprites[(int)recipes[recipeIndex + 2][3]]);
                     }
 
                     //次のアイテムを生成
