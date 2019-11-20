@@ -17,7 +17,7 @@ public class RecipeControl : MonoBehaviour
 
     //仮定数　ウイルスのレベル部分とマージしたらそっちに
     const int maxLv = 3;
-    int recipeLv = 2;       //レシピレベル　ウイルスのレベルと一緒
+    int recipeLv = 0;       //レシピレベル　ウイルスのレベルと一緒
 
     //レシピテーブル
     tRecipeLevel[] recipeTable = new tRecipeLevel[maxLv];
@@ -47,9 +47,9 @@ public class RecipeControl : MonoBehaviour
         itemIndex = 0;
         isScrollWait = false;
 
-        CreateRecipeTable();    //とりあえずここで。
+        //CreateRecipeTable();    //とりあえずここで。
 
-        CreateRecipe();     //レシピの作成
+        //CreateRecipe();     //レシピの作成
     }
 
     // Update is called once per frame
@@ -68,7 +68,31 @@ public class RecipeControl : MonoBehaviour
         }
     }
 
-    void CreateRecipeTable()
+    //==== 次のステージへ =====
+    public int NextStage(int val)
+    {
+        //--- 初期化 ---
+        recipeIndex = 0;
+        itemIndex = 0;
+        isScrollWait = false;
+
+        recipeLv += val;     //次へ
+
+        //--- 表示UIをクリーン ---
+        while(recipeUis.Count > 0)
+        {
+            if(recipeUis[0] != null)
+                Destroy(recipeUis[0].gameObject);
+            recipeUis.RemoveAt(0);
+        }
+
+        //--- レシピを作成 ---
+        CreateRecipe();
+
+        return recipeLv;
+    }
+
+    public void CreateRecipeTable()
     {
         recipeTable[0].recipeNum = 5;
         recipeTable[0].itemNum = 4;
@@ -189,6 +213,7 @@ public class RecipeControl : MonoBehaviour
                 recipeIndex++;
                 if (recipeIndex >= recipes.Count)
                 {
+                laneControlClass.oneGameFin = true;
                     Debug.Log("ウイルス退治演出へ");
                 }
                 else

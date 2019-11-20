@@ -9,6 +9,7 @@ public class LaneControl : MonoBehaviour
     [SerializeField] Transform SpawnPosition;
     [SerializeField] GameObject _mainCameraGo;
     [SerializeField] TextAsset[] stageDatas;
+    [SerializeField] RecipeControl recipeControlClass;
 
     [SerializeField] GameObject lanePrefav;
 
@@ -105,15 +106,22 @@ public class LaneControl : MonoBehaviour
     public void PlaySe(string name) { seClass.PlayOneShot(name); }
     public void PlaySe(int index) { seClass.PlayOneShot(index); }
 
+    //ワンゲーム終了を通知するフラグ
+    public bool oneGameFin;
+
     // Start is called before the first frame update
     void Start()
     {
         //**** ゲームマネージャーに書くと衝突するかなと思ったので仮処理 *******
         bgmClass.Play("digitalworld");
 
+        //--- レシピテーブルの初期生成 ---
+        recipeControlClass.CreateRecipeTable();
 
+        //--- 初期化 ---
+        oneGameFin = false;
         mainCameraGo = _mainCameraGo;
-        timeCnt = 0.0f;
+        timeCnt = 100.0f;
         FlowItem.laneSpeedUpFlag = false;
         isLaneActive = true;   //アイテムの生成
 
@@ -158,10 +166,19 @@ public class LaneControl : MonoBehaviour
         if(isLaneActive)
             CreateDragItem();
 
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ReCreateStage(0);
-        }
+    }
+
+    //===== 次のステージへ ======
+    public void NextStage(int evolvVal)
+    {
+        //--- 初期化 ---
+        oneGameFin = false;
+        timeCnt = 100.0f;
+        FlowItem.laneSpeedUpFlag = false;
+        isLaneActive = true;   //アイテムの生成
+
+        //--- ステージの再編とレシピの初期化 ---
+        ReCreateStage(recipeControlClass.NextStage(evolvVal));
     }
 
     //---- ステージの再編成 ----
@@ -213,7 +230,8 @@ public class LaneControl : MonoBehaviour
         timeCnt += Time.deltaTime;
         if (timeCnt >= TIME_INTERVAL_CREATE)
         {
-            timeCnt -= TIME_INTERVAL_CREATE;
+            //timeCnt -= TIME_INTERVAL_CREATE;
+            timeCnt = 0.0f;
             if (createWaitItems.Count > 0)
             {
                 // アイテム生成

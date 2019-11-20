@@ -58,6 +58,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             case GameState.Analysis:              
                 break;
             case GameState.Game:
+                if (m_LaneController.oneGameFin)
+                    ChangeState(GameState.VirusEvolution);
                 break;
             case GameState.Pause:
                 break;
@@ -173,6 +175,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 StartCoroutine(analysis());
                 break;
             case GameState.Game:
+                m_LaneController.NextStage(0);      //ここで送る数字でどれだけ進化するか変わる 
+                                                                    //初回は絶対0を入れる
+                                                                    //それ以降は成功度に応じて1~3の数字を入れる
                 break;
             case GameState.VirusEvolution:
                 StartCoroutine(virusEvolution());
