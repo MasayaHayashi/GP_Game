@@ -12,6 +12,7 @@ public class PressMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         lerpVal = 0.0f;
         selfTrans = transform;
         anim = false;
@@ -32,6 +33,8 @@ public class PressMachine : MonoBehaviour
             {
                 lerpVal = 1.0f;
                 speed *= -1.0f;
+
+                GetComponentInChildren<PressParticle>().start();
 
                 //当たっているアイテムにプレスされたことを伝える
                 Collider[] collisions = Physics.OverlapBox(selfTrans.position, selfTrans.localScale / 2.0f, transform.rotation);

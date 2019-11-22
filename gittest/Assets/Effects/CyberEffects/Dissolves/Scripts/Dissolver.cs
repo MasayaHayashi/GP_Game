@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Author MasayaHayashi
-// ディゾルバー(オブジェクトにアタッチするとディゾルブができます)
+// ディゾルバー(オブジェクトに親子付けするとディゾルブができます)
 
 public class Dissolver : SingletonMonoBehaviour<Dissolver>
 {
-    private List<GameObject> maskObjects = new List<GameObject>();
+    private List<GameObject> childObjects = new List<GameObject>();
+
+    private List<int> maskIndexs     = new List<int>();
+    private List<int> particleIndexs = new List<int>();
 
     private float moveY;
     private float delay;
@@ -26,7 +29,8 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
     [SerializeField, Header("移動量")]
     private float DeffaltMoveY;
 
-
+    [SerializeField, Header("パーティクル生成間隔")]
+    private float ParticleSpawnTime;
 
     private bool complite = false;
     public bool isComplite { get { return complite; } }
@@ -35,10 +39,15 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     private Vector3 EvacuationPosition = new Vector3(0.0f, 500.0f, 0.0f);
 
+    private ParticleSystem childParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-        maskObjects.Add(transform.GetChild(0).gameObject);
+        for (int childIndex = 0; childIndex < transform.childCount; childIndex++)
+        {
+            childObjects.Add(transform.GetChild(childIndex).gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -49,11 +58,18 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
             begin();
         }
 
+        attachParticle();
+
+        //
     }
 
     void CompleteHandler()
     {
+        // パーティクルアタッチ
+        childObjects[1].transform.parent = transform.parent;
+
         complite = true;
+
         initilize();
         transform.parent =  null;
         transform.position = EvacuationPosition;
@@ -61,7 +77,7 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
 
     private void initilize()
     {
-        maskObjects[0].transform.localPosition = EvacuationPosition;
+        childObjects[0].transform.localPosition = EvacuationPosition;
         hash.Clear();
         isStarting = true;
     }
@@ -73,6 +89,9 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
             initilizeAttach();
         }
 
+        // パーティティクル生成
+        StartCoroutine("beginParticle");
+
         isStarting = true;
         complite   = false;
 
@@ -81,8 +100,8 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         time  = DeffaltTime;
 
         // 位置初期化
-        transform.localPosition                = Vector3.zero;
-        maskObjects[0].transform.localPosition = Vector3.zero;
+        transform.localPosition                 = Vector3.zero;
+        childObjects[0].transform.localPosition = Vector3.zero;
 
         hash.Add("y", moveY);
         hash.Add("delay", delay);
@@ -92,18 +111,45 @@ public class Dissolver : SingletonMonoBehaviour<Dissolver>
         hash.Add("oncomplete", "CompleteHandler");
         hash.Add("oncompletetarget", gameObject);
 
-        iTween.MoveAdd(maskObjects[0], hash);
+        iTween.MoveAdd(childObjects[0], hash);
 
     }
 
     public void initilizeAttach()
     {
-      //  iTween.Stop(maskObjects[0], "move");
-        maskObjects.Clear();
         hash.Clear();
-
-        maskObjects.Add(transform.GetChild(0).gameObject);
+        
         isStarting = false;
         complite   = false;
+    }
+
+    private void sort()
+    {
+        List<GameObject> tempChildObjects = new List<GameObject>();
+
+        // 各オブジェクトを並び替え
+        foreach (GameObject childObject in childObjects)
+        {
+
+        }
+    }
+
+    private void attachParticle()
+    {
+
+        ParticleSystem particle = childObjects[1].GetComponent<ParticleSystem>();
+
+        if(!particle.IsAlive())
+        {
+            childObjects[1].transform.parent         = transform;
+            childObjects[1].transform.localPosition = Vector3.zero;
+        }
+    }
+
+    IEnumerator beginParticle()
+    {
+        yield return new WaitForSeconds(ParticleSpawnTime);
+        childObjects[1].GetComponent<ParticleSystem>().Play();
+
     }
 }

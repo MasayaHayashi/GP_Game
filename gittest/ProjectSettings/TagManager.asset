@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Target
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -24,10 +23,10 @@ TagManager:
   - PressMachine
   - Wall
   - DustBox
-  - FogVolumeShadowCaster
-  - FogVolume
-  - FogVolumeSurrogate
-  - FogVolumeUniform
+  - Particle
+  - Mask
+  - 
+  - 
   - 
   - 
   - 

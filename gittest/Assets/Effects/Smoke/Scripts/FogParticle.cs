@@ -3,21 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Author : MasayaHAyashi
-// スケール拡大コンポーネント
 
-public class addScale : MonoBehaviour
+public class FogParticle : MonoBehaviour
 {
-    private Vector3 addSpeed = new Vector3(0.33f,0.0f,0.02f);
     private Hashtable hash = new Hashtable();
+
+    private Vector3 startPosition;
+    private Vector3 startScale;
+
+    [SerializeField, Header("拡大スケール設定")]
+    private Vector3 addScaleVector;
 
     // Start is called before the first frame update
     void Start()
     {
+        // 初期状態確保
+        startPosition = transform.localPosition;
+        startScale    = transform.localScale;
+
         StartCoroutine("stop");
 
-        hash.Add("x", 2.5f);
-        hash.Add("y", 2.2f);
-        hash.Add("z", 2.2f);
+        hash.Add("x", addScaleVector.x);
+        hash.Add("y", addScaleVector.y);
+        hash.Add("z", addScaleVector.z);
         hash.Add("time", 8.0f);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
 
@@ -40,5 +48,9 @@ public class addScale : MonoBehaviour
         particle.Stop();
     }
 
-
+    void initilize()
+    {
+        transform.localPosition = startPosition;
+        transform.localScale    = startScale;
+    }
 }
