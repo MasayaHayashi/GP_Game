@@ -10,7 +10,7 @@ public class CyberEffectsManager : MonoBehaviour
     [SerializeField, Header("エフェクト")]
     private List<GameObject> cyberEffects;
 
-    private List<TrailRenderer> trails;
+    private List<TrailRenderer> trails = new List<TrailRenderer>();
     private Color startColor;
 
 
@@ -33,12 +33,15 @@ public class CyberEffectsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        changeColor();
     }
 
     public void changeColor()
     {
-
+        foreach(TrailRenderer trailRenderer in trails)
+        {
+            trailRenderer.material.SetColor("_EmissionColor", new Color(1.0f, 0.0f, 0.0f, 1.0f));
+        }
     }
 
    
