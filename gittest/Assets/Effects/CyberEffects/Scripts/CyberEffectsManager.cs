@@ -13,6 +13,7 @@ public class CyberEffectsManager : MonoBehaviour
     private List<TrailRenderer> trails = new List<TrailRenderer>();
     private Color startColor;
 
+    private Color myChangeColor;
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +34,28 @@ public class CyberEffectsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changeColor();
+        changeColor(myChangeColor);
+
+        if (Input.GetKey(KeyCode.Alpha5))
+            myChangeColor.r -= 0.1f;
+
+        if (Input.GetKey(KeyCode.Alpha6))
+            myChangeColor.r += 0.1f;
     }
 
-    public void changeColor()
+    public void changeColor(Color setColor)
     {
         foreach(TrailRenderer trailRenderer in trails)
         {
-            trailRenderer.material.SetColor("_EmissionColor", new Color(1.0f, 0.0f, 0.0f, 1.0f));
+            trailRenderer.material.SetColor("_EmissionColor", setColor);
+        }
+    }
+
+    public void ReturnToColor()
+    {
+        foreach (TrailRenderer trailRenderer in trails)
+        {
+            trailRenderer.material.SetColor("_EmissionColor", startColor);
         }
     }
 
