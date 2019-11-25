@@ -24,7 +24,8 @@ public class TransitonBase : MonoBehaviour
     /// <param name="time"></param>
     public void BeginTransition_In(float time)
     {
-        m_TransitionImage.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+        if (m_TransitionImage)
+            m_TransitionImage.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         StartCoroutine(TransIn(time));
     }
 
@@ -33,7 +34,8 @@ public class TransitonBase : MonoBehaviour
     /// </summary>
     public void BeginTransition_Out(float time)
     {
-        m_TransitionImage.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+        if (m_TransitionImage)
+            m_TransitionImage.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         StartCoroutine(TransOut(time));
     }
 

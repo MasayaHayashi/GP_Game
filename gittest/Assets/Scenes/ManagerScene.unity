@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 250919636}
   - component: {fileID: 250919637}
   - component: {fileID: 250919638}
+  - component: {fileID: 250919639}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -268,6 +269,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransitionImage: {fileID: 638378425}
+--- !u!114 &250919639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250919634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1857ef4872c7d4393f7473bd93be5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransitionImage: {fileID: 0}
 --- !u!1 &638378423
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +711,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f17f6930848c8f642b614b5bf87f4c83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 756cc93f7be661f48be6f6367f6931f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
