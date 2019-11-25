@@ -70,6 +70,8 @@ public class StageDatWrite : MonoBehaviour
             sw.WriteLine(lanes[i].localScale);
             sw.WriteLine("<velocity>");
             sw.WriteLine(lanes[i].GetComponent<Lane>().laneVelocity);
+            sw.WriteLine("<putpos>");
+            sw.WriteLine(lanes[i].GetComponent<Lane>().itemPosY);
         }
         sw.WriteLine("<PRESSPOS>");
         for (int i = 0; i < pressPos.Count; i++)

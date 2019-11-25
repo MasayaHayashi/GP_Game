@@ -8,6 +8,8 @@ public class Lane : MonoBehaviour
     [SerializeField] string setsumei = "↓レーンの移動スピード";
     [SerializeField] string setsumei1 = "xとzに -1.0 ~ 1.0で指定してください";
     public Vector3 laneVelocity;
+    [SerializeField] string setumei4 = "上にアイテムが乗った時にこの位置まで滑り落ちます";
+    public float itemPosY;
 
     [HideInInspector] public Vector3 pos;
 

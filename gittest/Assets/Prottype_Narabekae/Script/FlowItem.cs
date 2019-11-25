@@ -13,13 +13,14 @@ public class FlowItem : MonoBehaviour
     string laneName;
     bool changeVelocity;
     public Vector3 moveLaneVelocity;
+    float lanePutPosY;
     Lane laneClass;
 
     public static float LANE_SPEED = 1.0f;
     public static bool laneSpeedUpFlag = false;
+
     bool liftFlag;
     public bool goalFlag;
-
     public bool finStartEffect;
 
     public enum eItemType
@@ -51,6 +52,7 @@ public class FlowItem : MonoBehaviour
         moveLaneVelocity = Vector3.zero;
         liftFlag = false;
         goalFlag = false;
+        lanePutPosY = 0.0f;
         laneControlClass.PlaySe("itemSpawn");
     }
 
@@ -76,6 +78,10 @@ public class FlowItem : MonoBehaviour
                 LANE_SPEED *= 5.0f;
         }
 
+        //--- レーンとの当たり判定を調べる ---
+        CheckLane();
+
+        //--- レーンにそって流れる ---
         LaneFlow();
 
         //下に落ちたら削除
@@ -85,30 +91,64 @@ public class FlowItem : MonoBehaviour
 
     void LaneFlow()
     {
-        if (liftFlag)
+        if (liftFlag)       //持たれているとき
             return;
 
         Vector3 work = Vector3.zero;
         Vector3 pos = selfTrans.position;
 
-        if (LaneControl.BugFreezeFlag())
+        if (LaneControl.BugFreezeFlag())        //レーンフリーズ中は止まる
         {
-            selfRigidBody.velocity = work;
+            //selfRigidBody.velocity = work;
             return;
         }
 
-        work.y = selfRigidBody.velocity.y;
+        //work.y = selfRigidBody.velocity.y;      //重力はそのまま利用
 
+        //固定値より上にいるなら重力を追加
+        if(lanePutPosY < selfTrans.position.y)
+        {
+            work.y = -2.0f;
+        }
+
+        //ナナメ移動ができないように
         if (moveLaneVelocity.x != 0.0f)
         {
-            work.x = moveLaneVelocity.x * LANE_SPEED;
+            work.x = moveLaneVelocity.x * LANE_SPEED * Time.deltaTime;
         }
         else if (moveLaneVelocity.z != 0.0f)
         {
-            work.z = moveLaneVelocity.z * LANE_SPEED;
+            work.z = moveLaneVelocity.z * LANE_SPEED * Time.deltaTime;
         }
 
-        selfRigidBody.velocity = work;
+        //selfRigidBody.velocity = work;
+        selfTrans.position += work;
+
+        //固定値よりY下回ったら固定値に戻す
+        if(selfTrans.position.y <= lanePutPosY){
+            work = selfTrans.position;
+            work.y = lanePutPosY;
+            selfTrans.position = work;
+        }
+    }
+
+    void CheckLane()
+    {
+        if (liftFlag || goalFlag)   //持ち上げ中はレーン処理をしない
+            return;
+
+        RaycastHit hit;
+        float distance = 5.0f;      //レイを飛ばす距離
+        
+        //デバッグ表示
+        Debug.DrawRay(selfTrans.position, new Vector3(0.0f, -1.0f, 0.0f) * distance, Color.red);
+
+        //下にレイを飛ばしてレーンの有無を確認
+        if(Physics.Raycast(selfTrans.position, new Vector3(0.0f, -1.0f, 0.0f),
+            out hit, distance, LayerMask.GetMask(new string[] { "Lane" })))
+        {
+            LaneCollide(hit.collider.gameObject);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -120,17 +160,24 @@ public class FlowItem : MonoBehaviour
         if (layerName != "Lane")
             return;
 
-        if (collision.gameObject.name != laneName) {
-            laneName = collision.gameObject.name;
-            laneClass = collision.gameObject.GetComponent<Lane>();
+        LaneCollide(collision.gameObject);
+    }
+
+    void LaneCollide(GameObject obj)
+    {
+        if (obj.name != laneName)
+        {
+            laneName = obj.gameObject.name;
+            laneClass = obj.gameObject.GetComponent<Lane>();
             if (changeVelocity)
             {
                 moveLaneVelocity = laneClass.laneVelocity;
+                lanePutPosY = laneClass.itemPosY;
                 changeVelocity = false;
                 Vector3 work2 = selfTrans.position;
                 if (moveLaneVelocity.x != 0.0f)
                     work2.z = laneClass.transform.position.z;
-                else if(moveLaneVelocity.z != 0.0f)
+                else if (moveLaneVelocity.z != 0.0f)
                     work2.x = laneClass.transform.position.x;
                 selfTrans.position = work2;
                 return;
