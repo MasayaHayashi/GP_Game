@@ -108,7 +108,7 @@ public class FlowItem : MonoBehaviour
         //固定値より上にいるなら重力を追加
         if(lanePutPosY < selfTrans.position.y)
         {
-            work.y = -2.0f;
+            work.y = -2.0f * Time.deltaTime;
         }
 
         //ナナメ移動ができないように

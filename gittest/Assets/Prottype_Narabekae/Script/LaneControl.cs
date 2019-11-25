@@ -186,6 +186,9 @@ public class LaneControl : MonoBehaviour
     //---- ステージの再編成 ----
     void ReCreateStage(int lapNum)
     {
+        //一時的にきってます****
+        return;
+
         //--- 既存のレーンの削除 ---
         Lane.LanesClose();
 

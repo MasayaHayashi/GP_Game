@@ -15,12 +15,18 @@ public class Lane : MonoBehaviour
 
     static List<Lane> lanes = new List<Lane>();
 
+    MeshRenderer upperPlane;
+
 
     // Start is called before the first frame update
     void Start()
     {
         pos = transform.position;
         lanes.Add(this);
+
+        //上の板を取得
+        upperPlane = transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
+        UpperClear();
 
         //ディゾルブ演出を入れる
     }
@@ -34,6 +40,16 @@ public class Lane : MonoBehaviour
     void Close()
     {
         Destroy(gameObject);    //ディゾルブ演出入れてから消す
+    }
+
+    public void UpperHighlight()
+    {
+        upperPlane.material.color = new Color(0.5f, 0.7f, 0.0f, 0.5f);
+    }
+
+    public void UpperClear()
+    {
+        upperPlane.material.color = new Color(0.0f,0.0f,0.0f,0.0f);
     }
 
     public static void LanesClose()
