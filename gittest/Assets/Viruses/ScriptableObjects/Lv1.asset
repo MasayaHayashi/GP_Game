@@ -15,4 +15,6 @@ MonoBehaviour:
   name: Lv1
   nextEvolutions:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   id: 0

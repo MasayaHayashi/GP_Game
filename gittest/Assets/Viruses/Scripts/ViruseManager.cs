@@ -42,9 +42,19 @@ public class ViruseManager : MonoBehaviour
         {
             viruseBaseScript = baseViruse.GetComponent<ViruseBase>();
 
-            viruseBaseScript.changeState("Idol");
-
-   
+            viruseBaseScript.changeState("Idol");   
         }
+    }
+
+    public ViruseResultData getResultData(int index)
+    {
+        if(index < 0)
+        {
+            Debug.LogError("不正な値です");
+        }
+
+        var resultList = viruseBaseScript.getResultDatas;
+
+        return resultList[index];
     }
 }

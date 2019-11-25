@@ -13,9 +13,16 @@ public class ViruseBase : MonoBehaviour
 
     private GameObject nextViruseGameObj;          // 次の進化先
 
-    private const float EffectTime = 2.0f;         // 演出時間
-    private bool isEndEffect = false;              // 進化演出が終了したか
+    public GameObject getNextViruse { get { return nextViruseGameObj; } }
 
+    private const float EffectTime = 2.0f;         // 演出時間
+    private bool isEndEffect       = false;        // 進化演出が終了したか
+
+    private List<ViruseResultData> resultDatas;    // 各ウィルスのリザルト表示データ
+    public  List<ViruseResultData> getResultDatas { get { return resultDatas; } }
+
+
+    // アニメーション関連
     private Animator[] childAnims;
     private List<RuntimeAnimatorController> nextChildAnimControllers = new List<RuntimeAnimatorController>();
 
@@ -31,7 +38,7 @@ public class ViruseBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -44,6 +51,9 @@ public class ViruseBase : MonoBehaviour
     // 進化開始
     public IEnumerator StartEvolution(ViruseData.EvolutionType type)
     {
+        // リザルト用データ登録
+        resultDatas.Add(viruseObj.getResultData);
+
         // 次の進化先登録
         nextViruseGameObj = viruseObj.nextEvolutions[(int)type];
 

@@ -25,9 +25,12 @@ public class ViruseData : ScriptableObject
 
     private Dictionary<string, Sprite> spriteDatas = new Dictionary<string,Sprite>();
 
+    private ViruseResultData resultData;
+    public ViruseResultData getResultData { get { return resultData; } }
+
     private void Awake()
     {
-
+        
     }
 
     public enum EvolutionType
