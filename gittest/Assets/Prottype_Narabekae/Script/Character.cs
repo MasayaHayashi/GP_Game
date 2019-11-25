@@ -115,7 +115,6 @@ public class Character : MonoBehaviour
             //--- 元々持ってたアイテムを置く ---
             liftItem.Put(item.transform.position, item.gameObject.GetComponent<FlowItem>().moveLaneVelocity);
 
-
             //--- 持ち替えでアイテムを持つ ---
             liftItem = item.gameObject.GetComponent<FlowItem>();
             liftItem.Lift();
@@ -128,6 +127,16 @@ public class Character : MonoBehaviour
     {
         if (!liftItem || !playerInputActiveFlag)
             return false;
+
+        //--- レイとレーンが接触しているなら、レーン中央にアイテムを置く ---
+        CheckLaneCollid();
+        if(selectLane != null)
+        {
+            liftItem.Put(selectLane.gameObject.transform.position, selectLane.laneVelocity);
+            liftItem = null;
+            soundClass.PlayOneShot((int)SoundManager.eGameSE.putItem);     //SEの再生
+            return true;
+        }
 
         //どのテーブルに置くのか
         Vector3 workPos = handObj.transform.position;

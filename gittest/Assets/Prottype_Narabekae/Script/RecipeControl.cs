@@ -199,6 +199,8 @@ public class RecipeControl : MonoBehaviour
         else
         {
             laneControlClass.PlaySe((int)SoundManager.eGameSE.missPressPos);  //SEの再生
+            //リスポーン
+            laneControlClass.AddCreateList(type);
         }
 
         //正解の場合

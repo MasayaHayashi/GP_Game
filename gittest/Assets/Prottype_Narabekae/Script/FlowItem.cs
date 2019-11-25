@@ -245,6 +245,10 @@ public class FlowItem : MonoBehaviour
     //==== ゴミ箱に入れられた =====
     public bool InDustBox()
     {
+        if(itemType != eItemType.disturb)
+        {
+            laneControlClass.AddCreateList(itemType);
+        }
         Destroy(gameObject);
         return true;
     }
