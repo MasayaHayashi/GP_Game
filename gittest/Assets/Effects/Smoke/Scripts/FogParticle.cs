@@ -14,6 +14,10 @@ public class FogParticle : MonoBehaviour
     [SerializeField, Header("拡大スケール設定")]
     private Vector3 addScaleVector;
 
+    [SerializeField, Header("拡大までの時間")]
+    private float time;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +25,7 @@ public class FogParticle : MonoBehaviour
         startPosition = transform.localPosition;
         startScale    = transform.localScale;
 
-        StartCoroutine("stop");
-
-        hash.Add("x", addScaleVector.x);
-        hash.Add("y", addScaleVector.y);
-        hash.Add("z", addScaleVector.z);
-        hash.Add("time", 8.0f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-
-        iTween.ScaleAdd(gameObject, hash);
+        begin();
     }
 
     // Update is called once per frame
@@ -38,19 +34,33 @@ public class FogParticle : MonoBehaviour
 
     }
 
-    IEnumerator stop()
+    public void begin()
     {
-        ParticleSystem particle = GetComponent<ParticleSystem>();
+        transform.localScale = startScale;
+        hash.Clear();
 
-        //1フレーム停止
-        yield return new WaitForSeconds(2);
 
-        particle.Stop();
+        hash.Add("x", addScaleVector.x);
+        hash.Add("y", addScaleVector.y);
+        hash.Add("z", addScaleVector.z);
+        hash.Add("time", time);
+        hash.Add("easeType", iTween.EaseType.easeInOutSine);
+
+        hash.Add("oncomplete", "CompleteHandler");
+        hash.Add("oncompletetarget", gameObject);
+
+        iTween.ScaleAdd(gameObject, hash);
     }
 
     void initilize()
     {
         transform.localPosition = startPosition;
         transform.localScale    = startScale;
+    }
+
+    void CompleteHandler()
+    {
+        ParticleSystem particle = GetComponent<ParticleSystem>();
+        particle.Stop();
     }
 }

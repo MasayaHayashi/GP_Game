@@ -13,6 +13,8 @@ public class PressParticle : MonoBehaviour
     private List<GameObject>     childGameObjects   = new List<GameObject>();
     private List<ParticleSystem> childParticles = new List<ParticleSystem>();
 
+    [SerializeField, Header("スモーク用パーティクル")]
+    private GameObject smokeParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -26,16 +28,21 @@ public class PressParticle : MonoBehaviour
         {
             childParticles.Add(gameObject.GetComponent<ParticleSystem>());
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            start();
+        }
     }
 
     private void Awake()
     {
+
     }
 
     IEnumerator stop()
@@ -60,10 +67,6 @@ public class PressParticle : MonoBehaviour
 
     public void start()
     {
-        foreach(GameObject particleObject in childGameObjects)
-        {
-            particleObject.SetActive(true);
-        }
-
+        Instantiate(smokeParticle);
     }
 }

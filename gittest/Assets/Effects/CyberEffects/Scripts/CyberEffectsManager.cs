@@ -13,7 +13,7 @@ public class CyberEffectsManager : MonoBehaviour
     private List<TrailRenderer> trails = new List<TrailRenderer>();
     private Color startColor;
 
-    private Color myChangeColor;
+    private Color myChangeColor = new Color(1.0f, 0.0f, 0.0f, 1.0f);
 
     // Start is called before the first frame update
     void Start()
