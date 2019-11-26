@@ -51,23 +51,23 @@ public class Character : MonoBehaviour
         Vector3 work = Vector3.zero;
         work.y = selfRigidBody.velocity.y;
         Quaternion rot = transform.rotation;
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetAxis("Vertical") >= 0.2f)
         {
             work.z = moveSpeed;
             rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
 
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetAxis("Vertical") <= -0.2f)
         {
             work.z = -moveSpeed;
             rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (/*Input.GetKey(KeyCode.RightArrow)*/ Input.GetAxis("Horizontal") >= 0.2f)
         {
             work.x = moveSpeed;
             rot = Quaternion.Euler(0.0f, -90.0f, 0.0f);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetAxis("Horizontal") <= -0.2f)
         {
             work.x = -moveSpeed;
             rot = Quaternion.Euler(0.0f, 90.0f, 0.0f);

@@ -7,7 +7,7 @@ public class Recipe : MonoBehaviour
 {
     [SerializeField] Image[] items;
     [SerializeField] UiImageAnimation[] childAnimClasses;
-    UiImageAnimation animClass;
+    [SerializeField] UiImageAnimation animClass;
 
     const float POS_UP_VAL = 2.3f;
 
@@ -24,7 +24,7 @@ public class Recipe : MonoBehaviour
     void Start()
     {
         move = false;
-        animClass = GetComponent<UiImageAnimation>();
+        //animClass = GetComponent<UiImageAnimation>();
     }
 
     // Update is called once per frame
