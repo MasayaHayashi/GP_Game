@@ -7,7 +7,10 @@ public class Recipe : MonoBehaviour
 {
     [SerializeField] Image[] items;
     [SerializeField] UiImageAnimation[] childAnimClasses;
-    UiImageAnimation animClass;
+    [SerializeField] UiImageAnimation animClass;
+
+    [SerializeField] Image frameBefore;
+    [SerializeField] Image frameAfter;
 
     const float POS_UP_VAL = 2.3f;
 
@@ -18,13 +21,22 @@ public class Recipe : MonoBehaviour
 
     const float UP_SPEED = 2.0f;
 
+    //フレームチェンジ
+    bool frameChange;
+    float framaChangeLerpVal;
+    const float FRAME_CHANGE_SPEED = 2.0f;
+
     public bool FinCallFlashAnim() { return !animClass.GetAnimPlayFlag(UiImageAnimation.eAnimType.Flash); }
 
     // Start is called before the first frame update
     void Start()
     {
+        framaChangeLerpVal = 0.0f;
+        frameChange = false;
         move = false;
-        animClass = GetComponent<UiImageAnimation>();
+        //animClass = GetComponent<UiImageAnimation>();
+        if (transform.localPosition.y >= 2.3f)
+            frameChange = true;
     }
 
     // Update is called once per frame
@@ -32,6 +44,26 @@ public class Recipe : MonoBehaviour
     {
         if (move)
             MoveAnim();
+
+        if (frameChange)
+            FrameChangeAnim();
+    }
+
+    void FrameChangeAnim()
+    {
+        framaChangeLerpVal += Time.deltaTime * FRAME_CHANGE_SPEED;
+        if(framaChangeLerpVal >= 1.0f)
+        {
+            framaChangeLerpVal = 1.0f;
+            frameChange = false;
+        }
+        Color work = frameAfter.color;
+        work.a = framaChangeLerpVal;
+        frameAfter.color = work;
+
+        work = frameBefore.color;
+        work.a = 1.0f - framaChangeLerpVal;
+        frameBefore.color = work;
     }
 
     void MoveAnim()
@@ -42,7 +74,13 @@ public class Recipe : MonoBehaviour
             lerpVal = 1.0f;
             move = false;
             if (finPos.y > 3.0f)
+            {
                 Destroy(gameObject);
+                return;
+            }else if(finPos.y >= 2.3f)
+            {
+                frameChange = true;
+            }
         }
         transform.localPosition = Vector3.Lerp(startPos, finPos, lerpVal);
     }

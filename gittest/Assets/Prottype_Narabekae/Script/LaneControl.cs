@@ -33,6 +33,7 @@ public class LaneControl : MonoBehaviour
         laneRot,
         laneSize,
         laneVel,
+        lanePutPos,
 
         presspos,
         pressposPos,
@@ -69,6 +70,7 @@ public class LaneControl : MonoBehaviour
     {
         public List<tTransData> laneTransform;
         public List<Vector3> laneVelocity;
+        public List<float> lanePutPos;
         public List<tTransData> pressPosTransform;
         public tTransData spawnPosTransform;
         public tTransData goalPosTransform;
@@ -184,6 +186,9 @@ public class LaneControl : MonoBehaviour
     //---- ステージの再編成 ----
     void ReCreateStage(int lapNum)
     {
+        //一時的にきってます****
+        return;
+
         //--- 既存のレーンの削除 ---
         Lane.LanesClose();
 
@@ -196,6 +201,7 @@ public class LaneControl : MonoBehaviour
             go.transform.parent = this.transform;
             go.transform.localScale = loadStageDatas[lapNum].laneTransform[i].scale;
             go.GetComponent<Lane>().laneVelocity = loadStageDatas[lapNum].laneVelocity[i];
+            go.GetComponent<Lane>().itemPosY = loadStageDatas[lapNum].lanePutPos[i];
         }
 
         //--- 他の位置を調整 ---
@@ -267,6 +273,7 @@ public class LaneControl : MonoBehaviour
         data.laneTransform = new List<tTransData>();
         data.pressPosTransform = new List<tTransData>();
         data.laneVelocity = new List<Vector3>();
+        data.lanePutPos = new List<float>();
 
         //--- テキストデータの基礎読み込み ---
         loadText = stageDatas[post].text;
@@ -322,6 +329,10 @@ public class LaneControl : MonoBehaviour
                 case eStageDataLoadState.laneVel:
                     index++;
                     data.laneVelocity.Add(new Vector3(float.Parse(liSplit[index][0]), float.Parse(liSplit[index][1]), float.Parse(liSplit[index][2])));
+                    break;
+                case eStageDataLoadState.lanePutPos:
+                    index++;
+                    data.lanePutPos.Add(float.Parse(liSplit[index][0]));
                     break;
 
                 case eStageDataLoadState.pressposPos:
@@ -408,7 +419,7 @@ public class LaneControl : MonoBehaviour
 
         else if (dat == "<pos>")
         {
-            if(now == eStageDataLoadState.lane || now == eStageDataLoadState.laneVel)
+            if (now == eStageDataLoadState.lane || now == eStageDataLoadState.laneVel || now == eStageDataLoadState.lanePutPos)
                 return eStageDataLoadState.lanePos;
             if (now == eStageDataLoadState.presspos || now == eStageDataLoadState.pressposSize)
                 return eStageDataLoadState.pressposPos;
@@ -449,6 +460,8 @@ public class LaneControl : MonoBehaviour
         }
         else if (dat == "<velocity>")
             return eStageDataLoadState.laneVel;
+        else if (dat == "<putpos>")
+            return eStageDataLoadState.lanePutPos;
 
             return now;
     }
